@@ -1,0 +1,95 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nathalieseibert.wells.grund_einstellung">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:id="@+id/GrundeinstelllungText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Grundeinstellungen"
+        android:textSize="25sp"
+        android:textColor="@color/schwoaz"/>
+
+
+    <TextView
+        android:id="@+id/groesse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="130dp"
+        android:text="Größe"
+        android:textSize="20sp"
+        android:textColor="@color/schwoaz"/>
+
+    <EditText
+        android:id="@+id/groesseInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="130dp"
+        android:hint="in Zentimeter"
+        android:inputType="number"
+        android:maxLength="3" />
+
+
+    <TextView
+        android:id="@+id/gewicht"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="215dp"
+        android:text="Gewicht"
+        android:textSize="20sp"
+        android:textColor="@color/schwoaz"/>
+
+    <EditText
+        android:id="@+id/gewichtInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="215dp"
+        android:hint="in Kilogramm"
+        android:inputType="numberDecimal"
+        android:maxLength="4" />
+
+    <TextView
+        android:id="@+id/alter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="300dp"
+        android:text="Alter"
+        android:textSize="20sp"
+        android:textColor="@color/schwoaz"/>
+
+    <EditText
+        android:id="@+id/alterInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="300dp"
+        android:hint="in Jahre"
+        android:inputType="number"
+        android:maxLength="2" />
+
+    <Button
+        android:id="@+id/speichern"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="15dp"
+        android:text="Speichern"
+        android:textColor="@color/schwoaz"/>
+
+
+</FrameLayout>

@@ -1,0 +1,92 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nathalieseibert.wells.PWaendern">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/PWText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="Passwort ändern"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/schwoaz"
+
+        />
+
+    <TextView
+        android:id="@+id/altespasswort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="130dp"
+        android:text="Altes Passwort"
+        android:textSize="20sp"
+        android:textColor="@color/schwoaz"
+/>
+
+    <EditText
+        android:id="@+id/altespwinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="130dp"
+        android:inputType="textPassword"
+ />
+
+    <TextView
+        android:id="@+id/neuespasswort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="215dp"
+        android:text="Neues Passwort"
+        android:textSize="20sp"
+        android:textColor="@color/schwoaz"
+ />
+
+    <EditText
+        android:id="@+id/neuespwinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="215dp"
+        android:inputType="textPassword"
+ />
+
+    <TextView
+        android:id="@+id/neuespasswortwh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="300dp"
+        android:text="Passwort bestätigen"
+        android:textSize="20sp"
+        android:textColor="@color/schwoaz"
+ />
+
+    <EditText
+        android:id="@+id/neuespwinputwh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="300dp"
+        android:inputType="textPassword"
+/>
+
+
+    <Button
+        android:id="@+id/speichern"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:text="Speichern"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/schwoaz"
+ />
+
+
+</FrameLayout>

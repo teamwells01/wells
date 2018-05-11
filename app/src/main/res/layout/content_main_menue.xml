@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.nathalieseibert.wells.MainMenueActivity"
+    tools:showIn="@layout/app_bar_main_menue">
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:id="@+id/textMl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="350dp"
+            android:text="@string/textMl"
+            android:textColor="@color/schwoaz"
+            android:textSize="32sp" />
+
+        <EditText
+            android:id="@+id/editWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="350dp"
+            android:ems="5"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/addWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="300dp"
+            android:text="@string/addWater"
+            android:textColor="@color/schwoaz"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/simpleSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="530dp"
+            android:checked="true"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:showText="true"
+            android:text="@string/simpleSwitch"
+            android:textOff="wenig"
+            android:textOn="viel"
+            tools:checked="false" />
+
+        <Button
+            android:id="@+id/haeckchen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="400dp"
+            android:text="@string/haeckchen" /><!-- text to be displayed whenever current state is checked-->
+
+    </FrameLayout>
+
+</RelativeLayout>
