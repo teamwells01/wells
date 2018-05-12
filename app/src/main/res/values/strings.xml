@@ -2,7 +2,7 @@
     <string name="app_name"><node>&#x1F6B0;&#x1F4A7;</node>Wells<node>&#x1F4A7;&#x1F6B0;</node></string>
     <!-- Fingerprint -->
     <string name="instructions"> </string>
-
+    <string name="app_name_logo"><node>&#x1F4A7;</node>Wells<node>&#x1F4A7;</node></string>
     <!-- Strings related to login -->
     <string name="prompt_email">eMail</string>
     <string name="prompt_password">Passwort (optional)</string>
@@ -73,6 +73,8 @@
     <string name="title_activity_grund_einstellungen">GrundEinstellungen</string>
     <string name="title_activity_pwaendern">PWAendern</string>
     <string name="title_activity_benachrichtungungeinstellungen">benachrichtungungeinstellungen</string>
+    <string name="content">App benutzen Reminder!</string>
+    <string name="title">Benachrichtigung</string>
 
 <string-array name="frequenz_array">
         <item>Stündlich</item>

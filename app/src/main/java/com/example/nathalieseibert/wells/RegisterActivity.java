@@ -10,10 +10,6 @@ public class RegisterActivity extends AppCompatActivity {
     public void onClickSwitchActivity(View view) {
         Intent intent = new Intent(this, MainMenueActivity.class);
         startActivity(intent);
-
-        Intent i = new Intent(this, IntentService.class);
-        startService(i);
-
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

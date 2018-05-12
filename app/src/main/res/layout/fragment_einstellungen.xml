@@ -55,4 +55,12 @@
         android:text="Passwort ändern"
         android:textColor="@color/schwoaz"/>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Button"
+        android:onClick="benachrichtigungAktivieren"
+        />
+
 </FrameLayout>

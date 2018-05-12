@@ -1,7 +1,5 @@
 package com.example.nathalieseibert.wells;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -60,5 +58,7 @@ public class Einstellungen extends Fragment {
 
 
     }
+
+
 
 }
