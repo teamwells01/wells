@@ -50,8 +50,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
 
-//        Intent i = new Intent(this, IntentService.class);
-//        startService(i);
+       Intent i = new Intent(this, IntentService.class);
+       startService(i);
 
     }
 

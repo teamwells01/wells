@@ -1,5 +1,12 @@
 package com.example.nathalieseibert.wells;
 
+import android.app.AlarmManager;
+import android.app.FragmentManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import java.util.Calendar;
+
 import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -53,9 +60,27 @@ public class MainMenueActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Test Git
-        //hinzufügen
-        //irgendwas
+        //Das nächste sollte statt den addWater button auf den Benachrichtigung speichern Button bei den Einstellungen geändert werden!
+        //Folgend wird täglich um 8:30 eine Notification erscheinen
+
+        findViewById(R.id.addWater).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, 02);
+                calendar.set(Calendar.MINUTE, 21);
+                calendar.set(Calendar.SECOND, 00);
+
+                Intent intent = new Intent(getApplicationContext(),MyNotificationPublisher.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+
+            }
+        });
 
     }
 

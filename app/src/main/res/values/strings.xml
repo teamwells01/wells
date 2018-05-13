@@ -73,6 +73,7 @@
     <string name="title_activity_grund_einstellungen">GrundEinstellungen</string>
     <string name="title_activity_pwaendern">PWAendern</string>
     <string name="title_activity_benachrichtungungeinstellungen">benachrichtungungeinstellungen</string>
+    <string name="title">Benachrichtigung</string>
 
 <string-array name="frequenz_array">
         <item>Stündlich</item>

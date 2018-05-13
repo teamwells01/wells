@@ -11,8 +11,8 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainMenueActivity.class);
         startActivity(intent);
 
-        Intent i = new Intent(this, IntentService.class);
-        startService(i);
+     //  Intent i = new Intent(this, IntentService.class);
+      //  startService(i);
 
     }
     @Override
