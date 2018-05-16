@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.app.Notification;
 import android.support.v4.app.NotificationCompat;
 
 public class MyNotificationPublisher extends BroadcastReceiver {
