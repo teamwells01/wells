@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="170dp"
             android:layout_marginTop="400dp"
+            android:onClick="OnClickHackerl"
             android:text="@string/haeckchen" /><!-- text to be displayed whenever current state is checked-->
 
     </FrameLayout>
