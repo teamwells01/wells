@@ -5,8 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.support.v4.app.NotificationCompat;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
+
+
 
 public class MyNotificationPublisher extends BroadcastReceiver {
 
