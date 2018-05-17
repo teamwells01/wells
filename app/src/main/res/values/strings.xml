@@ -6,7 +6,7 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">eMail</string>
-    <string name="prompt_password">Passwort (optional)</string>
+    <string name="prompt_password">Passwort</string>
     <string name="action_sign_in">Log in</string>
     <string name="action_register_in">Registrieren</string>
     <string name="action_sign_in_short">Sign in</string>

@@ -34,6 +34,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.Intent;
 
@@ -45,17 +47,17 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
 
-
     public void onClickSwitchActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
 
-       Intent i = new Intent(this, IntentService.class);
-       startService(i);
+        Intent i = new Intent(this, IntentService.class);
+        startService(i);
 
     }
 
     public void onClickSwitchActivity1(View view) {
+
         Intent intent = new Intent(this, MainMenueActivity.class);
         startActivity(intent);
 
@@ -214,14 +216,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+
+        EditText emailFeld = findViewById(R.id.email);
+        String eingabe = emailFeld.getText().toString();
+        Pattern pattern = Pattern.compile("\\d");
+        Matcher matcher = pattern.matcher(eingabe);
+        boolean found = matcher.find();
+
+        if (found == true) {
+            emailFeld.setHint("Bitte keine Zahl eingeben!");
+            emailFeld.setHintTextColor(getResources().getColor(R.color.red));
+        }
+        if (found == false && email.contains("@") && email.contains(".")) {
+            return email.contains("@");
+        } else if (found == false && !email.contains("@")) {
+            emailFeld.setHint("Sie brauchen ein @");
+            emailFeld.setHintTextColor(getResources().getColor(R.color.red));
+            return false;
+        }  else if (!email.contains(".") && found == false) {
+            emailFeld.setHint("Sie brauchen einen .");
+            emailFeld.setHintTextColor(getResources().getColor(R.color.red));
+            return false;
+        } else {
+            return false;
+        }
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
+
 
     /**
      * Shows the progress UI and hides the login form.
@@ -370,4 +395,5 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 }
+
 
