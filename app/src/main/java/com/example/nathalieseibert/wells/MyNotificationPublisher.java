@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
+import android.graphics.BitmapFactory;
 
 public class MyNotificationPublisher extends BroadcastReceiver {
 
@@ -20,6 +21,8 @@ public class MyNotificationPublisher extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
+                        R.mipmap.ic_launcher_round))
                 .setContentTitle("Wells benachrichtigt!")
                 .setContentText("Du musst heute mehr Wasser trinken!")
                 .setAutoCancel(true);

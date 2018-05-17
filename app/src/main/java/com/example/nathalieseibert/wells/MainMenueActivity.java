@@ -69,8 +69,8 @@ public class MainMenueActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, 02);
-                calendar.set(Calendar.MINUTE, 21);
+                calendar.set(Calendar.HOUR_OF_DAY, 07);
+                calendar.set(Calendar.MINUTE, 10);
                 calendar.set(Calendar.SECOND, 00);
 
                 Intent intent = new Intent(getApplicationContext(),MyNotificationPublisher.class);
