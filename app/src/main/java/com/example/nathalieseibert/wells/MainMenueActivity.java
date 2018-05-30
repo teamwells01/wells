@@ -30,7 +30,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-
+import android.widget.ImageView;
 
 public class MainMenueActivity extends AppCompatActivity
 
