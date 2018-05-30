@@ -42,7 +42,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
         //I’m going to display the results of fingerprint authentication as a series of toasts.
         //Here, I’m creating the message that’ll be displayed if an error occurs//
 
-        Toast.makeText(context, "Authentication error\n" + errString, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Finger nicht erkannt!" + errString, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     //onAuthenticationFailed is called when the fingerprint doesn’t match with any of the fingerprints registered on the device//
 
     public void onAuthenticationFailed() {
-        Toast.makeText(context, "Authentication failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Falscher Finger!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
