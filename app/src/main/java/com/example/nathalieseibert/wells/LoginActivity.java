@@ -25,6 +25,7 @@ import android.security.keystore.KeyProperties;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -34,6 +35,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
@@ -126,11 +128,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
 
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -142,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             fingerprintManager =
                     (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
-            textView = (TextView) findViewById(R.id.fingerprint);
+            textView = findViewById(R.id.fingerprint);
 
             //Check whether the device has a fingerprint sensor//
             if (!fingerprintManager.isHardwareDetected()) {
@@ -281,13 +283,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private class FingerprintException extends Exception {
-        public FingerprintException(Exception e) {
+         FingerprintException(Exception e) {
             super(e);
         }
     }
-
-
-
 
 
     private void populateAutoComplete() {
@@ -394,17 +393,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Matcher matcher = pattern.matcher(eingabe);
         boolean found = matcher.find();
 
-        if (found == true) {
+        if (found) {
             emailFeld.setHint("Bitte keine Zahl eingeben!");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
         }
-        if (found == false && email.contains("@") && email.contains(".")) {
+        if (!found && email.contains("@") && email.contains(".")) {
             return email.contains("@");
-        } else if (found == false && !email.contains("@")) {
+        } else if (!found && !email.contains("@")) {
             emailFeld.setHint("Sie brauchen ein @");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
             return false;
-        }  else if (!email.contains(".") && found == false) {
+        } else if (!email.contains(".") && !found) {
             emailFeld.setHint("Sie brauchen einen .");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
             return false;

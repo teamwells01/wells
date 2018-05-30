@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -97,14 +96,14 @@
 
 
         <ImageView
+            android:contentDescription="Fingerprint Bild"
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="102dp"
             android:layout_above="@+id/fingerprint"
             android:layout_centerHorizontal="true"
-            android:tint="@android:color/black"
             android:src="@drawable/fingerprint"
-            />
+            android:tint="@android:color/black" />
 
         <TextView
             android:id="@+id/fingerprint"
@@ -114,8 +113,7 @@
             android:layout_centerHorizontal="true"
             android:text="@string/fingerprint"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/schwoaz"
-             />
+            android:textColor="@color/schwoaz" />
 
     </RelativeLayout>
 
