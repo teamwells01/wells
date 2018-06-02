@@ -25,6 +25,7 @@ import android.security.keystore.KeyProperties;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -34,6 +35,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
@@ -118,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
+
     private View mLoginFormView;
 
     @Override
@@ -126,11 +128,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
 
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -142,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+
 
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
         // or higher before executing any fingerprint-related code
@@ -162,29 +164,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             fingerprintManager =
                     (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
-            textView = (TextView) findViewById(R.id.fingerprint);
+            textView = findViewById(R.id.fingerprint);
 
             //Check whether the device has a fingerprint sensor//
             if (!fingerprintManager.isHardwareDetected()) {
                 // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
-                textView.setText("Your device doesn't support fingerprint authentication");
+                textView.setText("Ihr Handy kann kein Fingerprint!");
             }
             //Check whether the user has granted your app the USE_FINGERPRINT permission//
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
                 // If your app doesn't have this permission, then display the following text//
-                textView.setText("Please enable the fingerprint permission");
+                textView.setText("Bitte aktivieren Sie Login mittels Fingerprint!");
             }
 
             //Check that the user has registered at least one fingerprint//
             if (!fingerprintManager.hasEnrolledFingerprints()) {
                 // If the user hasn’t configured any fingerprints, then display the following message//
-                textView.setText("No fingerprint configured. Please register at least one fingerprint in your device's Settings");
+                textView.setText("Bitte speichern Sie Ihren Finger in den Einstellungen!");
             }
 
             //Check that the lockscreen is secured//
             if (!keyguardManager.isKeyguardSecure()) {
                 // If the user hasn’t secured their lockscreen with a PIN password or pattern, then display the following text//
-                textView.setText("Please enable lockscreen security in your device's Settings");
+                textView.setText("Aktivieren Sie eine Displaysperre!");
             } else {
                 try {
                     generateKey();
@@ -281,13 +283,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private class FingerprintException extends Exception {
-        public FingerprintException(Exception e) {
+         FingerprintException(Exception e) {
             super(e);
         }
     }
-
-
-
 
 
     private void populateAutoComplete() {
@@ -394,17 +393,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Matcher matcher = pattern.matcher(eingabe);
         boolean found = matcher.find();
 
-        if (found == true) {
+        if (found) {
             emailFeld.setHint("Bitte keine Zahl eingeben!");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
         }
-        if (found == false && email.contains("@") && email.contains(".")) {
+        if (!found && email.contains("@") && email.contains(".")) {
             return email.contains("@");
-        } else if (found == false && !email.contains("@")) {
+        } else if (!found && !email.contains("@")) {
             emailFeld.setHint("Sie brauchen ein @");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
             return false;
-        }  else if (!email.contains(".") && found == false) {
+        } else if (!email.contains(".") && !found) {
             emailFeld.setHint("Sie brauchen einen .");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
             return false;
@@ -439,19 +438,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+
         }
     }
 
