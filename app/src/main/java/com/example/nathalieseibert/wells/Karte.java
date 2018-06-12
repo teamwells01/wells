@@ -1,7 +1,9 @@
 package com.example.nathalieseibert.wells;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +19,16 @@ import android.widget.Toast;
  */
 public class Karte extends Fragment {
 
-    WebView webview;
+    private WebView webview;
 
     public Karte() {
         // Required empty public constructor
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_karte, container, false);
@@ -40,6 +43,7 @@ public class Karte extends Fragment {
                 Trinkbrunnen listefragment = new Trinkbrunnen();
                 FragmentManager manager = getFragmentManager();
                 try{
+                    assert manager != null;
                     manager.beginTransaction().replace(R.id.mainLayout, listefragment, listefragment.getTag()).commit();
                 }catch (NullPointerException e){
                     Toast.makeText(getActivity(), "Error",

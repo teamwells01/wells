@@ -14,11 +14,11 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);*/
 
-    int valueA;
-    int valueB;
-    int valueC;
+    private int valueA;
+    private int valueB;
+    private int valueC;
     @Test
-    public void addition_isCorrect() throws Exception {
+    public void addition_isCorrect(){
         valueA = 2;
         valueB = 2;
         valueC = 5;
