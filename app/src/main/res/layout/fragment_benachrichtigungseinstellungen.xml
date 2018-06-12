@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="Benachrichtigungseistellungen"
+        android:text="@string/benachrichtigungseistellungen"
         android:textSize="25sp"
         android:textColor="@color/schwoaz"/>
 
@@ -19,9 +19,9 @@
         android:id="@+id/benAktiv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="215dp"
-        android:text="Benachrichtigung aktivieren"
+        android:text="@string/benachrichtigung_aktivieren"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"/>
 
@@ -29,8 +29,8 @@
         android:id="@+id/benAktivSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="300dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="300dp"
         android:layout_marginTop="215dp"
         android:textColor="@color/schwoaz"/>
 
@@ -38,9 +38,9 @@
         android:id="@+id/benFrequ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="300dp"
-        android:text="Frequenz"
+        android:text="@string/frequenz"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"/>
 
@@ -48,10 +48,10 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="270dp"
+        android:layout_width="match_parent"
         android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="115dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="115dp"
         android:layout_marginTop="300dp"
         android:textColor="@color/schwoaz"/>
 
@@ -60,9 +60,9 @@
         android:id="@+id/speichern"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="15dp"
-        android:text="Speichern"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="15dp"
+        android:text="@string/speichern"
         android:layout_marginTop="500sp"
         android:textColor="@color/schwoaz"
  />

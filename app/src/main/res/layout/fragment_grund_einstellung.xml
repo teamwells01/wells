@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="Grundeinstellungen"
+        android:text="@string/grundeinstellungen"
         android:textSize="25sp"
         android:textColor="@color/schwoaz"/>
 
@@ -22,9 +22,9 @@
         android:id="@+id/groesse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="130dp"
-        android:text="Größe"
+        android:text="@string/gr_e"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"/>
 
@@ -32,10 +32,10 @@
         android:id="@+id/groesseInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="130dp"
-        android:hint="in Zentimeter"
+        android:hint="@string/in_zentimeter"
         android:inputType="number"
         android:maxLength="3" />
 
@@ -44,20 +44,20 @@
         android:id="@+id/gewicht"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="215dp"
-        android:text="Gewicht"
-        android:textSize="20sp"
-        android:textColor="@color/schwoaz"/>
+        android:text="@string/gewicht"
+        android:textColor="@color/schwoaz"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/gewichtInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="215dp"
-        android:hint="in Kilogramm"
+        android:hint="@string/in_kilogramm"
         android:inputType="numberDecimal"
         android:maxLength="4" />
 
@@ -65,9 +65,9 @@
         android:id="@+id/alter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="300dp"
-        android:text="Alter"
+        android:text="@string/alter"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"/>
 
@@ -75,10 +75,10 @@
         android:id="@+id/alterInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="300dp"
-        android:hint="in Jahre"
+        android:hint="@string/in_jahre"
         android:inputType="number"
         android:maxLength="2" />
 
@@ -87,8 +87,8 @@
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
-        android:layout_marginStart="15dp"
-        android:text="Speichern"
+        android:layout_marginLeft="15dp"
+        android:text="@string/speichern"
         android:textColor="@color/schwoaz"/>
 
 

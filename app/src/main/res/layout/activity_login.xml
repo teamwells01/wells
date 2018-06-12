@@ -11,10 +11,7 @@
     tools:context="com.example.nathalieseibert.wells.LoginActivity">
 
     <!-- Login progress -->
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="178dp">
+
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -66,9 +63,7 @@
                 android:text="@string/action_sign_in"
                 android:textColor="@color/schwoaz"
                 android:textSize="20sp"
-
                 />
-
 
             <Button
                 android:id="@+id/register_button"
@@ -83,7 +78,7 @@
 
             <!-- Fingerprint -->
         </LinearLayout>
-    </ScrollView>
+
 
     <RelativeLayout
         android:id="@+id/activity_main"
@@ -96,7 +91,7 @@
 
 
         <ImageView
-            android:contentDescription="Fingerprint Bild"
+            android:contentDescription="@string/fingerprint_bild"
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="102dp"

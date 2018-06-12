@@ -14,10 +14,10 @@
         android:id="@+id/karte"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:text="Karte"
+        android:text="@string/karte"
         android:enabled="false"
         android:layout_marginTop="550dp"
-        android:layout_marginStart="215dp"
+        android:layout_marginLeft="215dp"
 
         />
 
@@ -25,9 +25,9 @@
         android:id="@+id/liste"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:text="Liste"
+        android:text="@string/liste"
         android:layout_marginTop="550dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         />
 
 </FrameLayout>

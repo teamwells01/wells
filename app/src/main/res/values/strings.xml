@@ -84,5 +84,38 @@
         <item>Jährlich</item>
     </string-array>
     <string name="title_activity_karte">KarteActivity</string>
+    <string name="eingabe_email">Eingabe eMail</string>
+    <string name="eingabe_passwort">Eingabe Passwort</string>
+    <string name="eingabe_name">Eingabe Name</string>
+    <string name="in_jahren">in Jahren</string>
+    <string name="in_kilogramm">in Kilogramm</string>
+    <string name="in_zentimeter">in Zentimeter</string>
+    <string name="passwort_ndern">Passwort ändern</string>
+    <string name="altes_passwort">Altes Passwort</string>
+    <string name="neues_passwort">Neues Passwort</string>
+    <string name="passwort_best_tigen">Passwort bestätigen</string>
+    <string name="speichern">Speichern</string>
+    <string name="wenig">wenig</string>
+    <string name="viel">viel</string>
+    <string name="grundeinstellungen">Grundeinstellungen</string>
+    <string name="gr_e">Größe</string>
+    <string name="in_zentimeter">in Zentimeter</string>
+    <string name="gewicht">Gewicht</string>
+    <string name="in_kilogramm">in Kilogramm</string>
+    <string name="alter">Alter</string>
+    <string name="in_jahre">in Jahre</string>
+    <string name="speichern">Speichern</string>
+    <string name="benachrichtigungseistellungen">Benachrichtigungseistellungen</string>
+    <string name="benachrichtigung_aktivieren">Benachrichtigung aktivieren</string>
+    <string name="frequenz">Frequenz</string>
+    <string name="speichern">Speichern</string>
+    <string name="passwort_ndern">Passwort ändern</string>
+    <string name="karte">Karte</string>
+    <string name="liste">Liste</string>
+    <string name="fingerprint_bild">Fingerprint Bild</string>
+    <string name="noFingerprintFunktion">Ihr Handy kann kein Fingerprint!</string>
+    <string name="fingerprintAktivPls">Bitte aktivieren Sie Login mittels Fingerprint!</string>
+    <string name="fingerEinstSpeiPls">Bitte speichern Sie Ihren Finger in den Einstellungen!</string>
+    <string name="displaysperreAktivPls">Aktivieren Sie eine Displaysperre!</string>
 
 </resources>

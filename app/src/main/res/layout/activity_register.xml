@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nathalieseibert.wells.RegisterActivity">
 
+    <TextView
+        android:id="@+id/textRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textColor="@color/schwoaz"
+        android:text="@string/textRegister" />
 
     <TextView
         android:id="@+id/textEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textPassword"
+        android:layout_alignLeft="@+id/textPassword"
+        android:layout_alignSart="@+id/textPassword"
         android:layout_below="@+id/textRegister"
         android:layout_marginTop="45dp"
         android:textSize="20sp"
@@ -24,45 +32,50 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textEmail"
         android:layout_alignBottom="@+id/textEmail"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="46dp"
         android:layout_marginEnd="46dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Eingabe eMail"/>
+        android:hint="@string/eingabe_email"/>
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextEmail"
         android:layout_alignEnd="@+id/editTextEmail"
         android:layout_below="@+id/editTextEmail"
         android:layout_marginTop="19dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Eingabe Passwort"/>
+        android:hint="@string/eingabe_passwort"/>
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextPassword"
         android:layout_alignStart="@+id/editTextPassword"
         android:layout_below="@+id/editTextPassword"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Eingabe Name"
+        android:hint="@string/eingabe_name"
          />
 
     <EditText
         android:id="@+id/editTextAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextName"
         android:layout_alignEnd="@+id/editTextName"
         android:layout_below="@+id/editTextName"
         android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="number"
-        android:hint="in Jahren"
+        android:hint="@string/in_jahren"
         android:maxLength="2"
          />
 
@@ -70,13 +83,14 @@
         android:id="@+id/editTextWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextAge"
         android:layout_alignStart="@+id/editTextAge"
         android:layout_below="@+id/editTextAge"
         android:layout_marginTop="17dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:maxLength="4"
-        android:hint="in Kilogramm"
+        android:hint="@string/in_kilogramm"
         />
 
     <EditText
@@ -85,11 +99,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textSize"
         android:layout_alignBottom="@+id/textSize"
+        android:layout_alignLeft="@+id/editTextWeight"
         android:layout_alignStart="@+id/editTextWeight"
         android:ems="10"
         android:inputType="number"
         android:maxLength="2"
-        android:hint="in Zentimeter"
+        android:hint="@string/in_zentimeter"
         />
 
     <TextView
@@ -98,7 +113,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextPassword"
         android:layout_alignBottom="@+id/editTextPassword"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"
@@ -110,6 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextName"
         android:layout_alignBottom="@+id/editTextName"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"
@@ -121,7 +139,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextAge"
         android:layout_alignBottom="@+id/editTextAge"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"
@@ -133,6 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextWeight"
         android:layout_alignBottom="@+id/editTextWeight"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"
@@ -144,22 +165,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextWeight"
         android:layout_marginTop="26dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"
         android:text="@string/textSize" />
 
-    <TextView
-        android:id="@+id/textRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/editTextEmail"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="27dp"
-        android:textSize="30sp"
-        android:textColor="@color/schwoaz"
-        android:text="@string/textRegister" />
+
 
     <Button
         android:id="@+id/button2"
@@ -167,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="10dp"
         android:onClick="onClickSwitchActivity"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"

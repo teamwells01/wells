@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -152,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
+        mLoginFormView = findViewById(R.id.email_login_form);
 
 
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
@@ -169,24 +170,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //Check whether the device has a fingerprint sensor//
             if (!fingerprintManager.isHardwareDetected()) {
                 // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
-                textView.setText("Ihr Handy kann kein Fingerprint!");
+                textView.setText(R.string.noFingerprintFunktion);
             }
             //Check whether the user has granted your app the USE_FINGERPRINT permission//
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
                 // If your app doesn't have this permission, then display the following text//
-                textView.setText("Bitte aktivieren Sie Login mittels Fingerprint!");
+                textView.setText(R.string.fingerprintAktivPls);
             }
 
             //Check that the user has registered at least one fingerprint//
             if (!fingerprintManager.hasEnrolledFingerprints()) {
                 // If the user hasn’t configured any fingerprints, then display the following message//
-                textView.setText("Bitte speichern Sie Ihren Finger in den Einstellungen!");
+                textView.setText(R.string.fingerEinstSpeiPls);
             }
 
             //Check that the lockscreen is secured//
             if (!keyguardManager.isKeyguardSecure()) {
                 // If the user hasn’t secured their lockscreen with a PIN password or pattern, then display the following text//
-                textView.setText("Aktivieren Sie eine Displaysperre!");
+                textView.setText(R.string.displaysperreAktivPls);
             } else {
                 try {
                     generateKey();
@@ -217,25 +218,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             keyStore = KeyStore.getInstance("AndroidKeyStore");
 
             //Generate the key//
-            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+            }
 
             //Initialize an empty KeyStore//
             keyStore.load(null);
 
             //Initialize the KeyGenerator//
-            keyGenerator.init(new
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                keyGenerator.init(new
 
-                    //Specify the operation(s) this key can be used for//
-                    KeyGenParameterSpec.Builder(KEY_NAME,
-                    KeyProperties.PURPOSE_ENCRYPT |
-                            KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                        //Specify the operation(s) this key can be used for//
+                        KeyGenParameterSpec.Builder(KEY_NAME,
+                        KeyProperties.PURPOSE_ENCRYPT |
+                                KeyProperties.PURPOSE_DECRYPT)
+                        .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
 
-                    //Configure this key so that the user has to confirm their identity with a fingerprint each time they want to use it//
-                    .setUserAuthenticationRequired(true)
-                    .setEncryptionPaddings(
-                            KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                    .build());
+                        //Configure this key so that the user has to confirm their identity with a fingerprint each time they want to use it//
+                        .setUserAuthenticationRequired(true)
+                        .setEncryptionPaddings(
+                                KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                        .build());
+            }
 
             //Generate the key//
             keyGenerator.generateKey();
@@ -252,6 +257,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     //Create a new method that we’ll use to initialize our cipher//
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean initCipher() {
         try {
             //Obtain a cipher instance and configure it with the properties required for fingerprint authentication//
