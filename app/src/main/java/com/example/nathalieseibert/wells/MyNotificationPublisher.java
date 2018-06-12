@@ -7,7 +7,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
-
+import android.widget.Toast;
 
 
 public class MyNotificationPublisher extends BroadcastReceiver {
@@ -29,7 +29,12 @@ public class MyNotificationPublisher extends BroadcastReceiver {
                 .setContentText("Du musst heute mehr Wasser trinken!")
                 .setAutoCancel(true);
 
-        notificationManager.notify(100, builder.build());
+        try{
+            notificationManager.notify(100, builder.build());
+        }catch (NullPointerException e){
+        Toast.makeText(context, "Error",
+                Toast.LENGTH_LONG).show();
+    }
 
     }
 }

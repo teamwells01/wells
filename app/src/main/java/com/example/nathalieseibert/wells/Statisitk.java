@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
@@ -27,13 +28,18 @@ public class Statisitk extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statisitk, container, false);
 
-        Button buttonlist = (Button) view.findViewById(R.id.buttonlist);
+        Button buttonlist = view.findViewById(R.id.buttonlist);
         buttonlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Verlauf verlauffragment = new Verlauf();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.mainLayout, verlauffragment, verlauffragment.getTag()).commit();
+                try{
+                    manager.beginTransaction().replace(R.id.mainLayout, verlauffragment, verlauffragment.getTag()).commit();
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
         return view;

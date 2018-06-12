@@ -1,23 +1,12 @@
 package com.example.nathalieseibert.wells;
 
 import android.app.AlarmManager;
-import android.app.FragmentManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-
 import java.util.Calendar;
-
-import android.app.FragmentManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -25,14 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainMenueActivity extends AppCompatActivity
 
@@ -82,6 +68,8 @@ public class MainMenueActivity extends AppCompatActivity
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
                 }catch (NullPointerException e){
+                    Toast.makeText(MainMenueActivity.this, "Error",
+                            Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -136,34 +124,43 @@ public class MainMenueActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_f1) {
-            Trinkbrunnen trinkbrunnenfragement = new Trinkbrunnen();
-            RelativeLayout mainLayout = findViewById(R.id.mainLayout);
-            mainLayout.removeAllViews();
-            android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, trinkbrunnenfragement, trinkbrunnenfragement.getTag()).commit();
+        switch (id) {
+            case R.id.nav_f1: {
+                Trinkbrunnen trinkbrunnenfragement = new Trinkbrunnen();
+                RelativeLayout mainLayout = findViewById(R.id.mainLayout);
+                mainLayout.removeAllViews();
+                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.mainLayout, trinkbrunnenfragement, trinkbrunnenfragement.getTag()).commit();
 
-        } else if (id == R.id.nav_f2) {
-            Verlauf verlauffragment = new Verlauf();
-            RelativeLayout mainLayout = findViewById(R.id.mainLayout);
-            mainLayout.removeAllViews();
-            android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, verlauffragment, verlauffragment.getTag()).commit();
+                break;
+            }
+            case R.id.nav_f2: {
+                Verlauf verlauffragment = new Verlauf();
+                RelativeLayout mainLayout = findViewById(R.id.mainLayout);
+                mainLayout.removeAllViews();
+                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.mainLayout, verlauffragment, verlauffragment.getTag()).commit();
 
 
-        } else if (id == R.id.nav_f3) {
-            Statisitk statisitkfragment = new Statisitk();
-            RelativeLayout mainLayout = findViewById(R.id.mainLayout);
-            mainLayout.removeAllViews();
-            android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, statisitkfragment, statisitkfragment.getTag()).commit();
+                break;
+            }
+            case R.id.nav_f3: {
+                Statisitk statisitkfragment = new Statisitk();
+                RelativeLayout mainLayout = findViewById(R.id.mainLayout);
+                mainLayout.removeAllViews();
+                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.mainLayout, statisitkfragment, statisitkfragment.getTag()).commit();
 
-        } else if (id == R.id.nav_f4) {
-            Einstellungen einstellungfragment = new Einstellungen();
-            RelativeLayout mainLayout = findViewById(R.id.mainLayout);
-            mainLayout.removeAllViews();
-            android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
+                break;
+            }
+            case R.id.nav_f4: {
+                Einstellungen einstellungfragment = new Einstellungen();
+                RelativeLayout mainLayout = findViewById(R.id.mainLayout);
+                mainLayout.removeAllViews();
+                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
+                break;
+            }
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

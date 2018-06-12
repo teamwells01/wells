@@ -3,15 +3,12 @@ package com.example.nathalieseibert.wells;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 /**
@@ -32,13 +29,18 @@ public class Verlauf extends Fragment {
         View view = inflater.inflate(R.layout.fragment_verlauf2, container, false);
 
 
-        Button buttonkarte = (Button) view.findViewById(R.id.buttonkarte);
+        Button buttonkarte = view.findViewById(R.id.buttonkarte);
         buttonkarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Statisitk statisitkfragment = new Statisitk();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.mainLayout, statisitkfragment, statisitkfragment.getTag()).commit();
+                try{
+                    manager.beginTransaction().replace(R.id.mainLayout, statisitkfragment, statisitkfragment.getTag()).commit();
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
         return view;

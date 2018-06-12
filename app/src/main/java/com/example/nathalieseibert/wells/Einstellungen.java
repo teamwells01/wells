@@ -1,7 +1,6 @@
 package com.example.nathalieseibert.wells;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,33 +27,48 @@ public class Einstellungen extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_einstellungen, container, false);
 
-        Button Grundeinstellungen = (Button) view.findViewById(R.id.Grundeinstellungen);
+        Button Grundeinstellungen = view.findViewById(R.id.Grundeinstellungen);
         Grundeinstellungen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 grund_einstellung grund_einstellungfragment = new grund_einstellung();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.mainLayout, grund_einstellungfragment, grund_einstellungfragment.getTag()).commit();
+                try{
+                    manager.beginTransaction().replace(R.id.mainLayout, grund_einstellungfragment, grund_einstellungfragment.getTag()).commit();
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        Button Benachrichtigung = (Button) view.findViewById(R.id.Benachrichtigung);
+        Button Benachrichtigung = view.findViewById(R.id.Benachrichtigung);
         Benachrichtigung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Benachrichtigungseinstellungen benachrichtigunggfragment = new Benachrichtigungseinstellungen();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.mainLayout, benachrichtigunggfragment, benachrichtigunggfragment.getTag()).commit();
+                try{
+                    manager.beginTransaction().replace(R.id.mainLayout, benachrichtigunggfragment, benachrichtigunggfragment.getTag()).commit();
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        Button PWAendern = (Button) view.findViewById(R.id.PWAendern);
+        Button PWAendern = view.findViewById(R.id.PWAendern);
         PWAendern.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PWaendern pwaendernfragement = new PWaendern();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.mainLayout, pwaendernfragement, pwaendernfragement.getTag()).commit();
+                try{
+                    manager.beginTransaction().replace(R.id.mainLayout, pwaendernfragement, pwaendernfragement.getTag()).commit();
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
         return view;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 
 /**
@@ -27,13 +28,18 @@ public class Trinkbrunnen extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trinkbrunnen, container, false);
 
-        Button buttonkarte = (Button) view.findViewById(R.id.buttonkarte);
+        Button buttonkarte = view.findViewById(R.id.buttonkarte);
         buttonkarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Karte kartefragment = new Karte();
                 FragmentManager manager = getFragmentManager();
-                manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                try{
+                    manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
         return view;
