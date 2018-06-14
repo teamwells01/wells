@@ -7,20 +7,20 @@
         <item
             android:id="@+id/nav_f1"
             android:icon="@drawable/ic_action_list"
-            android:title="Liste Trinkbrunnen"
+            android:title="@string/liste_trinkbrunnen"
             />
         <item
             android:id="@+id/nav_f2"
             android:icon="@drawable/ic_action_verlauf"
-            android:title="Verlauf" />
+            android:title="@string/verlauf" />
         <item
             android:id="@+id/nav_f3"
             android:icon="@drawable/ic_action_statistik"
-            android:title="Statistik" />
+            android:title="@string/statistik" />
         <item
             android:id="@+id/nav_f4"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Einstellungen" />
+            android:title="@string/einstellungen" />
     </group>
 
 </menu>

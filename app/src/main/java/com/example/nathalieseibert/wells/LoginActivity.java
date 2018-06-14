@@ -67,10 +67,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private Cipher cipher;
     private KeyStore keyStore;
     private KeyGenerator keyGenerator;
-    private TextView textView;
-    private FingerprintManager.CryptoObject cryptoObject;
-    private FingerprintManager fingerprintManager;
-    private KeyguardManager keyguardManager;
 
     public void onClickSwitchActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
@@ -141,6 +137,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         mLoginFormView = findViewById(R.id.email_login_form);
+
+         TextView textView;
+         FingerprintManager.CryptoObject cryptoObject;
+         FingerprintManager fingerprintManager;
+         KeyguardManager keyguardManager;
 
 
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow

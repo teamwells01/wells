@@ -19,7 +19,7 @@ import android.widget.Toast;
  */
 public class Karte extends Fragment {
 
-    private WebView webview;
+
 
     public Karte() {
         // Required empty public constructor
@@ -33,6 +33,7 @@ public class Karte extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_karte, container, false);
         String html = "<iframe src=\"https://www.google.com/maps/d/embed?mid=11lSl35ncbtOGnEDl9BQYPHbuuOQ\" width=\"390\" height=\"545\"></iframe>";
+        WebView webview;
         webview = view.findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.loadData(html, "text/html", null);

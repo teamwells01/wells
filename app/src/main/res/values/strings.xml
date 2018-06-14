@@ -1,10 +1,6 @@
 <resources>
     <string name="app_name"><node>&#x1F6B0;&#x1F4A7;</node>Wells<node>&#x1F4A7;&#x1F6B0;</node></string>
     <string name="app_name_short"><node>&#x1F4A7;</node>Wells<node>&#x1F4A7;</node></string>
-    <!-- Fingerprint -->
-    <string name="instructions"> </string>
-
-    <!-- Strings related to login -->
     <string name="prompt_email">eMail</string>
     <string name="prompt_password">Passwort</string>
     <string name="action_sign_in">Log in</string>
@@ -18,18 +14,9 @@
         completions."
     </string>
     <string name="fingerprint">Fingerprint Log in</string>
-
-    <!-- Navigation Drawer -->
-    <string name="title_activity_main_menue"><node>&#x1F6B0;&#x1F4A7;</node>Wells<node>&#x1F4A7;&#x1F6B0;</node></string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Einstellungen</string>
     <string name="homeButton">Home Button</string>
-
-    <!-- nathalie strings -->
-
     <string name="textEmail">Email</string>
     <string name="textPassword">Passwort</string>
     <string name="textName">Name</string>
@@ -37,45 +24,20 @@
     <string name="textWeight">Gewicht</string>
     <string name="textSize">Größe</string>
     <string name="textRegister">Registrieren</string>
-
     <string name="textMl">ml</string>
     <string name="addWater">+ Wasser</string>
     <string name="simpleSwitch">Bewegung</string>
-    <string name="title_activity_statistik">Statistik</string>
     <string name="haeckchen"><node>&#x2714;</node></string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
-    <!-- hannah strings -->
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_Verlauf">Verlauf</string>
     <string name="title_Statistik">Statistik</string>
     <string name="title_Liste">Liste</string>
     <string name="title_Karte">Karte</string>
-    <string name="title_Einstellungen">Einstellungen</string>
-    <string name="title_notifications">Notificstion</string>
-    <string name="title_activity_brunnenliste">brunnenliste</string>
     <string name="title_brunnenliste">Trinkbrunnen</string>
-
-    <!-- marc stings -->
-
     <string name="einstellungen">Einstellungen</string>
     <string name="grundeinstellungen">Grundeinstellungen</string>
     <string name="Benachrichtigung">Benachrichtigungseinstellungen</string>
     <string name="löschen">Profil löschen</string>
-    <string name="title_activity_einstellungen">Einstellungen</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="title_activity_grund_einstellungen">GrundEinstellungen</string>
-    <string name="title_activity_pwaendern">PWAendern</string>
-    <string name="title_activity_benachrichtungungeinstellungen">benachrichtungungeinstellungen</string>
     <string name="title">Benachrichtigung</string>
-
     <string-array name="frequenz_array">
         <item>Stündlich</item>
         <item>Täglich</item>
@@ -83,7 +45,6 @@
         <item>Monatlich</item>
         <item>Jährlich</item>
     </string-array>
-    <string name="title_activity_karte">KarteActivity</string>
     <string name="eingabe_email">Eingabe eMail</string>
     <string name="eingabe_passwort">Eingabe Passwort</string>
     <string name="eingabe_name">Eingabe Name</string>
@@ -111,5 +72,10 @@
     <string name="fingerprintAktivPls">Bitte aktivieren Sie Login mittels Fingerprint!</string>
     <string name="fingerEinstSpeiPls">Bitte speichern Sie Ihren Finger in den Einstellungen!</string>
     <string name="displaysperreAktivPls">Aktivieren Sie eine Displaysperre!</string>
+    <string name="liste_trinkbrunnen">Liste Trinkbrunnen</string>
+    <string name="verlauf">Verlauf</string>
+    <string name="statistik">Statistik</string>
+    <string name="rundes_icon">Rundes Icon</string>
+    <string name="NotificationN">Notification</string>
 
 </resources>
