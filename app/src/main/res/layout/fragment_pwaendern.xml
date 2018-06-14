@@ -56,7 +56,8 @@
         android:layout_marginLeft="170dp"
         android:layout_marginTop="215dp"
         android:inputType="textPassword"
-        android:layout_marginStart="170dp" />
+        android:layout_marginStart="170dp"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/neuespasswortwh"

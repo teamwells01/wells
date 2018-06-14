@@ -26,7 +26,8 @@
         android:layout_marginTop="130dp"
         android:text="@string/gr_e"
         android:textSize="20sp"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:layout_marginStart="15dp" />
 
     <EditText
         android:id="@+id/groesseInput"
@@ -37,7 +38,9 @@
         android:layout_marginTop="130dp"
         android:hint="@string/in_zentimeter"
         android:inputType="number"
-        android:maxLength="3" />
+        android:maxLength="3"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="100dp" />
 
 
     <TextView
@@ -48,7 +51,8 @@
         android:layout_marginTop="215dp"
         android:text="@string/gewicht"
         android:textColor="@color/schwoaz"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginStart="15dp" />
 
     <EditText
         android:id="@+id/gewichtInput"
@@ -59,7 +63,9 @@
         android:layout_marginTop="215dp"
         android:hint="@string/in_kilogramm"
         android:inputType="numberDecimal"
-        android:maxLength="4" />
+        android:maxLength="4"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="100dp" />
 
     <TextView
         android:id="@+id/alter"
@@ -69,7 +75,8 @@
         android:layout_marginTop="300dp"
         android:text="@string/alter"
         android:textSize="20sp"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:layout_marginStart="15dp" />
 
     <EditText
         android:id="@+id/alterInput"
@@ -80,7 +87,9 @@
         android:layout_marginTop="300dp"
         android:hint="@string/in_jahre"
         android:inputType="number"
-        android:maxLength="2" />
+        android:maxLength="2"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="100dp" />
 
     <Button
         android:id="@+id/speichern"
@@ -89,7 +98,8 @@
         android:layout_marginTop="500dp"
         android:layout_marginLeft="15dp"
         android:text="@string/speichern"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:layout_marginStart="15dp" />
 
 
 </FrameLayout>

@@ -27,7 +27,8 @@
         android:enabled="false"
         android:layout_marginTop="550dp"
         android:layout_marginLeft="10dp"
-/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/buttonkarte"
@@ -37,7 +38,7 @@
         android:layout_marginTop="550dp"
         android:layout_marginLeft="215dp"
         android:text="@string/title_Karte"
-   />
+        android:layout_marginStart="215dp" />
 
     <ListView
         android:id="@+id/brunnen_list_view"

@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="@string/einstellungen"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textColor="@color/schwoaz"/>
 
     <Button
@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:text="@string/grundeinstellungen"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:layout_marginStart="15dp" />
 
     <Button
         android:id="@+id/Benachrichtigung"
@@ -31,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="215dp"
         android:text="@string/Benachrichtigung"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:layout_marginStart="15dp" />
 
 
     <Button
@@ -42,9 +44,7 @@
         android:layout_marginTop="500dp"
         android:text="@string/löschen"
         android:textColor="#ff0000"
-
-
-        />
+        android:layout_marginStart="15dp" />
 
     <Button
         android:id="@+id/PWAendern"
@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
         android:text="@string/passwort_ndern"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:layout_marginStart="15dp" />
 
 </FrameLayout>
