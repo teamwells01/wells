@@ -77,5 +77,8 @@
     <string name="statistik">Statistik</string>
     <string name="rundes_icon">Rundes Icon</string>
     <string name="NotificationN">Notification</string>
+    <string name="Error">Error</string>
+
+
 
 </resources>

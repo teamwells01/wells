@@ -24,7 +24,8 @@ public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String DEBUG_TAG = "tag";
+
+    private static final String DEBUG_TAG = "Tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,8 @@ public class MainMenueActivity extends AppCompatActivity
 
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
-        simpleSwitch.setTextOn("viel"); // displayed text of the Switch whenever it is in checked or on state
-        simpleSwitch.setTextOff("wenig"); // displayed text of the Switch whenever it is in unchecked i.e. off state
+        simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
+        simpleSwitch.setTextOff(getString(R.string.wenig)); // displayed text of the Switch whenever it is in unchecked i.e. off state
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,7 +69,7 @@ public class MainMenueActivity extends AppCompatActivity
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
                 }catch (NullPointerException e){
-                    Toast.makeText(MainMenueActivity.this, "Error",
+                    Toast.makeText(MainMenueActivity.this, getString(R.string.Error),
                             Toast.LENGTH_LONG).show();
                 }
 
