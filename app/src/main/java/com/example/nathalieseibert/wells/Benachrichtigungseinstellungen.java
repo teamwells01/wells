@@ -1,13 +1,14 @@
 package com.example.nathalieseibert.wells;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -43,7 +44,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), parent.getItemAtPosition(position) + " ausgewählt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(), parent.getItemAtPosition(position) + " ausgewählt", Toast.LENGTH_SHORT).show();
             }
 
             @Override
