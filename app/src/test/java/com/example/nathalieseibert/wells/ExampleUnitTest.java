@@ -2,7 +2,7 @@ package com.example.nathalieseibert.wells;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -16,7 +16,7 @@ public class ExampleUnitTest {
 
 
     @Test
-    public void addition_isCorrect(){
+    public void addition_isCorrect() {
         int valueA;
         int valueB;
         int valueC;
@@ -25,4 +25,4 @@ public class ExampleUnitTest {
         valueC = 5;
         assertEquals("failure - A <> B + C", valueA, valueB + valueC);
     }
-    }
+}

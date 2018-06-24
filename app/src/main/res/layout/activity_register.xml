@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:text="@string/textRegister"
         android:textColor="@color/schwoaz"
-        android:text="@string/textRegister" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textEmail"
@@ -22,9 +22,9 @@
         android:layout_alignStart="@+id/textPassword"
         android:layout_below="@+id/textRegister"
         android:layout_marginTop="45dp"
-        android:textSize="20sp"
+        android:text="@string/textEmail"
         android:textColor="@color/schwoaz"
-        android:text="@string/textEmail" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -32,25 +32,25 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textEmail"
         android:layout_alignBottom="@+id/textEmail"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="46dp"
+        android:layout_alignParentRight="true"
         android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/eingabe_email"/>
+        android:hint="@string/eingabe_email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editTextEmail"
         android:layout_alignEnd="@+id/editTextEmail"
+        android:layout_alignRight="@+id/editTextEmail"
         android:layout_below="@+id/editTextEmail"
         android:layout_marginTop="19dp"
         android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/eingabe_passwort"/>
+        android:hint="@string/eingabe_passwort"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/editTextName"
@@ -61,23 +61,21 @@
         android:layout_below="@+id/editTextPassword"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/eingabe_name"
-         />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editTextAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editTextName"
         android:layout_alignEnd="@+id/editTextName"
+        android:layout_alignRight="@+id/editTextName"
         android:layout_below="@+id/editTextName"
         android:layout_marginTop="14dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="@string/in_jahren"
-        android:maxLength="2"
-         />
+        android:inputType="number"
+        android:maxLength="2" />
 
     <EditText
         android:id="@+id/editTextWeight"
@@ -88,13 +86,11 @@
         android:layout_below="@+id/editTextAge"
         android:layout_marginTop="17dp"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:maxLength="4"
         android:hint="@string/in_kilogramm"
-        />
+        android:inputType="numberDecimal"
+        android:maxLength="4" />
 
     <EditText
-        android:id="@+id/editTextSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textSize"
@@ -102,10 +98,9 @@
         android:layout_alignLeft="@+id/editTextWeight"
         android:layout_alignStart="@+id/editTextWeight"
         android:ems="10"
-        android:inputType="number"
-        android:maxLength="2"
         android:hint="@string/in_zentimeter"
-        />
+        android:inputType="number"
+        android:maxLength="2" />
 
     <TextView
         android:id="@+id/textPassword"
@@ -117,24 +112,22 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:textSize="20sp"
+        android:text="@string/textPassword"
         android:textColor="@color/schwoaz"
-        android:text="@string/textPassword" />
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextName"
         android:layout_alignBottom="@+id/editTextName"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:textSize="20sp"
+        android:text="@string/textName"
         android:textColor="@color/schwoaz"
-        android:text="@string/textName" />
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextAge"
@@ -143,48 +136,44 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:textSize="20sp"
+        android:text="@string/textAge"
         android:textColor="@color/schwoaz"
-        android:text="@string/textAge" />
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/editTextWeight"
         android:layout_alignBottom="@+id/editTextWeight"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:textSize="20sp"
+        android:text="@string/textWeight"
         android:textColor="@color/schwoaz"
-        android:text="@string/textWeight" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextWeight"
-        android:layout_marginTop="26dp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:textSize="20sp"
+        android:layout_marginTop="26dp"
+        android:text="@string/textSize"
         android:textColor="@color/schwoaz"
-        android:text="@string/textSize" />
-
+        android:textSize="20sp" />
 
 
     <Button
-        android:id="@+id/button2"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:onClick="onClickSwitchActivity"
-        android:textSize="20sp"
-        android:textColor="@color/schwoaz"
         android:text="@string/action_register_in"
-        />
+        android:textColor="@color/schwoaz"
+        android:textSize="20sp" />
 
 
 </RelativeLayout>

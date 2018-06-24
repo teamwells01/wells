@@ -2,10 +2,10 @@ package com.example.nathalieseibert.wells;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -18,8 +18,7 @@ import android.widget.Toast;
 public class Benachrichtigungseinstellungen extends Fragment {
 
 
-    Spinner spinner;
-    ArrayAdapter<CharSequence> adapter;
+
 
     public Benachrichtigungseinstellungen() {
         // Required empty public constructor
@@ -32,6 +31,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
 
         // Inflate the layout for this fragment
         //Spinner die Werte zuteilen
+        Spinner spinner;
+        ArrayAdapter<CharSequence> adapter;
 
         View view = inflater.inflate(R.layout.fragment_benachrichtigungseinstellungen, container, false);
         spinner = view.findViewById(R.id.spinner);

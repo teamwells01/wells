@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import java.util.Calendar;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +18,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class MainMenueActivity extends AppCompatActivity
 
@@ -68,7 +69,7 @@ public class MainMenueActivity extends AppCompatActivity
 
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     Toast.makeText(MainMenueActivity.this, getString(R.string.Error),
                             Toast.LENGTH_LONG).show();
                 }

@@ -10,10 +10,10 @@ import static junit.framework.Assert.assertEquals;
 
 public class PriceListTest {
     @Test
-    public void testCalculateTotal(){
+    public void testCalculateTotal() {
         PriceList price = new PriceList();
         int result = price.CalculateTotal(199, 250);
-        assertEquals(449,result);
+        assertEquals(449, result);
     }
 
 }

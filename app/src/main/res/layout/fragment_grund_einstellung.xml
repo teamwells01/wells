@@ -8,98 +8,90 @@
 
 
     <TextView
-        android:id="@+id/GrundeinstelllungText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="@string/grundeinstellungen"
-        android:textSize="25sp"
-        android:textColor="@color/schwoaz"/>
+        android:textColor="@color/schwoaz"
+        android:textSize="25sp" />
 
 
     <TextView
-        android:id="@+id/groesse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="130dp"
         android:text="@string/gr_e"
-        android:textSize="20sp"
         android:textColor="@color/schwoaz"
-        android:layout_marginStart="15dp" />
+        android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/groesseInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="130dp"
         android:hint="@string/in_zentimeter"
         android:inputType="number"
-        android:maxLength="3"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="100dp" />
+        android:maxLength="3" />
 
 
     <TextView
-        android:id="@+id/gewicht"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="215dp"
         android:text="@string/gewicht"
         android:textColor="@color/schwoaz"
-        android:textSize="20sp"
-        android:layout_marginStart="15dp" />
+        android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/gewichtInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="215dp"
         android:hint="@string/in_kilogramm"
         android:inputType="numberDecimal"
-        android:maxLength="4"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="100dp" />
+        android:maxLength="4" />
 
     <TextView
-        android:id="@+id/alter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="300dp"
         android:text="@string/alter"
-        android:textSize="20sp"
         android:textColor="@color/schwoaz"
-        android:layout_marginStart="15dp" />
+        android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/alterInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="300dp"
         android:hint="@string/in_jahre"
         android:inputType="number"
-        android:maxLength="2"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="100dp" />
+        android:maxLength="2" />
 
     <Button
-        android:id="@+id/speichern"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="500dp"
         android:text="@string/speichern"
-        android:textColor="@color/schwoaz"
-        android:layout_marginStart="15dp" />
+        android:textColor="@color/schwoaz" />
 
 
 </FrameLayout>

@@ -5,10 +5,10 @@
     <item
         android:id="@+id/homeButton"
         android:icon="@drawable/ic_home_button"
-        android:title="@string/homeButton"
-        android:tint="@android:color/white"
         android:src="@drawable/ic_home_button"
-        app:showAsAction="always"/>
+        android:tint="@android:color/white"
+        android:title="@string/homeButton"
+        app:showAsAction="always" />
 
 
 </menu>
