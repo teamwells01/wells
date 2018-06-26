@@ -14,16 +14,15 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="100dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="245dp"
-        android:layout_marginStart="245dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="195dp"
+        android:layout_marginLeft="195dp"
         android:text="@string/textMl"
         android:textColor="@color/schwoaz"
         android:textSize="32sp" />
@@ -31,9 +30,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
         android:ems="5"
         android:inputType="number"
         tools:ignore="LabelFor" />
@@ -42,9 +40,8 @@
         android:id="@+id/addWater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="160dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
         android:text="@string/addWater"
         android:textColor="@color/schwoaz"
         android:textSize="20sp" />
@@ -53,9 +50,8 @@
         android:id="@+id/simpleSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="160dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="530dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="430dp"
         android:checked="true"
         android:scaleX="2"
         android:scaleY="2"
@@ -63,15 +59,16 @@
         android:text="@string/simpleSwitch"
         android:textOff="@string/wenig"
         android:textOn="@string/viel"
+        android:textSize="10sp"
+        android:switchTextAppearance="@style/MyStyle"
         tools:checked="false"
         tools:targetApi="lollipop" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="170dp"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
         android:onClick="OnClickHackerl"
         android:text="@string/haeckchen" /><!-- text to be displayed whenever current state is checked-->
 
