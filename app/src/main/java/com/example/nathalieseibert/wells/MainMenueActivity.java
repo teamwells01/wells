@@ -16,15 +16,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+Button wasserButton, hackerlButton;
+TextView mlview;
+EditText mltext;
     private static final String DEBUG_TAG = "Tag";
 
     @Override
@@ -32,6 +37,10 @@ public class MainMenueActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menue);
 
+        wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
+        hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
+        mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
+        mlview = (TextView) findViewById(R.id.textMl) ;//define textview for visibility
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
         simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
@@ -114,8 +123,22 @@ public class MainMenueActivity extends AppCompatActivity
 
 
     }
+//expandable menu - doesn´t work - don´t know why
+    public void OnClickVisible(View view){
+
+       // hackerlButton.setVisibility(View.VISIBLE);
+        //mltext.setVisibility(View.VISIBLE);
+        //mlview.setVisibility(View.VISIBLE);
+
+    }
 
     public void OnClickHackerl(View view) {
+
+       // hackerlButton.setVisibility(View.INVISIBLE);
+        // mltext.setVisibility(View.INVISIBLE);
+        //mlview.setVisibility(View.INVISIBLE);
+
+
         Log.d(DEBUG_TAG, "Some method called");
     }
 

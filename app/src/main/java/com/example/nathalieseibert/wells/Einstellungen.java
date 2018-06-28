@@ -37,7 +37,7 @@ public class Einstellungen extends Fragment {
                 try{
                     manager.beginTransaction().replace(R.id.mainLayout, grund_einstellungfragment, grund_einstellungfragment.getTag()).commit();
                 }catch (NullPointerException e){
-                    Toast.makeText(getActivity(), "Error",
+                    Toast.makeText(getActivity(), getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -52,7 +52,7 @@ public class Einstellungen extends Fragment {
                 try{
                     manager.beginTransaction().replace(R.id.mainLayout, benachrichtigunggfragment, benachrichtigunggfragment.getTag()).commit();
                 }catch (NullPointerException e){
-                    Toast.makeText(getActivity(), "Error",
+                    Toast.makeText(getActivity(), getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -67,7 +67,7 @@ public class Einstellungen extends Fragment {
                 try{
                     manager.beginTransaction().replace(R.id.mainLayout, pwaendernfragement, pwaendernfragement.getTag()).commit();
                 }catch (NullPointerException e){
-                    Toast.makeText(getActivity(), "Error",
+                    Toast.makeText(getActivity(), getString(R.string.Error),
                             Toast.LENGTH_LONG).show();
                 }
             }

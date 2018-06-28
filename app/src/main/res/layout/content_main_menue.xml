@@ -28,7 +28,8 @@
             android:text="@string/textMl"
             android:textColor="@color/schwoaz"
             android:textSize="32sp"
-            android:layout_marginStart="245dp" />
+            android:layout_marginStart="245dp"
+            android:visibility="invisible"/>
 
         <EditText
             android:id="@+id/editWater"
@@ -39,7 +40,8 @@
             android:ems="5"
             android:inputType="number"
             android:layout_marginStart="120dp"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/addWater"
@@ -50,7 +52,8 @@
             android:text="@string/addWater"
             android:textColor="@color/schwoaz"
             android:textSize="20sp"
-            android:layout_marginStart="160dp" />
+            android:layout_marginStart="160dp"
+            android:onClick="OnClickVisible"/>
 
         <Switch
             android:id="@+id/simpleSwitch"
@@ -77,7 +80,8 @@
             android:layout_marginTop="400dp"
             android:onClick="OnClickHackerl"
             android:text="@string/haeckchen"
-            android:layout_marginStart="170dp" /><!-- text to be displayed whenever current state is checked-->
+            android:layout_marginStart="170dp"
+            android:visibility="invisible"/><!-- text to be displayed whenever current state is checked-->
 
 
 </RelativeLayout>
