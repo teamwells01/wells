@@ -21,6 +21,11 @@
             android:id="@+id/nav_f4"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/einstellungen" />
+
+        <item
+            android:id="@+id/nav_f5"
+            android:icon="@drawable/ic_launcher_foreground"
+            android:title="LogOut"/>
     </group>
 
 </menu>

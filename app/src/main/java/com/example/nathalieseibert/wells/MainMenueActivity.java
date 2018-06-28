@@ -41,6 +41,9 @@ EditText mltext;
         hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
         mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
         mlview = (TextView) findViewById(R.id.textMl) ;//define textview for visibility
+        hackerlButton.setVisibility(View.INVISIBLE);
+        mltext.setVisibility(View.INVISIBLE);
+        mlview.setVisibility(View.INVISIBLE);
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
         simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
@@ -78,7 +81,7 @@ EditText mltext;
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
                 }catch (NullPointerException e){
-                    Toast.makeText(MainMenueActivity.this, getString(R.string.Error),
+                    Toast.makeText(MainMenueActivity.this, getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -116,6 +119,13 @@ EditText mltext;
         if (id == R.id.homeButton) {
             startActivity(new Intent(this, MainMenueActivity.class));
             return true;
+
+        }
+
+        if( id == R.id.logOut) {
+
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
         }
 
 
@@ -126,17 +136,17 @@ EditText mltext;
 //expandable menu - doesn´t work - don´t know why
     public void OnClickVisible(View view){
 
-       // hackerlButton.setVisibility(View.VISIBLE);
-        //mltext.setVisibility(View.VISIBLE);
-        //mlview.setVisibility(View.VISIBLE);
+        hackerlButton.setVisibility(View.VISIBLE);
+        mltext.setVisibility(View.VISIBLE);
+        mlview.setVisibility(View.VISIBLE);
 
     }
 
     public void OnClickHackerl(View view) {
 
-       // hackerlButton.setVisibility(View.INVISIBLE);
-        // mltext.setVisibility(View.INVISIBLE);
-        //mlview.setVisibility(View.INVISIBLE);
+        hackerlButton.setVisibility(View.INVISIBLE);
+         mltext.setVisibility(View.INVISIBLE);
+        mlview.setVisibility(View.INVISIBLE);
 
 
         Log.d(DEBUG_TAG, "Some method called");
@@ -185,6 +195,11 @@ EditText mltext;
                 manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
                 break;
             }
+//            case R.id.nav_f5: {
+//            //Todo: LogOut!!
+//                break;
+//            }
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

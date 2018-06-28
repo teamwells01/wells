@@ -67,7 +67,7 @@ public class Einstellungen extends Fragment {
                 try{
                     manager.beginTransaction().replace(R.id.mainLayout, pwaendernfragement, pwaendernfragement.getTag()).commit();
                 }catch (NullPointerException e){
-                    Toast.makeText(getActivity(), getString(R.string.Error),
+                    Toast.makeText(getActivity(), getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
             }
