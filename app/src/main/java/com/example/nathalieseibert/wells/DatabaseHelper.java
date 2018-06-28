@@ -1,5 +1,6 @@
 package com.example.nathalieseibert.wells;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -115,6 +116,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    //nanni
+    public boolean insertdata(String email, String pass, String name, String age, String weight, String height) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Email", email);
+        contentValues.put("Passwort", pass);
+        contentValues.put("Benutzername", name);
+        contentValues.put("Age", age);
+        contentValues.put("Gewicht", weight);
+        contentValues.put("Groeße", height);
+        long ins = db.insert(DatabaseHelper.USER_TABLE, null, contentValues);
+        if(ins == 1) return false;
+        else return true;
+    }
+
+    public boolean checkmail(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[] {email});
+        if(cursor.getCount()>0) return false;
+        else return true;
     }
 
 
