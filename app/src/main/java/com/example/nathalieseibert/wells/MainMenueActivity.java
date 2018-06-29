@@ -204,10 +204,10 @@ EditText mltext;
                 manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
                 break;
             }
-//            case R.id.nav_f5: {
-//            //Todo: LogOut!!
-//                break;
-//            }
+            case R.id.nav_f5: {
+            startActivity(new Intent(this, LoginActivity.class));
+                break;
+            }
 
         }
 
