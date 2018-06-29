@@ -4,13 +4,13 @@ package com.example.nathalieseibert.wells;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 
@@ -18,7 +18,6 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class Karte extends Fragment {
-
 
 
     public Karte() {
@@ -43,17 +42,16 @@ public class Karte extends Fragment {
             public void onClick(View view) {
                 Trinkbrunnen listefragment = new Trinkbrunnen();
                 FragmentManager manager = getFragmentManager();
-                try{
+                try {
                     assert manager != null;
                     manager.beginTransaction().replace(R.id.mainLayout, listefragment, listefragment.getTag()).commit();
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     Toast.makeText(getActivity(), "Error",
                             Toast.LENGTH_LONG).show();
                 }
             }
         });
         return view;
-
 
 
     }

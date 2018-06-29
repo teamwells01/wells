@@ -19,29 +19,20 @@
 
     <Button
         android:id="@+id/buttonlist"
-        android:layout_width="194dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/title_Liste"
         android:enabled="false"
-        android:layout_marginTop="550dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_gravity="bottom|start"
+        android:text="@string/title_Liste" />
 
     <Button
         android:id="@+id/buttonkarte"
-        android:layout_width="185dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginLeft="215dp"
-        android:text="@string/title_Karte"
-        android:layout_marginStart="215dp" />
+        android:layout_gravity="bottom|end"
+        android:text="@string/title_Karte" />
 
     <ListView
-        android:id="@+id/brunnen_list_view"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginBottom="60dp"

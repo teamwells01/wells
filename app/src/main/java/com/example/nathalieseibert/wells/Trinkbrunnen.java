@@ -3,12 +3,12 @@ package com.example.nathalieseibert.wells;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 
@@ -35,9 +35,9 @@ public class Trinkbrunnen extends Fragment {
             public void onClick(View view) {
                 Karte kartefragment = new Karte();
                 FragmentManager manager = getFragmentManager();
-                try{
+                try {
                     manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     Toast.makeText(getActivity(), "Error",
                             Toast.LENGTH_LONG).show();
                 }

@@ -7,26 +7,21 @@
     <!-- TODO: Update blank fragment layout -->
     <WebView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="557dp" />
+        android:layout_width="350dp"
+        android:layout_height="460dp" />
 
     <Button
-        android:id="@+id/karte"
-        android:layout_width="194dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="@string/karte"
+        android:layout_gravity="bottom|end"
         android:enabled="false"
-        android:layout_marginTop="550dp"
-        android:layout_marginLeft="215dp"
-        android:layout_marginStart="215dp" />
+        android:text="@string/karte" />
 
     <Button
         android:id="@+id/liste"
-        android:layout_width="194dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="@string/liste"
-        android:layout_marginTop="550dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp" />
+        android:layout_gravity="bottom|start"
+        android:text="@string/liste" />
 
 </FrameLayout>
