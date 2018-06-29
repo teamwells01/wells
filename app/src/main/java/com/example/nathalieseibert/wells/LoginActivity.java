@@ -72,11 +72,11 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (isExist) {
                     Intent intent = new Intent(LoginActivity.this, MainMenueActivity.class);
-                    intent.putExtra("username", email.getText().toString());
+                    intent.putExtra("Email", email.getText().toString());
                     startActivity(intent);
                 } else {
                     password.setText(null);
-                    Toast.makeText(LoginActivity.this, "Login failed. Invalid username or password.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login failed. Invalid email or password.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

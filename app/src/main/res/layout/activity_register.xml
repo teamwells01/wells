@@ -103,7 +103,7 @@
         android:layout_alignStart="@+id/editTextWeight"
         android:ems="10"
         android:inputType="number"
-        android:maxLength="2"
+        android:maxLength="3"
         android:hint="@string/in_zentimeter"
         />
 
@@ -174,13 +174,12 @@
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/action_register_in"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:onClick="onClickSwitchActivity"
         android:textSize="20sp"
         android:textColor="@color/schwoaz"
         android:text="@string/action_register_in"
