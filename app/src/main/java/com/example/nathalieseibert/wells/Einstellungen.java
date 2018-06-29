@@ -77,4 +77,10 @@ public class Einstellungen extends Fragment {
 
     }
 
+    public void OnClickDelete(View view){
+
+
+
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.nathalieseibert.wells;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import java.util.Calendar;
 import android.support.annotation.NonNull;
@@ -30,12 +31,17 @@ public class MainMenueActivity extends AppCompatActivity
 Button wasserButton, hackerlButton;
 TextView mlview;
 EditText mltext;
+    DatabaseHelper databaseHelper;
+
+
     private static final String DEBUG_TAG = "Tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menue);
+
+        databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
         wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
         hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
@@ -121,11 +127,14 @@ EditText mltext;
             return true;
 
         }
-
+//logOut button
         if( id == R.id.logOut) {
 
             startActivity(new Intent(this, LoginActivity.class));
             return true;
+
+           // databaseHelper.close();
+
         }
 
 

@@ -47,14 +47,14 @@ public class RegisterActivity extends AppCompatActivity {
     EditText _editTextHeight;
 
 
-    public void onClickSwitchActivity(View view) {
-        Intent intent = new Intent(this, MainMenueActivity.class);
-        startActivity(intent);
-
-        //  Intent i = new Intent(this, IntentService.class);
-        //  startService(i);
-
-    }
+//    public void onClickSwitchActivity(View view) {
+//        Intent intent = new Intent(this, MainMenueActivity.class);
+//        startActivity(intent);
+//
+//        //  Intent i = new Intent(this, IntentService.class);
+//        //  startService(i);
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         _editTextName = (EditText)findViewById(R.id.editTextName);
         _editTextAge = (EditText)findViewById(R.id.editTextAge);
         _editTextWeight = (EditText)findViewById(R.id.editTextWeight);
-        _editTextHeight = (EditText)findViewById(R.id.editTextHeight);
+        //_editTextHeight = (EditText)findViewById(R.id.editTextHeight);
 
         _action_register_in.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,17 +77,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String name = _editTextName.getText().toString();
                 String age = _editTextAge.getText().toString();
                 String weight = _editTextWeight.getText().toString();
-                String height = _editTextHeight.getText().toString();
+               // String height = _editTextHeight.getText().toString();
 
-                if(email.equals("")||pass.equals("")||name.equals("")||age.equals("")||weight.equals("")||height.equals("")){
+                if(email.equals("")||pass.equals("")||name.equals("")||age.equals("")||weight.equals("")){
                     Toast.makeText(getApplicationContext(),"Fields are empty",Toast.LENGTH_SHORT).show();
 
                 }else{
                     Boolean checkmail = openHelper.checkmail(email);
                     if(checkmail == true){
-                        Boolean insertdata = openHelper.insertdata(email, pass, name, age, weight, height);
+                        Boolean insertdata = openHelper.insertdata(email, pass, name, age, weight);
                         if(insertdata == true){
                             Toast.makeText(getApplicationContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, MainMenueActivity.class);
+                            startActivity(intent);
+
                         }
                     }else{
                         Toast.makeText(getApplicationContext(),"EMail already exists",Toast.LENGTH_SHORT).show();

@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase db;
 
     private static final String DATABASE_PATH = "/data/data/com.example.nathalieseibert.wells/databases/";
-    private final String USER_TABLE = "Benutzer";
+    public static final String USER_TABLE = "Benutzer";
 
 
     public DatabaseHelper(Context context) {
@@ -27,6 +27,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.context = context;
         createDb();
     }
+
+   // public DatabaseHelper() {
+     //   super();
+    //}
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -92,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db;
     }
 
-    public void close(){
+    public  void close(){
         if(db != null){
             db.close();
         }
@@ -119,7 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //nanni
-    public boolean insertdata(String email, String pass, String name, String age, String weight, String height) {
+    public boolean insertdata(String email, String pass, String name, String age, String weight) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Email", email);
@@ -127,7 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Benutzername", name);
         contentValues.put("Age", age);
         contentValues.put("Gewicht", weight);
-        contentValues.put("Groeße", height);
+        //contentValues.put("Groeße", height);
         long ins = db.insert(DatabaseHelper.USER_TABLE, null, contentValues);
         if(ins == 1) return false;
         else return true;

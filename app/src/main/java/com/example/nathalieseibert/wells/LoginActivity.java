@@ -44,6 +44,11 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
     DatabaseHelper databaseHelper;
 
+    //disable the backbutton after logOut
+    public void onBackPressed() {
+        //do nothing
+    }
+
     public void onClickSwitchActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);

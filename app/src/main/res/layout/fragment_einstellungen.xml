@@ -44,7 +44,8 @@
         android:layout_marginTop="500dp"
         android:text="@string/löschen"
         android:textColor="#ff0000"
-        android:layout_marginStart="15dp" />
+        android:layout_marginStart="15dp"
+        android:onClick="OnClickDelete"/>
 
     <Button
         android:id="@+id/PWAendern"
