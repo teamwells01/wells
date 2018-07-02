@@ -1,41 +1,12 @@
 package com.example.nathalieseibert.wells;
-
-import android.Manifest;
-import android.annotation.TargetApi;
-import android.app.KeyguardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.CancellationSignal;
-import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyPermanentlyInvalidatedException;
-import android.security.keystore.KeyProperties;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,11 +14,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     DatabaseHelper databaseHelper;
-
-    //disable the backbutton after logOut
-    public void onBackPressed() {
-        //do nothing
-    }
 
     public void onClickSwitchActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
@@ -80,19 +46,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+}
 
-
-//        TextView textView;
-//        FingerprintManager.CryptoObject cryptoObject;
-//        FingerprintManager fingerprintManager;
-//        KeyguardManager keyguardManager;
-//
+//        //FINGERPRINT
 //
 //        // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
 //        // or higher before executing any fingerprint-related code
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-//
-//        {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //            //Get an instance of KeyguardManager and FingerprintManager//
 //            keyguardManager =
 //                    (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
@@ -104,28 +65,28 @@ public class LoginActivity extends AppCompatActivity {
 //            //Check whether the device has a fingerprint sensor//
 //            if (!fingerprintManager.isHardwareDetected()) {
 //                // If a fingerprint sensor isn’t available, then inform the user that they’ll be unable to use your app’s fingerprint functionality//
-//                textView.setText(R.string.noFingerprintFunktion);
+//                textView.setText("Ihr Handy kann kein Fingerprint!");
 //            }
 //            //Check whether the user has granted your app the USE_FINGERPRINT permission//
 //            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
 //                // If your app doesn't have this permission, then display the following text//
-//                textView.setText(R.string.fingerprintAktivPls);
+//                textView.setText("Bitte aktivieren Sie Login mittels Fingerprint!");
 //            }
 //
 //            //Check that the user has registered at least one fingerprint//
 //            if (!fingerprintManager.hasEnrolledFingerprints()) {
 //                // If the user hasn’t configured any fingerprints, then display the following message//
-//                textView.setText(R.string.fingerEinstSpeiPls);
+//                textView.setText("Bitte speichern Sie Ihren Finger in den Einstellungen!");
 //            }
 //
 //            //Check that the lockscreen is secured//
 //            if (!keyguardManager.isKeyguardSecure()) {
 //                // If the user hasn’t secured their lockscreen with a PIN password or pattern, then display the following text//
-//                textView.setText(R.string.displaysperreAktivPls);
+//                textView.setText("Aktivieren Sie eine Displaysperre!");
 //            } else {
 //                try {
 //                    generateKey();
-//                } catch (FingerprintException e) {
+//                } catch (LoginActivity.FingerprintException e) {
 //                    e.printStackTrace();
 //                }
 //
@@ -141,9 +102,10 @@ public class LoginActivity extends AppCompatActivity {
 //                }
 //            }
 //        }
+//
 //    }
 //
-////Create the generateKey method that we’ll use to gain access to the Android keystore and generate the encryption key//
+//    //Create the generateKey method that we’ll use to gain access to the Android keystore and generate the encryption key//
 //
 //    private void generateKey() throws FingerprintException {
 //        try {
@@ -222,70 +184,3 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 //
 //}
-//
-//@TargetApi(Build.VERSION_CODES.M)
-//@RequiresApi(api = Build.VERSION_CODES.M)
-//
-//class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
-//
-//    // You should use the CancellationSignal method whenever your app can no longer process user input, for example when your app goes
-//    // into the background. If you don’t use this method, then other apps will be unable to access the touch sensor, including the lockscreen!//
-//
-//
-//    private final Context context;
-//
-//    FingerprintHandler(Context mContext) {
-//        context = mContext;
-//    }
-//
-//    //Implement the startAuth method, which is responsible for starting the fingerprint authentication process//
-//
-//    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject) {
-//        CancellationSignal cancellationSignal;
-//        cancellationSignal = new CancellationSignal();
-//        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        manager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
-//    }
-//
-//    @Override
-//    //onAuthenticationError is called when a fatal error has occurred. It provides the error code and error message as its parameters//
-//
-//    public void onAuthenticationError(int errMsgId, CharSequence errString) {
-//
-//        //I’m going to display the results of fingerprint authentication as a series of toasts.
-//        //Here, I’m creating the message that’ll be displayed if an error occurs//
-//
-//        Toast.makeText(context, "Finger nicht erkannt! " + errString, Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//
-//    //onAuthenticationFailed is called when the fingerprint doesn’t match with any of the fingerprints registered on the device//
-//
-//    public void onAuthenticationFailed() {
-//        Toast.makeText(context, "Falscher Finger!", Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//
-//    //onAuthenticationHelp is called when a non-fatal error has occurred. This method provides additional information about the error,
-//    //so to provide the user with as much feedback as possible I’m incorporating this information into my toast//
-//    public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
-//        Toast.makeText(context, "Authentication help\n" + helpString, Toast.LENGTH_LONG).show();
-//    }
-//
-//    @Override
-//
-//    //onAuthenticationSucceeded is called when a fingerprint has been successfully matched to one of the fingerprints stored on the user’s device//
-//    public void onAuthenticationSucceeded(
-//
-//            FingerprintManager.AuthenticationResult result) {
-//        Intent intent = new Intent(context.getApplicationContext(), MainMenueActivity.class);
-//        context.startActivity(intent);
-    }
-
-
-}
-

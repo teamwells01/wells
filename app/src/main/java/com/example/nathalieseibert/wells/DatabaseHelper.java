@@ -18,19 +18,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final Context context;
     SQLiteDatabase db;
 
-    private static final String DATABASE_PATH = "/data/data/com.example.nathalieseibert.wells/databases/";
+    private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     public static final String USER_TABLE = "Benutzer";
 
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        DATABASE_PATH = context.getApplicationInfo().dataDir + "/databases/";
         this.context = context;
         createDb();
     }
 
-   // public DatabaseHelper() {
-     //   super();
-    //}
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -123,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //nanni
-    public boolean insertdata(String email, String pass, String name, String age, String weight) {
+    public boolean insertdata(String email, String pass, String name, String age, String weight, String height) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Email", email);
@@ -131,8 +129,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("Benutzername", name);
         contentValues.put("Age", age);
         contentValues.put("Gewicht", weight);
-        //contentValues.put("Groeße", height);
+        contentValues.put("Groesse", height);
         long ins = db.insert(DatabaseHelper.USER_TABLE, null, contentValues);
+        System.out.println("successful - db insert " + String.valueOf(ins));
         if(ins == 1) return false;
         else return true;
     }
@@ -144,7 +143,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean updateData(String email, String age, String weight, String height){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Email", email);
+       // contentValues.put("Passwort", pass);
+       // contentValues.put("Benutzername", name);
+        contentValues.put("Age", age);
+        contentValues.put("Gewicht", weight);
+        contentValues.put("Groesse", height);
+        db.update(USER_TABLE, contentValues, "Email = ?",new String[] {email});
+        return true;
+    }
+
 
 }
-
-
