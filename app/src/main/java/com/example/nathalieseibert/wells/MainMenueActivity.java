@@ -3,7 +3,9 @@ package com.example.nathalieseibert.wells;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import java.util.Calendar;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,40 +17,39 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.Toast;
-import android.widget.TextView;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.util.Calendar;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
 
+Button wasserButton, hackerlButton;
+TextView mlview;
+EditText mltext;
+    DatabaseHelper databaseHelper;
+
 
     private static final String DEBUG_TAG = "Tag";
 
-    Button wasserButton, hackerlButton;
-    TextView mlview;
-    EditText mltext;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menue);
+
+        databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
         wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
         hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
         mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
         mlview = (TextView) findViewById(R.id.textMl) ;//define textview for visibility
-//        hackerlButton.setVisibility(View.INVISIBLE);
-//        mltext.setVisibility(View.INVISIBLE);
-//        mlview.setVisibility(View.INVISIBLE);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menue);
-
+        hackerlButton.setVisibility(View.INVISIBLE);
+        mltext.setVisibility(View.INVISIBLE);
+        mlview.setVisibility(View.INVISIBLE);
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
         simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
@@ -85,8 +86,8 @@ public class MainMenueActivity extends AppCompatActivity
 
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-                } catch (NullPointerException e) {
-                    Toast.makeText(MainMenueActivity.this, getString(R.string.Error),
+                }catch (NullPointerException e){
+                    Toast.makeText(MainMenueActivity.this, getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -94,15 +95,6 @@ public class MainMenueActivity extends AppCompatActivity
         });
 
     }
-
-//    public void OnClickVisible(View view){
-//
-//        hackerlButton.setVisibility(View.VISIBLE);
-//        mltext.setVisibility(View.VISIBLE);
-//        mlview.setVisibility(View.VISIBLE);
-//
-//    }
-
 
 
     @Override
@@ -133,20 +125,37 @@ public class MainMenueActivity extends AppCompatActivity
         if (id == R.id.homeButton) {
             startActivity(new Intent(this, MainMenueActivity.class));
             return true;
-        }
 
+        }
+//logOut button
+        if( id == R.id.logOut) {
+
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
+
+           // databaseHelper.close();
+
+        }
 
 
         return super.onOptionsItemSelected(item);
 
 
     }
+//expandable menu - doesn´t work - don´t know why
+    public void OnClickVisible(View view){
+
+        hackerlButton.setVisibility(View.VISIBLE);
+        mltext.setVisibility(View.VISIBLE);
+        mlview.setVisibility(View.VISIBLE);
+
+    }
 
     public void OnClickHackerl(View view) {
 
-//        hackerlButton.setVisibility(View.INVISIBLE);
-//        mltext.setVisibility(View.INVISIBLE);
-//        mlview.setVisibility(View.INVISIBLE);
+        hackerlButton.setVisibility(View.INVISIBLE);
+         mltext.setVisibility(View.INVISIBLE);
+        mlview.setVisibility(View.INVISIBLE);
 
 
         Log.d(DEBUG_TAG, "Some method called");
@@ -195,6 +204,11 @@ public class MainMenueActivity extends AppCompatActivity
                 manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
                 break;
             }
+//            case R.id.nav_f5: {
+//            //Todo: LogOut!!
+//                break;
+//            }
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

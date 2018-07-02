@@ -10,71 +10,76 @@
     tools:showIn="@layout/app_bar_main_menue">
 
 
-    <ProgressBar
-        style="?android:attr/progressBarStyle"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="140dp" />
 
-    <TextView
-        android:id="@+id/textMl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="195dp"
-        android:layout_marginLeft="195dp"
-        android:text="@string/textMl"
-        android:textColor="@color/schwoaz"
-        android:textSize="32sp" />
+        <TextView
+            android:id="@+id/textMl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="245dp"
+            android:layout_marginTop="350dp"
+            android:text="@string/textMl"
+            android:textColor="@color/schwoaz"
+            android:textSize="32sp"
+            android:layout_marginStart="245dp"/>
 
-    <EditText
-        android:id="@+id/editWater"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:ems="5"
-        android:inputType="number"
-        tools:ignore="LabelFor" />
+        <EditText
+            android:id="@+id/editWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="350dp"
+            android:ems="5"
+            android:inputType="number"
+            android:layout_marginStart="120dp"
+            tools:ignore="LabelFor"/>
 
-    <Button
-        android:id="@+id/addWater"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
-        android:text="@string/addWater"
-        android:textColor="@color/schwoaz"
-        android:textSize="20sp"
-        android:onClick="OnClickVisible"/>
+        <Button
+            android:id="@+id/addWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="300dp"
+            android:text="@string/addWater"
+            android:textColor="@color/schwoaz"
+            android:textSize="20sp"
+            android:layout_marginStart="160dp"
+            android:onClick="OnClickVisible"/>
 
-    <Switch
-        android:id="@+id/simpleSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="430dp"
-        android:checked="true"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:showText="true"
-        android:text="@string/simpleSwitch"
-        android:textOff="@string/wenig"
-        android:textOn="@string/viel"
-        android:textSize="10sp"
-        android:switchTextAppearance="@style/MyStyle"
-        tools:checked="false"
-        tools:targetApi="lollipop" />
+        <Switch
+            android:id="@+id/simpleSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="530dp"
+            android:checked="true"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:showText="true"
+            android:text="@string/simpleSwitch"
+            android:textOff="@string/wenig"
+            android:textOn="@string/viel"
+            tools:checked="false"
+            tools:targetApi="lollipop"
+            android:layout_marginStart="160dp" />
 
-    <Button
-        android:id="@+id/haeckchen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
-        android:onClick="OnClickHackerl"
-        android:text="@string/haeckchen" /><!-- text to be displayed whenever current state is checked-->
+        <Button
+            android:id="@+id/haeckchen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="400dp"
+            android:onClick="OnClickHackerl"
+            android:text="@string/haeckchen"
+            android:layout_marginStart="170dp"
+           /><!-- text to be displayed whenever current state is checked-->
 
 
 </RelativeLayout>

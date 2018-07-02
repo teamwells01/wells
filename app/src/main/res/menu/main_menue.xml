@@ -9,6 +9,12 @@
         android:tint="@android:color/white"
         android:title="@string/homeButton"
         app:showAsAction="always" />
-
+    <item
+        android:id="@+id/logOut"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:src="@drawable/ic_launcher_foreground"
+        android:tint="@android:color/white"
+        android:title="LogOut"
+        app:showAsAction="always" />
 
 </menu>

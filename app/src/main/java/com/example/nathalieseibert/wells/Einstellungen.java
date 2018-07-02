@@ -3,11 +3,11 @@ package com.example.nathalieseibert.wells;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -26,7 +26,7 @@ public class Einstellungen extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_einstellungen, container, false);
+        View view =  inflater.inflate(R.layout.fragment_einstellungen, container, false);
 
         Button Grundeinstellungen = view.findViewById(R.id.Grundeinstellungen);
         Grundeinstellungen.setOnClickListener(new View.OnClickListener() {
@@ -34,10 +34,10 @@ public class Einstellungen extends Fragment {
             public void onClick(View view) {
                 grund_einstellung grund_einstellungfragment = new grund_einstellung();
                 FragmentManager manager = getFragmentManager();
-                try {
+                try{
                     manager.beginTransaction().replace(R.id.mainLayout, grund_einstellungfragment, grund_einstellungfragment.getTag()).commit();
-                } catch (NullPointerException e) {
-                    Toast.makeText(getActivity(), "Error",
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -49,10 +49,10 @@ public class Einstellungen extends Fragment {
             public void onClick(View view) {
                 Benachrichtigungseinstellungen benachrichtigunggfragment = new Benachrichtigungseinstellungen();
                 FragmentManager manager = getFragmentManager();
-                try {
+                try{
                     manager.beginTransaction().replace(R.id.mainLayout, benachrichtigunggfragment, benachrichtigunggfragment.getTag()).commit();
-                } catch (NullPointerException e) {
-                    Toast.makeText(getActivity(), "Error",
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -64,15 +64,21 @@ public class Einstellungen extends Fragment {
             public void onClick(View view) {
                 PWaendern pwaendernfragement = new PWaendern();
                 FragmentManager manager = getFragmentManager();
-                try {
+                try{
                     manager.beginTransaction().replace(R.id.mainLayout, pwaendernfragement, pwaendernfragement.getTag()).commit();
-                } catch (NullPointerException e) {
-                    Toast.makeText(getActivity(), "Error",
+                }catch (NullPointerException e){
+                    Toast.makeText(getActivity(), getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
             }
         });
         return view;
+
+
+    }
+
+    public void OnClickDelete(View view){
+
 
 
     }
