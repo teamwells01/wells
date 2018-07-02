@@ -18,6 +18,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.Calendar;
 
@@ -28,8 +31,21 @@ public class MainMenueActivity extends AppCompatActivity
 
     private static final String DEBUG_TAG = "Tag";
 
+    Button wasserButton, hackerlButton;
+    TextView mlview;
+    EditText mltext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
+        hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
+        mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
+        mlview = (TextView) findViewById(R.id.textMl) ;//define textview for visibility
+//        hackerlButton.setVisibility(View.INVISIBLE);
+//        mltext.setVisibility(View.INVISIBLE);
+//        mlview.setVisibility(View.INVISIBLE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menue);
 
@@ -79,6 +95,15 @@ public class MainMenueActivity extends AppCompatActivity
 
     }
 
+//    public void OnClickVisible(View view){
+//
+//        hackerlButton.setVisibility(View.VISIBLE);
+//        mltext.setVisibility(View.VISIBLE);
+//        mlview.setVisibility(View.VISIBLE);
+//
+//    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -111,12 +136,19 @@ public class MainMenueActivity extends AppCompatActivity
         }
 
 
+
         return super.onOptionsItemSelected(item);
 
 
     }
 
     public void OnClickHackerl(View view) {
+
+//        hackerlButton.setVisibility(View.INVISIBLE);
+//        mltext.setVisibility(View.INVISIBLE);
+//        mlview.setVisibility(View.INVISIBLE);
+
+
         Log.d(DEBUG_TAG, "Some method called");
     }
 
