@@ -46,7 +46,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
+
 }
 
 //        //FINGERPRINT
@@ -184,3 +188,5 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 //
 //}
+
+

@@ -58,7 +58,7 @@ public class loeschen extends Fragment {
          myDB = new DatabaseHelper(getContext());
         editmail = (AutoCompleteTextView) view.findViewById(R.id.email);
         editpass = (EditText) view.findViewById(R.id.password);
-
+//delete data via databasehelper
 
         button_delete.setOnClickListener(new View.OnClickListener() {
                                              @Override

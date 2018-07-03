@@ -5,7 +5,9 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
 import java.util.Calendar;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,9 +30,10 @@ public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
 
-Button wasserButton, hackerlButton;
-TextView mlview;
-EditText mltext;
+    Button wasserButton, hackerlButton;
+    TextView mlview;
+    EditText mltext;
+    EditText email;
     DatabaseHelper databaseHelper;
 
 
@@ -43,13 +46,6 @@ EditText mltext;
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
-        wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
-        hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
-        mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
-        mlview = (TextView) findViewById(R.id.textMl) ;//define textview for visibility
-        hackerlButton.setVisibility(View.INVISIBLE);
-        mltext.setVisibility(View.INVISIBLE);
-        mlview.setVisibility(View.INVISIBLE);
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
         simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
@@ -86,13 +82,54 @@ EditText mltext;
 
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     Toast.makeText(MainMenueActivity.this, getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
 
             }
         });
+//visibility buttons
+        wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
+        hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
+        mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
+        mlview = (TextView) findViewById(R.id.textMl);//define textview for visibility
+
+        hackerlButton.setVisibility(View.GONE);
+        mltext.setVisibility(View.GONE);
+        mlview.setVisibility(View.GONE);
+
+
+        wasserButton.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                hackerlButton.setVisibility(View.VISIBLE);
+                                                mltext.setVisibility(View.VISIBLE);
+                                                mlview.setVisibility(View.VISIBLE);
+                                            }
+                                        }
+        );
+        hackerlButton.setOnClickListener(new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 hackerlButton.setVisibility(View.GONE);
+                                                 mltext.setVisibility(View.GONE);
+                                                 mlview.setVisibility(View.GONE);
+
+                                                 String mail = getIntent().getStringExtra("Email");
+
+
+                                                 Boolean insertdata = databaseHelper.insertml(mail,mltext.toString());
+                                                 if (insertdata == true) {
+                                                     Toast.makeText(getApplicationContext(), "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                                 } else {
+                                                     Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                                 }
+
+
+                                             }
+                                         }
+        );
 
     }
 
@@ -128,12 +165,12 @@ EditText mltext;
 
         }
 //logOut button
-        if( id == R.id.logOut) {
+        if (id == R.id.logOut) {
 
             startActivity(new Intent(this, LoginActivity.class));
             return true;
 
-           // databaseHelper.close();
+            // databaseHelper.close();
 
         }
 
@@ -142,24 +179,7 @@ EditText mltext;
 
 
     }
-//expandable menu - doesn´t work - don´t know why
-    public void OnClickVisible(View view){
 
-        hackerlButton.setVisibility(View.VISIBLE);
-        mltext.setVisibility(View.VISIBLE);
-        mlview.setVisibility(View.VISIBLE);
-
-    }
-
-    public void OnClickHackerl(View view) {
-
-        hackerlButton.setVisibility(View.INVISIBLE);
-         mltext.setVisibility(View.INVISIBLE);
-        mlview.setVisibility(View.INVISIBLE);
-
-
-        Log.d(DEBUG_TAG, "Some method called");
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -205,7 +225,7 @@ EditText mltext;
                 break;
             }
             case R.id.nav_f5: {
-            startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             }
 
