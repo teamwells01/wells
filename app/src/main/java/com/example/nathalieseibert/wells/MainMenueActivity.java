@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -116,11 +117,13 @@ public class MainMenueActivity extends AppCompatActivity
                                                  mltext.setVisibility(View.GONE);
                                                  mlview.setVisibility(View.GONE);
 
+
+
                                                  String mail = getIntent().getStringExtra("Email");
+//ToDo soll und datum berechnen und statische variablen tauschen
 
-
-                                                 Boolean insertdata = databaseHelper.insertml(mail,mltext.toString());
-                                                 if (insertdata == true) {
+                                                 Boolean insertdataml = databaseHelper.insertml(mail,mltext.toString(),"500","01.01.2010");
+                                                 if (insertdataml == true) {
                                                      Toast.makeText(getApplicationContext(), "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
                                                  } else {
                                                      Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();

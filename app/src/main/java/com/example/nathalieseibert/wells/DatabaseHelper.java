@@ -29,6 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_GEWICHT ="Gewicht";
     public static final String COL_GROESSE ="Groesse";
     public static final String COL_IST ="mlIST";
+    public static final String COL_SOLL ="mlSOLL";
+    public static final String COL_DATE ="Datum";
 
 
 
@@ -157,13 +159,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
-    public boolean insertml(String email, String ml){
+    public boolean insertml(String email, String istml, String sollml, String date){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_EMAIL, email);
-        contentValues.put(COL_IST, ml);
-        // ToDo contentValues.put(COL_SOLL, email);
-        //ToDo contentValues.put(COL_DATE, email);
+        contentValues.put(COL_IST, istml);
+        contentValues.put(COL_SOLL, sollml);
+        contentValues.put(COL_DATE, date);
 
         long ins = db.insert(DatabaseHelper.DRINK_TABLE, null, contentValues);
         System.out.println("successful - db insert " + String.valueOf(ins));
