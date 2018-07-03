@@ -84,13 +84,13 @@ public class Einstellungen extends Fragment {
             }
             });
 
-        final Button loeschen = view.findViewById(R.id.loeschen);
-        loeschen.setOnClickListener(new View.OnClickListener()
+         Button loeschen_button = view.findViewById(R.id.loeschen);
+        loeschen_button.setOnClickListener(new View.OnClickListener()
 
         {
             @Override
             public void onClick (View view){
-                loeschen_Fragment loeschen_fragment = new loeschen_Fragment();
+                loeschen loeschen_fragment = new loeschen();
                 FragmentManager manager = getFragmentManager();
                 try {
                     manager.beginTransaction().replace(R.id.mainLayout, loeschen_fragment, loeschen_fragment.getTag()).commit();

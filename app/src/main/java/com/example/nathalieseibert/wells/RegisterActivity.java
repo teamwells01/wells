@@ -63,13 +63,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String weight = _editTextWeight.getText().toString();
                 String height = _editTextHeight.getText().toString();
 
-                if(!isEmailValid(email)){
-                    return;
-                }
+//                if(!isEmailValid(email)){
+//                    return;
+//                }
 
-                if(isPasswordValid(pass)){
-                    return;
-                }
+//                if(isPasswordValid(pass)){
+//                    return;
+//                }
 
                 if(email.equals("")||pass.equals("")||name.equals("")||age.equals("")||weight.equals("")||height.equals("")){
                     Toast.makeText(getApplicationContext(),"Fields are empty",Toast.LENGTH_SHORT).show();
@@ -105,10 +105,10 @@ public class RegisterActivity extends AppCompatActivity {
 
          }
 
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-          return password.length() > 4;
-    }
+//    private boolean isPasswordValid(String password) {
+//        //TODO: Replace this with your own logic
+//          return password.length() > 4;
+//    }
 
 
 

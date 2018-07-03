@@ -20,6 +20,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     public static final String USER_TABLE = "Benutzer";
+    public static final String LIST_TABLE = "Liste";
+    public static final String DRINK_TABLE = "Trinkverhalten";
+    public static final String COL_EMAIL ="Email";
+    public static final String COL_PASS ="Passwort";
+    public static final String COL_BENUTZERNAME ="Benutzername";
+    public static final String COL_AGE ="Age";
+    public static final String COL_GEWICHT ="Gewicht";
+    public static final String COL_GROESSE ="Groesse";
+
+
+
 
 
     public DatabaseHelper(Context context) {
@@ -32,6 +43,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()) {
+            // Enable foreign key constraints
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
     }
 
     @Override
@@ -101,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUserExist(String email, String password){
-        String[] columns = {"Email"};
+        String[] columns = {COL_EMAIL};
         db = openDatabase();
 
         String selection = "Email=? and Passwort = ?";
@@ -124,12 +144,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertdata(String email, String pass, String name, String age, String weight, String height) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Email", email);
-        contentValues.put("Passwort", pass);
-        contentValues.put("Benutzername", name);
-        contentValues.put("Age", age);
-        contentValues.put("Gewicht", weight);
-        contentValues.put("Groesse", height);
+        contentValues.put(COL_EMAIL, email);
+        contentValues.put(COL_PASS, pass);
+        contentValues.put(COL_BENUTZERNAME, name);
+        contentValues.put(COL_AGE, age);
+        contentValues.put(COL_GEWICHT, weight);
+        contentValues.put(COL_GROESSE, height);
         long ins = db.insert(DatabaseHelper.USER_TABLE, null, contentValues);
         System.out.println("successful - db insert " + String.valueOf(ins));
         if(ins == 1) return false;
@@ -146,14 +166,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateData(String email, String age, String weight, String height){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Email", email);
+        contentValues.put(COL_EMAIL, email);
        // contentValues.put("Passwort", pass);
        // contentValues.put("Benutzername", name);
-        contentValues.put("Age", age);
-        contentValues.put("Gewicht", weight);
-        contentValues.put("Groesse", height);
+        contentValues.put(COL_AGE, age);
+        contentValues.put(COL_GEWICHT, weight);
+        contentValues.put(COL_GROESSE, height);
         db.update(USER_TABLE, contentValues, "Email = ?",new String[] {email});
         return true;
+    }
+
+
+    public Integer deleteFroeignKeyDataListe(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = "Email=?";
+        return db.delete(LIST_TABLE,selection,new String[] {email});
+
+    }
+    public Integer  deleteFroeignKeyDataTrinken(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = "Email=?";
+        return db.delete(DRINK_TABLE,selection,new String[] {email});
+
+    }
+    public Integer deleteData(String email, String pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = "Email=? and Passwort = ?";
+        return db.delete(USER_TABLE,selection,new String[] {email, pass});
+
     }
 
 
