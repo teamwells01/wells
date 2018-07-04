@@ -1,15 +1,14 @@
 package com.example.nathalieseibert.wells;
 
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -17,8 +16,6 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class Benachrichtigungseinstellungen extends Fragment {
-
-
 
 
     public Benachrichtigungseinstellungen() {

@@ -13,27 +13,23 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "MyExternalDatabase.db";
-    private static final int DATABASE_VERSION = 1;
-    private final Context context;
-    SQLiteDatabase db;
-
-    private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     public static final String USER_TABLE = "Benutzer";
     public static final String LIST_TABLE = "Liste";
     public static final String DRINK_TABLE = "Trinkverhalten";
-    public static final String COL_EMAIL ="Email";
-    public static final String COL_PASS ="Passwort";
-    public static final String COL_BENUTZERNAME ="Benutzername";
-    public static final String COL_AGE ="Age";
-    public static final String COL_GEWICHT ="Gewicht";
-    public static final String COL_GROESSE ="Groesse";
-    public static final String COL_IST ="mlIST";
-    public static final String COL_SOLL ="mlSOLL";
-    public static final String COL_DATE ="Datum";
-
-
-
+    public static final String COL_EMAIL = "Email";
+    public static final String COL_PASS = "Passwort";
+    public static final String COL_BENUTZERNAME = "Benutzername";
+    public static final String COL_AGE = "Age";
+    public static final String COL_GEWICHT = "Gewicht";
+    public static final String COL_GROESSE = "Groesse";
+    public static final String COL_IST = "mlIST";
+    public static final String COL_SOLL = "mlSOLL";
+    public static final String COL_DATE = "Datum";
+    private static final String DATABASE_NAME = "MyExternalDatabase.db";
+    private static final int DATABASE_VERSION = 1;
+    private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
+    private final Context context;
+    SQLiteDatabase db;
 
 
     public DatabaseHelper(Context context) {
@@ -61,25 +57,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void createDb(){
+    public void createDb() {
         boolean dbExist = checkDbExist();
 
-        if(!dbExist){
+        if (!dbExist) {
             this.getReadableDatabase();
             copyDatabase();
         }
     }
 
-    private boolean checkDbExist(){
+    private boolean checkDbExist() {
         SQLiteDatabase sqLiteDatabase = null;
 
-        try{
+        try {
             String path = DATABASE_PATH + DATABASE_NAME;
             sqLiteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-        } catch (Exception ex){
+        } catch (Exception ex) {
         }
 
-        if(sqLiteDatabase != null){
+        if (sqLiteDatabase != null) {
             sqLiteDatabase.close();
             return true;
         }
@@ -87,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    private void copyDatabase(){
+    private void copyDatabase() {
         try {
             InputStream inputStream = context.getAssets().open(DATABASE_NAME);
 
@@ -98,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             byte[] b = new byte[1024];
             int length;
 
-            while ((length = inputStream.read(b)) > 0){
+            while ((length = inputStream.read(b)) > 0) {
                 outputStream.write(b, 0, length);
             }
 
@@ -111,19 +107,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    private SQLiteDatabase openDatabase(){
+    private SQLiteDatabase openDatabase() {
         String path = DATABASE_PATH + DATABASE_NAME;
         db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
         return db;
     }
 
-    public  void close(){
-        if(db != null){
+    public void close() {
+        if (db != null) {
             db.close();
         }
     }
 
-    public boolean checkUserExist(String email, String password){
+    public boolean checkUserExist(String email, String password) {
         String[] columns = {COL_EMAIL};
         db = openDatabase();
 
@@ -136,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         close();
 
-        if(count > 0){
+        if (count > 0) {
             return true;
         } else {
             return false;
@@ -155,11 +151,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_GROESSE, height);
         long ins = db.insert(DatabaseHelper.USER_TABLE, null, contentValues);
         System.out.println("successful - db insert " + String.valueOf(ins));
-        if(ins == 1) return false;
+        if (ins == 1) return false;
         else return true;
     }
 
-    public boolean insertml(String email, String istml, String sollml, String date){
+    public boolean insertml(String email, String istml, String sollml, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_EMAIL, email);
@@ -169,28 +165,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long ins = db.insert(DatabaseHelper.DRINK_TABLE, null, contentValues);
         System.out.println("successful - db insert " + String.valueOf(ins));
-        if(ins == 1) return false;
+        if (ins == 1) return false;
         else return true;
 
     }
 
-    public boolean checkmail(String email){
+    public boolean checkmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[] {email});
-        if(cursor.getCount()>0) return false;
+        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[]{email});
+        if (cursor.getCount() > 0) return false;
         else return true;
     }
 
-    public boolean updateData(String email, String age, String weight, String height){
+    public boolean updateData(String email, String age, String weight, String height) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_EMAIL, email);
-       // contentValues.put("Passwort", pass);
-       // contentValues.put("Benutzername", name);
+        // contentValues.put("Passwort", pass);
+        // contentValues.put("Benutzername", name);
         contentValues.put(COL_AGE, age);
         contentValues.put(COL_GEWICHT, weight);
         contentValues.put(COL_GROESSE, height);
-        db.update(USER_TABLE, contentValues, "Email = ?",new String[] {email});
+        db.update(USER_TABLE, contentValues, "Email = ?", new String[]{email});
         return true;
     }
 
@@ -198,19 +194,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Integer deleteFroeignKeyDataListe(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         String selection = "Email=?";
-        return db.delete(LIST_TABLE,selection,new String[] {email});
+        return db.delete(LIST_TABLE, selection, new String[]{email});
 
     }
-    public Integer  deleteFroeignKeyDataTrinken(String email) {
+
+    public Integer deleteFroeignKeyDataTrinken(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         String selection = "Email=?";
-        return db.delete(DRINK_TABLE,selection,new String[] {email});
+        return db.delete(DRINK_TABLE, selection, new String[]{email});
 
     }
+
     public Integer deleteData(String email, String pass) {
         SQLiteDatabase db = this.getWritableDatabase();
         String selection = "Email=? and Passwort = ?";
-        return db.delete(USER_TABLE,selection,new String[] {email, pass});
+        return db.delete(USER_TABLE, selection, new String[]{email, pass});
 
     }
 

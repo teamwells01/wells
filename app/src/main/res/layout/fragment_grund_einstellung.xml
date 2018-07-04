@@ -5,8 +5,6 @@
     tools:context="com.example.nathalieseibert.wells.grund_einstellung">
 
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,7 +34,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="130dp"
         android:hint="@string/eingabe_email"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress" />
 
 
     <TextView
@@ -115,8 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
         android:text="@string/speichern"
-        android:textColor="@color/schwoaz"
-        />
+        android:textColor="@color/schwoaz" />
 
 
 </FrameLayout>

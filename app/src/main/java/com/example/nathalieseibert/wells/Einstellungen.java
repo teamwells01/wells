@@ -1,14 +1,13 @@
 package com.example.nathalieseibert.wells;
 
 
-import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -28,16 +27,15 @@ public class Einstellungen extends Fragment {
                              Bundle savedInstanceState) {
 
 
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_einstellungen, container, false);
 
-            // Inflate the layout for this fragment
-            View view = inflater.inflate(R.layout.fragment_einstellungen, container, false);
-
-            Button Grundeinstellungen = view.findViewById(R.id.Grundeinstellungen);
+        Button Grundeinstellungen = view.findViewById(R.id.Grundeinstellungen);
         Grundeinstellungen.setOnClickListener(new View.OnClickListener()
 
-            {
-                @Override
-                public void onClick (View view){
+        {
+            @Override
+            public void onClick(View view) {
                 grund_einstellung grund_einstellungfragment = new grund_einstellung();
                 FragmentManager manager = getFragmentManager();
                 try {
@@ -48,14 +46,14 @@ public class Einstellungen extends Fragment {
                 }
 
             }
-            });
+        });
 
-            Button Benachrichtigung = view.findViewById(R.id.Benachrichtigung);
+        Button Benachrichtigung = view.findViewById(R.id.Benachrichtigung);
         Benachrichtigung.setOnClickListener(new View.OnClickListener()
 
-            {
-                @Override
-                public void onClick (View view){
+        {
+            @Override
+            public void onClick(View view) {
                 Benachrichtigungseinstellungen benachrichtigunggfragment = new Benachrichtigungseinstellungen();
                 FragmentManager manager = getFragmentManager();
                 try {
@@ -65,14 +63,14 @@ public class Einstellungen extends Fragment {
                             Toast.LENGTH_LONG).show();
                 }
             }
-            });
+        });
 
-            Button PWAendern = view.findViewById(R.id.PWAendern);
+        Button PWAendern = view.findViewById(R.id.PWAendern);
         PWAendern.setOnClickListener(new View.OnClickListener()
 
-            {
-                @Override
-                public void onClick (View view){
+        {
+            @Override
+            public void onClick(View view) {
                 PWaendern pwaendernfragement = new PWaendern();
                 FragmentManager manager = getFragmentManager();
                 try {
@@ -82,14 +80,14 @@ public class Einstellungen extends Fragment {
                             Toast.LENGTH_LONG).show();
                 }
             }
-            });
+        });
 
-         Button loeschen_button = view.findViewById(R.id.loeschen);
+        Button loeschen_button = view.findViewById(R.id.loeschen);
         loeschen_button.setOnClickListener(new View.OnClickListener()
 
         {
             @Override
-            public void onClick (View view){
+            public void onClick(View view) {
                 loeschen loeschen_fragment = new loeschen();
                 FragmentManager manager = getFragmentManager();
                 try {
@@ -105,7 +103,7 @@ public class Einstellungen extends Fragment {
         return view;
 
 
-        }
+    }
 
 //        public void OnClickDelete (View view){
 ////            Intent intent = new Intent(this, loeschen.class);
@@ -115,4 +113,4 @@ public class Einstellungen extends Fragment {
 //
 //        }
 
-    }
+}
