@@ -1,15 +1,23 @@
 package com.example.nathalieseibert.wells;
 
-import android.support.v4.app.Fragment;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.Calendar;
+
+import static android.content.Context.ALARM_SERVICE;
 
 
 /**
@@ -18,10 +26,12 @@ import android.widget.Toast;
 public class Benachrichtigungseinstellungen extends Fragment {
 
 
+    Button speichernButton;
+
+
     public Benachrichtigungseinstellungen() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -54,7 +64,34 @@ public class Benachrichtigungseinstellungen extends Fragment {
                 Toast.makeText(getActivity().getBaseContext(), "Nichts ausgewählt", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        view.findViewById(R.id.speichernButon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, 7);
+                calendar.set(Calendar.MINUTE, 10);
+                calendar.set(Calendar.SECOND, 0);
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), MyNotificationPublisher.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
+
+                try {
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                } catch (NullPointerException e) {
+
+                }
+            }
+
+
+        });
         return view;
+
+
     }
+
 
 }

@@ -35,13 +35,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         openHelper = new DatabaseHelper(this);
-        _action_register_in = (Button) findViewById(R.id.action_register_in);
-        _editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        _editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        _editTextName = (EditText) findViewById(R.id.editTextName);
-        _editTextAge = (EditText) findViewById(R.id.editTextAge);
-        _editTextWeight = (EditText) findViewById(R.id.editTextWeight);
-        _editTextHeight = (EditText) findViewById(R.id.editTextHeight);
+        _action_register_in = findViewById(R.id.action_register_in);
+        _editTextEmail = findViewById(R.id.editTextEmail);
+        _editTextPassword = findViewById(R.id.editTextPassword);
+        _editTextName = findViewById(R.id.editTextName);
+        _editTextAge = findViewById(R.id.editTextAge);
+        _editTextWeight = findViewById(R.id.editTextWeight);
+        _editTextHeight = findViewById(R.id.editTextHeight);
 
         _action_register_in.setOnClickListener(new View.OnClickListener() {
             @Override

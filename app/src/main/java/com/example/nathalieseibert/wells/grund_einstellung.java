@@ -1,9 +1,9 @@
 package com.example.nathalieseibert.wells;
 
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +36,11 @@ public class grund_einstellung extends Fragment {
         View view = inflater.inflate(R.layout.fragment_grund_einstellung, container, false);
 
         openHelper = new DatabaseHelper(getContext()); //?????
-        _buttonupdate = (Button) view.findViewById(R.id.button_update);
-        _editTextEmail = (EditText) view.findViewById(R.id.email_update);
-        _editTextAge = (EditText) view.findViewById(R.id.age_update);
-        _editTextWeight = (EditText) view.findViewById(R.id.weight_update);
-        _editTextHeight = (EditText) view.findViewById(R.id.height_update);
+        _buttonupdate = view.findViewById(R.id.button_update);
+        _editTextEmail = view.findViewById(R.id.email_update);
+        _editTextAge = view.findViewById(R.id.age_update);
+        _editTextWeight = view.findViewById(R.id.weight_update);
+        _editTextHeight = view.findViewById(R.id.height_update);
 
 
         //public void UpdateData(){ //wo soll de aufgerufen werden???? -> im video wird sie bei "mainMenueActivity" aufgerufen

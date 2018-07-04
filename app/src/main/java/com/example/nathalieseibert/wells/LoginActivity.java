@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -27,6 +28,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
@@ -35,11 +37,11 @@ import javax.crypto.SecretKey;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String KEY_NAME = "yourKey";
     Button email_sign_in_button;
     EditText email;
     EditText password;
     DatabaseHelper databaseHelper;
-    private static final String KEY_NAME = "yourKey";
     private Cipher cipher;
     private KeyStore keyStore;
     private KeyGenerator keyGenerator;
@@ -59,9 +61,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email_sign_in_button = (Button) findViewById(R.id.email_sign_in_button);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
+        email_sign_in_button = findViewById(R.id.email_sign_in_button);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
 
         databaseHelper = new DatabaseHelper(LoginActivity.this);
 
@@ -139,9 +141,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-
-
-
 
 
 //Create the generateKey method that we’ll use to gain access to the Android keystore and generate the encryption key//
@@ -222,9 +221,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-class FingerprintException extends Exception {
-    public FingerprintException(Exception e) {
-        super(e);
+    class FingerprintException extends Exception {
+        public FingerprintException(Exception e) {
+            super(e);
+        }
     }
 }
-        }

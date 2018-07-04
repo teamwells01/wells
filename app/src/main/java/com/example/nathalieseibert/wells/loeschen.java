@@ -1,9 +1,9 @@
 package com.example.nathalieseibert.wells;
 
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +34,10 @@ public class loeschen extends Fragment {
         View view = inflater.inflate(R.layout.fragment_loeschen, container, false);
 
 
-        button_delete = (Button) view.findViewById(R.id.delete_button);
+        button_delete = view.findViewById(R.id.delete_button);
         myDB = new DatabaseHelper(getContext());
-        editmail = (AutoCompleteTextView) view.findViewById(R.id.email);
-        editpass = (EditText) view.findViewById(R.id.password);
+        editmail = view.findViewById(R.id.email);
+        editpass = view.findViewById(R.id.password);
 //delete data via databasehelper
 
         button_delete.setOnClickListener(new View.OnClickListener() {

@@ -132,11 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         close();
 
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count > 0;
     }
 
     //nanni
@@ -151,8 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_GROESSE, height);
         long ins = db.insert(DatabaseHelper.USER_TABLE, null, contentValues);
         System.out.println("successful - db insert " + String.valueOf(ins));
-        if (ins == 1) return false;
-        else return true;
+        return ins != 1;
     }
 
     public boolean insertml(String email, String istml, String sollml, String date) {
@@ -165,16 +160,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long ins = db.insert(DatabaseHelper.DRINK_TABLE, null, contentValues);
         System.out.println("successful - db insert " + String.valueOf(ins));
-        if (ins == 1) return false;
-        else return true;
+        return ins != 1;
 
     }
 
     public boolean checkmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[]{email});
-        if (cursor.getCount() > 0) return false;
-        else return true;
+        return cursor.getCount() <= 0;
     }
 
     public boolean updateData(String email, String age, String weight, String height) {
