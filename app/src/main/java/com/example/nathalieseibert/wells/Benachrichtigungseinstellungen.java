@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -33,21 +34,27 @@ public class Benachrichtigungseinstellungen extends Fragment {
         //Spinner die Werte zuteilen
         Spinner spinner;
         ArrayAdapter<CharSequence> adapter;
-
         View view = inflater.inflate(R.layout.fragment_benachrichtigungseinstellungen, container, false);
         spinner = view.findViewById(R.id.spinner);
         adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(), R.array.frequenz_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 Toast.makeText(getActivity().getBaseContext(), parent.getItemAtPosition(position) + " ausgewählt", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+                Toast.makeText(getActivity().getBaseContext(), "Nichts ausgewählt", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
