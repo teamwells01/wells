@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.nathalieseibert.wells.grund_einstellung">
 
-    <!-- TODO: Update blank fragment layout -->
+
 
 
     <TextView
@@ -16,18 +16,18 @@
         android:textColor="@color/schwoaz"
         android:textSize="25sp" />
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="130dp"
-        android:text="@string/gr_e"
+        android:text="@string/prompt_email"
         android:textColor="@color/schwoaz"
         android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/email_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -35,6 +35,29 @@
         android:layout_marginRight="20dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="130dp"
+        android:hint="@string/eingabe_email"
+        android:inputType="textEmailAddress"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="215dp"
+        android:text="@string/gr_e"
+        android:textColor="@color/schwoaz"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/height_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="215dp"
         android:hint="@string/in_zentimeter"
         android:inputType="number"
         android:maxLength="3" />
@@ -45,19 +68,20 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="215dp"
+        android:layout_marginTop="300dp"
         android:text="@string/gewicht"
         android:textColor="@color/schwoaz"
         android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/weight_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="215dp"
+        android:layout_marginTop="300dp"
         android:hint="@string/in_kilogramm"
         android:inputType="numberDecimal"
         android:maxLength="4" />
@@ -67,31 +91,32 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="385dp"
         android:text="@string/alter"
         android:textColor="@color/schwoaz"
         android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/age_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="385dp"
         android:hint="@string/in_jahre"
         android:inputType="number"
         android:maxLength="2" />
 
     <Button
-        android:layout_width="380dp"
+        android:id="@+id/button_update"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="450dp"
         android:text="@string/speichern"
-        android:textColor="@color/schwoaz" />
+        android:textColor="@color/schwoaz"
+        />
 
 
 </FrameLayout>

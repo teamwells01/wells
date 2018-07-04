@@ -91,6 +91,7 @@
         android:maxLength="4" />
 
     <EditText
+        android:id="@+id/editTextHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textSize"
@@ -100,7 +101,7 @@
         android:ems="10"
         android:hint="@string/in_zentimeter"
         android:inputType="number"
-        android:maxLength="2" />
+        android:maxLength="3" />
 
     <TextView
         android:id="@+id/textPassword"
@@ -165,6 +166,7 @@
 
 
     <Button
+        android:id="@+id/action_register_in"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

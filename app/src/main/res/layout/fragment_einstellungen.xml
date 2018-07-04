@@ -43,6 +43,7 @@
         android:textColor="@color/schwoaz" />
 
     <Button
+        android:id="@+id/loeschen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom|center"

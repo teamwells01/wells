@@ -3,7 +3,12 @@ package com.example.nathalieseibert.wells;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import java.util.Calendar;
+import java.util.Date;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,15 +20,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Calendar;
 
 public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Button wasserButton, hackerlButton;
+    TextView mlview;
+    EditText mltext;
+    EditText email;
+    DatabaseHelper databaseHelper;
 
 
     private static final String DEBUG_TAG = "Tag";
@@ -32,6 +44,8 @@ public class MainMenueActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menue);
+
+        databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
@@ -70,12 +84,55 @@ public class MainMenueActivity extends AppCompatActivity
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
                 } catch (NullPointerException e) {
-                    Toast.makeText(MainMenueActivity.this, getString(R.string.Error),
+                    Toast.makeText(MainMenueActivity.this, getString(R.string.error),
                             Toast.LENGTH_LONG).show();
                 }
 
             }
         });
+//visibility buttons
+        wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
+        hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
+        mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
+        mlview = (TextView) findViewById(R.id.textMl);//define textview for visibility
+
+        hackerlButton.setVisibility(View.GONE);
+        mltext.setVisibility(View.GONE);
+        mlview.setVisibility(View.GONE);
+
+
+        wasserButton.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                hackerlButton.setVisibility(View.VISIBLE);
+                                                mltext.setVisibility(View.VISIBLE);
+                                                mlview.setVisibility(View.VISIBLE);
+                                            }
+                                        }
+        );
+        hackerlButton.setOnClickListener(new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 hackerlButton.setVisibility(View.GONE);
+                                                 mltext.setVisibility(View.GONE);
+                                                 mlview.setVisibility(View.GONE);
+
+
+
+                                                 String mail = getIntent().getStringExtra("Email");
+//ToDo soll und datum berechnen und statische variablen tauschen
+
+                                                 Boolean insertdataml = databaseHelper.insertml(mail,mltext.toString(),"500","01.01.2010");
+                                                 if (insertdataml == true) {
+                                                     Toast.makeText(getApplicationContext(), "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                                 } else {
+                                                     Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                                 }
+
+
+                                             }
+                                         }
+        );
 
     }
 
@@ -108,6 +165,16 @@ public class MainMenueActivity extends AppCompatActivity
         if (id == R.id.homeButton) {
             startActivity(new Intent(this, MainMenueActivity.class));
             return true;
+
+        }
+//logOut button
+        if (id == R.id.logOut) {
+
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
+
+            // databaseHelper.close();
+
         }
 
 
@@ -116,9 +183,6 @@ public class MainMenueActivity extends AppCompatActivity
 
     }
 
-    public void OnClickHackerl(View view) {
-        Log.d(DEBUG_TAG, "Some method called");
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -163,6 +227,11 @@ public class MainMenueActivity extends AppCompatActivity
                 manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
                 break;
             }
+            case R.id.nav_f5: {
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            }
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
