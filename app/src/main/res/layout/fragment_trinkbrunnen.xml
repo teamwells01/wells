@@ -33,6 +33,7 @@
         android:text="@string/title_Karte" />
 
     <ListView
+        android:id="@+id/brunnenview"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_marginBottom="60dp"

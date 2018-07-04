@@ -214,5 +214,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT NameTrinkbrunnen FROM " + LIST_TABLE, null);
+        return res;
+
+
+    }
+
 
 }
