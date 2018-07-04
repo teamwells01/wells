@@ -28,17 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText _editTextWeight;
     EditText _editTextHeight;
 
-
-//    public void onClickSwitchActivity(View view) {
-//        Intent intent = new Intent(this, MainMenueActivity.class);
-//        startActivity(intent);
-//
-//        //  Intent i = new Intent(this, IntentService.class);
-//        //  startService(i);
-//
-//    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,14 +99,14 @@ public class RegisterActivity extends AppCompatActivity {
         String eingabe = passFeld.getText().toString();
 
 
-            if(password.length() > 4){
+            if(password.length() >= 4){
                 return true;
             }else{
                 passFeld.setError("Das Passwort muss vier Zeichen lang sein!");
                 passFeld.setHintTextColor(getResources().getColor(R.color.red));
             }
 
-        return password.length() > 4;
+        return password.length() >= 4;
     }
 
 

@@ -31,9 +31,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final Context context;
     SQLiteDatabase db;
 
-    private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
-    public static final String USER_TABLE = "Benutzer";
-
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -60,25 +57,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void createDb(){
+    public void createDb() {
         boolean dbExist = checkDbExist();
 
-        if(!dbExist){
+        if (!dbExist) {
             this.getReadableDatabase();
             copyDatabase();
         }
     }
 
-    private boolean checkDbExist(){
+    private boolean checkDbExist() {
         SQLiteDatabase sqLiteDatabase = null;
 
-        try{
+        try {
             String path = DATABASE_PATH + DATABASE_NAME;
             sqLiteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-        } catch (Exception ex){
+        } catch (Exception ex) {
         }
 
-        if(sqLiteDatabase != null){
+        if (sqLiteDatabase != null) {
             sqLiteDatabase.close();
             return true;
         }
@@ -86,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    private void copyDatabase(){
+    private void copyDatabase() {
         try {
             InputStream inputStream = context.getAssets().open(DATABASE_NAME);
 
@@ -97,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             byte[] b = new byte[1024];
             int length;
 
-            while ((length = inputStream.read(b)) > 0){
+            while ((length = inputStream.read(b)) > 0) {
                 outputStream.write(b, 0, length);
             }
 
@@ -110,19 +107,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    private SQLiteDatabase openDatabase(){
+    private SQLiteDatabase openDatabase() {
         String path = DATABASE_PATH + DATABASE_NAME;
         db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
         return db;
     }
 
-    public  void close(){
-        if(db != null){
+    public void close() {
+        if (db != null) {
             db.close();
         }
     }
 
-    public boolean checkUserExist(String email, String password){
+    public boolean checkUserExist(String email, String password) {
         String[] columns = {"Email"};
         db = openDatabase();
 
@@ -135,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         close();
 
-        if(count > 0){
+        if (count > 0) {
             return true;
         } else {
             return false;
@@ -178,19 +175,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean checkpass(String email, String pass){
+    public boolean checkpass(String email, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[] {email, pass});
-        if(cursor.getCount()>0) return true;
+        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[]{email, pass});
+        if (cursor.getCount() > 0) return true;
         else return false;
     }
 
-    public boolean updateData(String email, String age, String weight, String height){
+    public boolean updateData(String email, String age, String weight, String height) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_EMAIL, email);
-        // contentValues.put("Passwort", pass);
-        // contentValues.put("Benutzername", name);
         contentValues.put(COL_AGE, age);
         contentValues.put(COL_GEWICHT, weight);
         contentValues.put(COL_GROESSE, height);
@@ -224,7 +218,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean PWupdate(String email, String pass) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Passwort", pass);
+        contentValues.put(COL_PASS, pass);
         db.update(USER_TABLE, contentValues, "Email = ?", new String[]{email});
         return true;
     }
