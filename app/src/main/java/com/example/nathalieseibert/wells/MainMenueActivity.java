@@ -1,11 +1,7 @@
 package com.example.nathalieseibert.wells;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import java.util.Calendar;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,12 +9,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -28,13 +24,16 @@ public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
 
-Button wasserButton, hackerlButton;
-TextView mlview;
-EditText mltext;
-    DatabaseHelper databaseHelper;
-
-
     private static final String DEBUG_TAG = "Tag";
+    Button wasserButton, hackerlButton;
+    TextView mlview;
+    EditText mltext;
+    EditText email;
+    DatabaseHelper databaseHelper;
+    ProgressBar progressBar;
+    int wasserProgress = 0;
+    int wasserbedarf = 2000;
+    int balken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +42,6 @@ EditText mltext;
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
-        wasserButton = (Button) findViewById(R.id.addWater); //define Buttons for visibility
-        hackerlButton = (Button) findViewById(R.id.haeckchen); //define Buttons for visibility
-        mltext = (EditText) findViewById(R.id.editWater);//define edittext for visibility
-        mlview = (TextView) findViewById(R.id.textMl) ;//define textview for visibility
-        hackerlButton.setVisibility(View.INVISIBLE);
-        mltext.setVisibility(View.INVISIBLE);
-        mlview.setVisibility(View.INVISIBLE);
 
         Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
         simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
@@ -71,28 +63,63 @@ EditText mltext;
         //Das nächste sollte statt den addWater button auf den Benachrichtigung speichern Button bei den Einstellungen geändert werden!
         //Folgend wird täglich um 8:30 eine Notification erscheinen
 
-        findViewById(R.id.addWater).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        progressBar = findViewById(R.id.progressBar);
+//visibility buttons
+        wasserButton = findViewById(R.id.addWater); //define Buttons for visibility
+        hackerlButton = findViewById(R.id.haeckchen); //define Buttons for visibility
+        mltext = findViewById(R.id.editWater);//define edittext for visibility
+        mlview = findViewById(R.id.textMl);//define textview for visibility
 
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, 7);
-                calendar.set(Calendar.MINUTE, 10);
-                calendar.set(Calendar.SECOND, 0);
+        hackerlButton.setVisibility(View.GONE);
+        mltext.setVisibility(View.GONE);
+        mlview.setVisibility(View.GONE);
 
-                Intent intent = new Intent(getApplicationContext(), MyNotificationPublisher.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                try {
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-                }catch (NullPointerException e){
-                    Toast.makeText(MainMenueActivity.this, getString(R.string.error),
-                            Toast.LENGTH_LONG).show();
-                }
 
-            }
-        });
+
+
+        wasserButton.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                hackerlButton.setVisibility(View.VISIBLE);
+                                                mltext.setVisibility(View.VISIBLE);
+                                                mlview.setVisibility(View.VISIBLE);
+
+                                            }
+                                        }
+        );
+        hackerlButton.setOnClickListener(new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View v) {
+                                                 hackerlButton.setVisibility(View.GONE);
+                                                 mltext.setVisibility(View.GONE);
+                                                 mlview.setVisibility(View.GONE);
+
+
+                                                 String mail = getIntent().getStringExtra("Email");
+//ToDo soll und datum berechnen und statische variablen tauschen
+
+                                                 Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
+                                                 if (insertdataml == true) {
+                                                     Toast.makeText(getApplicationContext(), "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                                 } else {
+                                                     Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                                 }
+
+                                                 try{
+                                                     String eingabe = mltext.getText().toString();
+                                                     int zunahme = Integer.parseInt(eingabe);
+                                                     wasserProgress = wasserProgress + zunahme;
+                                                 }catch(Exception e){
+
+                                                 }
+                                                 float rechnen = (wasserProgress/wasserbedarf)*100;
+                                                 balken = Math.round(rechnen);
+                                                 progressBar.setProgress(balken);
+
+                                             }
+                                         }
+        );
 
     }
 
@@ -128,12 +155,12 @@ EditText mltext;
 
         }
 //logOut button
-        if( id == R.id.logOut) {
+        if (id == R.id.logOut) {
 
             startActivity(new Intent(this, LoginActivity.class));
             return true;
 
-           // databaseHelper.close();
+            // databaseHelper.close();
 
         }
 
@@ -142,24 +169,7 @@ EditText mltext;
 
 
     }
-//expandable menu - doesn´t work - don´t know why
-    public void OnClickVisible(View view){
 
-        hackerlButton.setVisibility(View.VISIBLE);
-        mltext.setVisibility(View.VISIBLE);
-        mlview.setVisibility(View.VISIBLE);
-
-    }
-
-    public void OnClickHackerl(View view) {
-
-        hackerlButton.setVisibility(View.INVISIBLE);
-         mltext.setVisibility(View.INVISIBLE);
-        mlview.setVisibility(View.INVISIBLE);
-
-
-        Log.d(DEBUG_TAG, "Some method called");
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -204,10 +214,10 @@ EditText mltext;
                 manager.beginTransaction().replace(R.id.mainLayout, einstellungfragment, einstellungfragment.getTag()).commit();
                 break;
             }
-//            case R.id.nav_f5: {
-//            //Todo: LogOut!!
-//                break;
-//            }
+            case R.id.nav_f5: {
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
+            }
 
         }
 

@@ -21,8 +21,8 @@
         android:id="@+id/buttonlist"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:layout_gravity="bottom|start"
+        android:enabled="false"
         android:text="@string/title_Liste" />
 
     <Button
