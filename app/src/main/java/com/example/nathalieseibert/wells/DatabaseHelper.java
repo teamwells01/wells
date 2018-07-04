@@ -143,12 +143,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public boolean checkpass(String email, String pass){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[] {email, pass});
+        if(cursor.getCount()>0) return true;
+        else return false;
+    }
+
     public boolean updateData(String email, String age, String weight, String height){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Email", email);
-       // contentValues.put("Passwort", pass);
-       // contentValues.put("Benutzername", name);
         contentValues.put("Age", age);
         contentValues.put("Gewicht", weight);
         contentValues.put("Groesse", height);
@@ -156,5 +160,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-
+    public boolean PWupdate(String email, String pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Passwort", pass);
+        db.update(USER_TABLE, contentValues, "Email = ?", new String[]{email});
+        return true;
+    }
 }

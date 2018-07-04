@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(isPasswordValid(pass)){
+                if(!isPasswordValid(pass)){
                     return;
                 }
 
@@ -78,11 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
                     Boolean checkmail = openHelper.checkmail(email);
                     if(checkmail == true){
                         Boolean insertdata = openHelper.insertdata(email, pass, name, age, weight, height);
-                        if(insertdata == true){
-                            Toast.makeText(getApplicationContext(),"Registered successfully",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, MainMenueActivity.class);
-                            startActivity(intent);
-                        }
+                            if (insertdata == true) {
+                                Toast.makeText(getApplicationContext(), "Registered successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this, MainMenueActivity.class);
+                                startActivity(intent);
+                            }
                     }else{
                         Toast.makeText(getApplicationContext(),"EMail already exists",Toast.LENGTH_SHORT).show();
                     }
@@ -100,15 +100,26 @@ public class RegisterActivity extends AppCompatActivity {
                 emailFeld.setHintTextColor(getResources().getColor(R.color.red));
                 return false;
             }else{
-                return false;
+                return true;
             }
 
          }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-          return password.length() > 4;
+        EditText passFeld = findViewById(R.id.editTextPassword);
+        String eingabe = passFeld.getText().toString();
+
+
+            if(password.length() > 4){
+                return true;
+            }else{
+                passFeld.setError("Das Passwort muss vier Zeichen lang sein!");
+                passFeld.setHintTextColor(getResources().getColor(R.color.red));
+            }
+
+        return password.length() > 4;
     }
+
 
 
 
