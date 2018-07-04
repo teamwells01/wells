@@ -46,7 +46,7 @@ DatabaseHelper myDB;
         View view = inflater.inflate(R.layout.fragment_trinkbrunnen, container, false);
 
 
-
+//anzeigen liste trinkbrunnen
 
         try {
             myDB = new DatabaseHelper(getContext());
@@ -74,29 +74,6 @@ DatabaseHelper myDB;
             Log.e(getClass().getSimpleName(), "Could not create or Open the database");
         }
 
-//
-//        TextView tView = new TextView(getContext());
-//        tView.setText("This data is retrieved from the database and only 4 " +
-//                "of the results are displayed");
-//        getListView().addHeaderView(tView);
-//
-//        setListAdapter(new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, results));
-//        getListView().setTextFilterEnabled(true);
-//
-
-//
-//
-//        if(res.getCount() ==0){
-//showMessage("Error", "Nothing found!");
-//        }
-//
-//        StringBuffer buffer = new StringBuffer();
-//        while(res.moveToNext()){
-//            buffer.append(res.getString(0) + "\n");
-//        }
-//    showMessage("Data", buffer.toString());
-//
 
 
 
