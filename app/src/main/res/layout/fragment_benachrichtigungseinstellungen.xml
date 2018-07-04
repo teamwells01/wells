@@ -25,6 +25,7 @@
         android:textSize="20sp" />
 
     <Switch
+        android:id="@+id/simpleSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -59,6 +60,7 @@
 
 
     <Button
+        android:id="@+id/speichernButon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"

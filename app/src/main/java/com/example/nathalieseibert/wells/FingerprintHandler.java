@@ -46,7 +46,8 @@ class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
         //I’m going to display the results of fingerprint authentication as a series of toasts.
         //Here, I’m creating the message that’ll be displayed if an error occurs//
 
-        Toast.makeText(context, "Finger nicht erkannt! " + errString, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Finger nicht erkannt! Login mittels E-Mail! " + errString, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -69,7 +70,6 @@ class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
     //onAuthenticationSucceeded is called when a fingerprint has been successfully matched to one of the fingerprints stored on the user’s device//
     public void onAuthenticationSucceeded(
-
             FingerprintManager.AuthenticationResult result) {
         Intent intent = new Intent(context.getApplicationContext(), MainMenueActivity.class);
         context.startActivity(intent);

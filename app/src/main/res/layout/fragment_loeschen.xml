@@ -46,15 +46,14 @@
 
         </android.support.design.widget.TextInputLayout>
 
-         <Button
-              android:id="@+id/delete_button"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="16dp"
-              android:onClick="onClickDelete"
-              android:text="loeschen"
-              android:textColor="@color/schwoaz"
-              android:textSize="20sp" />
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/loeschen"
+            android:textColor="@color/schwoaz"
+            android:textSize="20sp" />
 
 
     </LinearLayout>

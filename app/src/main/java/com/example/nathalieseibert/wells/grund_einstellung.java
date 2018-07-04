@@ -20,6 +20,7 @@ import static com.example.nathalieseibert.wells.R.id.editTextHeight;
 import static com.example.nathalieseibert.wells.R.id.editTextName;
 import static com.example.nathalieseibert.wells.R.id.editTextPassword;
 import static com.example.nathalieseibert.wells.R.id.editTextWeight;
+import static com.example.nathalieseibert.wells.R.id.password;
 
 
 /**
@@ -45,7 +46,7 @@ public class grund_einstellung extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_grund_einstellung, container, false);
 
-        openHelper = new DatabaseHelper(getContext()); //?????
+        openHelper = new DatabaseHelper(getContext()); //
         _buttonupdate = (Button)view.findViewById(R.id.button_update);
         _editTextEmail = (EditText)view.findViewById(R.id.email_update);
         _editTextAge = (EditText)view.findViewById(R.id.age_update);
@@ -53,7 +54,6 @@ public class grund_einstellung extends Fragment {
         _editTextHeight = (EditText)view.findViewById(R.id.height_update);
 
 
-    //public void UpdateData(){ //wo soll de aufgerufen werden???? -> im video wird sie bei "mainMenueActivity" aufgerufen
         _buttonupdate.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v){
@@ -62,17 +62,28 @@ public class grund_einstellung extends Fragment {
                      String weight = _editTextWeight.getText().toString();
                      String height = _editTextHeight.getText().toString();
 
-                     boolean isUpdate = openHelper.updateData(email ,age, weight, height);
+                     String mail = getActivity().getIntent().getStringExtra("Email"); //für EMail überpüfen
 
-                     if(isUpdate == true){
-                         Toast.makeText(getContext(),"Updated successfully",Toast.LENGTH_SHORT).show();
-                     }else{
-                         Toast.makeText(getContext(),"Update was not successfully",Toast.LENGTH_SHORT).show();
+                     if (email.equals("") || age.equals("") || weight.equals("") || height.equals("")) {
+                         Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
+                     } else {
+                         if(mail.equals(email)) { //stimmt das?
+                                 boolean isUpdate = openHelper.updateData(email, age, weight, height);
+                                 if (isUpdate == true) {
+                                     Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
+                                 } else {
+                                     Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();
+                                 }
+                         }else{
+                             Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_LONG).show();
+                         }
                      }
+
+
+
                  }
              }
         );
-    //}
         return view;
 
 
