@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_action_list"
             android:title="@string/liste_trinkbrunnen" />
         <item
+            android:id="@+id/nav_f"
+            android:icon="@drawable/ic_place"
+            android:title="@string/anzeige_karte" />
+        <item
             android:id="@+id/nav_f2"
             android:icon="@drawable/ic_action_verlauf"
             android:title="@string/verlauf" />
@@ -23,7 +27,7 @@
 
         <item
             android:id="@+id/nav_f5"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/ic_logout"
             android:title="@string/logout" />
     </group>
 

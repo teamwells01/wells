@@ -335,6 +335,15 @@ public class MainMenueActivity extends AppCompatActivity
 
                 break;
             }
+            case R.id.nav_f: {
+                Karte kartefragment = new Karte();
+                RelativeLayout mainLayout = findViewById(R.id.mainLayout);
+                mainLayout.removeAllViews();
+                android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+
+                break;
+            }
             case R.id.nav_f2: {
                 Verlauf verlauffragment = new Verlauf();
                 RelativeLayout mainLayout = findViewById(R.id.mainLayout);
