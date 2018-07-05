@@ -86,18 +86,16 @@
         /><!-- text to be displayed whenever current state is checked-->
 
     <Switch
-        android:id="@+id/mySwitch"
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="465dp"
         android:text="@string/aktivit_t"
-        android:switchMinWidth="200dp"
-        android:switchTextAppearance="@style/MyStyle"
-        android:checked="false"
+        android:switchMinWidth="50dp"
         android:textOn="@string/ja"
         android:textOff="@string/nein"
         android:showText="true"
-        tools:ignore="UnusedAttribute" />
+        />
 
 </RelativeLayout>

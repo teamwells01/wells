@@ -19,7 +19,7 @@
 
     <style name="MyStyle">
         <item name="android:textColor">@color/schwoaz</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

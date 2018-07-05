@@ -34,6 +34,7 @@ public class MainMenueActivity extends AppCompatActivity
     EditText email;
     TextView prozent;
     TextView titele;
+    Switch mySwitch;
     DatabaseHelper databaseHelper;
     ProgressBar progressBar;
     public int wasserProgress;
@@ -48,10 +49,6 @@ public class MainMenueActivity extends AppCompatActivity
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
-
-        Switch simpleSwitch = findViewById(R.id.simpleSwitch); // initiate Switch
-        simpleSwitch.setTextOn(getString(R.string.viel)); // displayed text of the Switch whenever it is in checked or on state
-        simpleSwitch.setTextOff(getString(R.string.wenig)); // displayed text of the Switch whenever it is in unchecked i.e. off state
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,11 +66,12 @@ public class MainMenueActivity extends AppCompatActivity
         //Das nächste sollte statt den addWater button auf den Benachrichtigung speichern Button bei den Einstellungen geändert werden!
         //Folgend wird täglich um 8:30 eine Notification erscheinen
 
+        mySwitch = findViewById(R.id.mySwitch);
         progressBar = findViewById(R.id.progressBar);
         prozent = findViewById(R.id.textProzent);
         titele = findViewById(R.id.titele);
-        progressBar.setProgress(balken);
-        titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
+        progressanzeige();
+
 
 //visibility buttons
         wasserButton = findViewById(R.id.addWater); //define Buttons for visibility
@@ -84,8 +82,29 @@ public class MainMenueActivity extends AppCompatActivity
         mltext.setVisibility(View.GONE);
         mlview.setVisibility(View.GONE);
 
+/*        mySwitch.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
 
 
+                                            //Is the switch on?
+                                            boolean on = mySwitch.isChecked();
+
+                                            if (on) {
+                                                float myfloat = (float) wasserbedarf * 1.1f;
+                                                wasserbedarf = Math.round(myfloat);
+                                                progressanzeige();
+
+                                            } else {
+
+                                            }
+
+
+                                        }
+                                    }
+        );
+
+*/
         wasserButton.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
@@ -110,7 +129,8 @@ public class MainMenueActivity extends AppCompatActivity
 
                                                  Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
                                                  if (insertdataml) {
-                                                     Toast.makeText(getApplicationContext(), "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                                     String eingabe = mltext.getText().toString();
+                                                     Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
                                                  } else {
                                                      Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                                                  }
@@ -119,14 +139,7 @@ public class MainMenueActivity extends AppCompatActivity
                                                      String eingabe = mltext.getText().toString();
                                                      int zunahme = Integer.parseInt(eingabe);
                                                      wasserProgress = wasserProgress + zunahme;
-                                                     rechnen = ((float) wasserProgress / (float) wasserbedarf) * 100;
-                                                     balken = Math.round(rechnen);
-                                                     ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", balken);
-                                                     animation.setDuration(1250);
-                                                     animation.setInterpolator(new DecelerateInterpolator());
-                                                     animation.start();
-                                                     prozent.setText(balken + "%");
-                                                     titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
+                                                     progressanzeige();
 
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
@@ -139,6 +152,55 @@ public class MainMenueActivity extends AppCompatActivity
 
     }
 
+    public void progressanzeige() {
+
+        rechnen = ((float) wasserProgress / (float) wasserbedarf) * 100;
+        balken = Math.round(rechnen);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", balken);
+        animation.setDuration(1250);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+        prozent.setText(balken + "%");
+        titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
+
+    }
+
+    public void bedarfBerechnen(){
+
+        // if (getAlter >= 15 <= 18 || getAlter >= 60){
+        // float myfloat = (float) wasserbedarf * 0.85;
+        // wasserbedarf = Math.round(myfloat);
+        // }else if (getAlter < 15){
+        // float myfloat = (float) wasserbedarf * 0.6;
+        // wasserbedarf = Math.round(myfloat);
+        // }else {}
+
+        // if (getGewicht <= 60){
+        // float myfloat = (float) wasserbedarf * 0.86;
+        // wasserbedarf = Math.round(myfloat);
+        // }else if (getGewicht > 100 && getGewicht <= 140){
+        // float myfloat = (float) wasserbedarf * 1.14;
+        // wasserbedarf = Math.round(myfloat);
+        // }else if (getGewicht > 140){
+        // float myfloat = (float) wasserbedarf * 1.24;
+        // wasserbedarf = Math.round(myfloat);
+        // else{}
+
+        // if (getGroesse < 170 && getGroesse >= 155) {
+        // float myfloat = (float) wasserbedarf * 0.9;
+        // wasserbedarf = Math.round(myfloat);
+        // } else if (getGroesse < 155){
+        // float myfloat = (float) wasserbedarf * 0.83;
+        // wasserbedarf = Math.round(myfloat);
+        // }else if (getGroesse > 190){
+        // float myfloat = (float) wasserbedarf * 1.11;
+        // wasserbedarf = Math.round(myfloat);
+        // else{}
+
+
+        progressanzeige();
+
+    }
 
     @Override
     public void onBackPressed() {
