@@ -3,6 +3,10 @@ package com.example.nathalieseibert.wells;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -25,9 +29,13 @@ import android.widget.Toast;
 
 public class MainMenueActivity extends AppCompatActivity
 
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     private static final String DEBUG_TAG = "Tag";
+    public int wasserProgress;
+    public int wasserbedarf = 2000;
+    public int balken;
+    public float rechnen;
     Button wasserButton, hackerlButton;
     TextView mlview;
     EditText mltext;
@@ -37,10 +45,12 @@ public class MainMenueActivity extends AppCompatActivity
     Switch mySwitch;
     DatabaseHelper databaseHelper;
     ProgressBar progressBar;
-    public int wasserProgress;
-    public int wasserbedarf = 2000;
-    public int balken;
-    public float rechnen;
+    private TextView temperaturelabel;
+    private SensorManager mSensorManager;
+    private Sensor mTemperature;
+    int temp;
+    int altwasser = wasserbedarf;
+    boolean schonberechnet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +83,7 @@ public class MainMenueActivity extends AppCompatActivity
         progressanzeige();
 
 
-//visibility buttons
+        //visibility buttons
         wasserButton = findViewById(R.id.addWater); //define Buttons for visibility
         hackerlButton = findViewById(R.id.haeckchen); //define ButtoQns for visibility
         mltext = findViewById(R.id.editWater);//define edittext for visibility
@@ -82,7 +92,16 @@ public class MainMenueActivity extends AppCompatActivity
         mltext.setVisibility(View.GONE);
         mlview.setVisibility(View.GONE);
 
-/*        mySwitch.setOnClickListener(new View.OnClickListener() {
+        //temperatur
+        temperaturelabel = findViewById(R.id.myTemp);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+
+        bedarfBerechnen();
+
+        mySwitch.setOnClickListener(new View.OnClickListener() {
+
+
                                         @Override
                                         public void onClick(View v) {
 
@@ -97,6 +116,8 @@ public class MainMenueActivity extends AppCompatActivity
 
                                             } else {
 
+                                                wasserbedarf = altwasser;
+                                                progressanzeige();
                                             }
 
 
@@ -104,8 +125,10 @@ public class MainMenueActivity extends AppCompatActivity
                                     }
         );
 
-*/
-        wasserButton.setOnClickListener(new View.OnClickListener() {
+
+        wasserButton.setOnClickListener(new View.OnClickListener()
+
+                                        {
                                             @Override
                                             public void onClick(View v) {
                                                 hackerlButton.setVisibility(View.VISIBLE);
@@ -115,7 +138,9 @@ public class MainMenueActivity extends AppCompatActivity
                                             }
                                         }
         );
-        hackerlButton.setOnClickListener(new View.OnClickListener() {
+        hackerlButton.setOnClickListener(new View.OnClickListener()
+
+                                         {
                                              @SuppressLint("SetTextI18n")
                                              @Override
                                              public void onClick(View v) {
@@ -139,8 +164,12 @@ public class MainMenueActivity extends AppCompatActivity
                                                      String eingabe = mltext.getText().toString();
                                                      int zunahme = Integer.parseInt(eingabe);
                                                      wasserProgress = wasserProgress + zunahme;
-                                                     progressanzeige();
 
+                                                     if (!schonberechnet) {
+                                                         bedarfBerechnen();
+                                                     }
+                                                     schonberechnet = true;
+                                                     progressanzeige();
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                                  }
@@ -150,6 +179,34 @@ public class MainMenueActivity extends AppCompatActivity
                                          }
         );
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(this);
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float ambient_temperature = event.values[0];
+        temp = Math.round(ambient_temperature);
+        temperaturelabel.setText(temp + "°C");
+
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Do something here if sensor accuracy changes.
     }
 
     public void progressanzeige() {
@@ -163,47 +220,59 @@ public class MainMenueActivity extends AppCompatActivity
         prozent.setText(balken + "%");
         titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
 
+
     }
 
-    public void bedarfBerechnen(){
+    public void bedarfBerechnen() {
 
         // if (getAlter >= 15 <= 18 || getAlter >= 60){
-        // float myfloat = (float) wasserbedarf * 0.85;
+        // float myfloat = (float) wasserbedarf * 0.85f;
         // wasserbedarf = Math.round(myfloat);
         // }else if (getAlter < 15){
-        // float myfloat = (float) wasserbedarf * 0.6;
+        // float myfloat = (float) wasserbedarf * 0.6f;
         // wasserbedarf = Math.round(myfloat);
         // }else {}
 
         // if (getGewicht <= 60){
-        // float myfloat = (float) wasserbedarf * 0.86;
+        // float myfloat = (float) wasserbedarf * 0.86f;
         // wasserbedarf = Math.round(myfloat);
         // }else if (getGewicht > 100 && getGewicht <= 140){
-        // float myfloat = (float) wasserbedarf * 1.14;
+        // float myfloat = (float) wasserbedarf * 1.14f;
         // wasserbedarf = Math.round(myfloat);
         // }else if (getGewicht > 140){
-        // float myfloat = (float) wasserbedarf * 1.24;
+        // float myfloat = (float) wasserbedarf * 1.24f;
         // wasserbedarf = Math.round(myfloat);
         // else{}
 
         // if (getGroesse < 170 && getGroesse >= 155) {
-        // float myfloat = (float) wasserbedarf * 0.9;
+        // float myfloat = (float) wasserbedarf * 0.9f;
         // wasserbedarf = Math.round(myfloat);
         // } else if (getGroesse < 155){
-        // float myfloat = (float) wasserbedarf * 0.83;
+        // float myfloat = (float) wasserbedarf * 0.83f;
         // wasserbedarf = Math.round(myfloat);
         // }else if (getGroesse > 190){
-        // float myfloat = (float) wasserbedarf * 1.11;
+        // float myfloat = (float) wasserbedarf * 1.11f;
         // wasserbedarf = Math.round(myfloat);
         // else{}
 
-
+        if (temp > 20 && temp < 30) {
+            float myfloat = (float) wasserbedarf * 1.03f;
+            wasserbedarf = Math.round(myfloat);
+            altwasser = wasserbedarf;
+        } else if (temp >= 30) {
+            float myfloat = (float) wasserbedarf * 1.2f;
+            wasserbedarf = Math.round(myfloat);
+            altwasser = wasserbedarf;
+        } else {
+            altwasser = wasserbedarf;
+        }
         progressanzeige();
 
     }
 
     @Override
     public void onBackPressed() {
+        mSensorManager.unregisterListener(this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -225,6 +294,7 @@ public class MainMenueActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.homeButton) {

@@ -172,7 +172,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:onClick="onClickSwitchActivity"
         android:text="@string/action_register_in"
         android:textColor="@color/schwoaz"
         android:textSize="20sp" />

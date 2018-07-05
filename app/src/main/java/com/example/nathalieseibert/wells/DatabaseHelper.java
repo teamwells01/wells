@@ -132,11 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         close();
 
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count > 0;
     }
 
     //nanni
@@ -178,8 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkpass(String email, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[]{email, pass});
-        if (cursor.getCount() > 0) return true;
-        else return false;
+        return cursor.getCount() > 0;
     }
 
     public boolean updateData(String email, String age, String weight, String height) {

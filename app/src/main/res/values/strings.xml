@@ -6,13 +6,6 @@
     <string name="action_sign_in">Log in</string>
     <string name="action_register_in">Registrieren</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
     <string name="fingerprint">Fingerprint Log in</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -26,7 +19,6 @@
     <string name="textRegister">Registrieren</string>
     <string name="textMl">ml</string>
     <string name="addWater">+ Wasser</string>
-    <string name="simpleSwitch">Bewegung</string>
     <string name="haeckchen"><node>&#x2714;</node></string>
     <string name="title_Verlauf">Verlauf</string>
     <string name="title_Statistik">Statistik</string>
@@ -66,26 +58,21 @@
     <string name="karte">Karte</string>
     <string name="liste">Liste</string>
     <string name="fingerprint_bild">Fingerprint Bild</string>
-    <string name="noFingerprintFunktion">Ihr Handy kann kein Fingerprint!</string>
-    <string name="fingerprintAktivPls">Bitte aktivieren Sie Login mittels Fingerprint!</string>
-    <string name="fingerEinstSpeiPls">Bitte speichern Sie Ihren Finger in den Einstellungen!</string>
-    <string name="displaysperreAktivPls">Aktivieren Sie eine Displaysperre!</string>
     <string name="liste_trinkbrunnen">Liste Trinkbrunnen</string>
     <string name="verlauf">Verlauf</string>
     <string name="statistik">Statistik</string>
     <string name="rundes_icon">Rundes Icon</string>
     <string name="NotificationN">Notification</string>
     <string name="error">Error</string>
-    <string name="finger_nicht_erkannt">Finger nicht erkannt!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="loeschen">loeschen</string>
     <string name="prozent">0%</string>
-    <string name="fortschritt">Fortschritt</string>
-    <string name="aktivit_t">VIel Aktivität?</string>
+    <string name="aktivit_t">Viel Aktivität?</string>
     <string name="nein">Nein</string>
     <string name="ja">Ja</string>
+    <string name="logout">LogOut</string>
+
 
 
 </resources>

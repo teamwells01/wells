@@ -1,7 +1,6 @@
 package com.example.nathalieseibert.wells;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -35,11 +34,11 @@ public class PWaendern extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pwaendern, container, false);
 
         openHelper = new DatabaseHelper(getContext()); //
-        _pwSpeichernButton = (Button) view.findViewById(R.id.pwSpeichernButton);
-        _newPw_conform = (EditText) view.findViewById(R.id.newPw_conform);
-        _newPw_update = (EditText) view.findViewById(R.id.newPw_update);
-        _oldPw_update = (EditText) view.findViewById(R.id.oldPw_update);
-        _email_update = (EditText) view.findViewById(R.id.email_update);
+        _pwSpeichernButton = view.findViewById(R.id.pwSpeichernButton);
+        _newPw_conform = view.findViewById(R.id.newPw_conform);
+        _newPw_update = view.findViewById(R.id.newPw_update);
+        _oldPw_update = view.findViewById(R.id.oldPw_update);
+        _email_update = view.findViewById(R.id.email_update);
 
 
         _pwSpeichernButton.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +69,7 @@ public class PWaendern extends Fragment {
                                                                       Toast.makeText(getContext(), "Password new and password confirmed are not equal!", Toast.LENGTH_LONG).show();
                                                                   }
 
-                                                              }else {
+                                                              } else {
                                                                   Toast.makeText(getContext(), "Wrong old password!", Toast.LENGTH_LONG).show();
                                                               }
                                                           } else {
