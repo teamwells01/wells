@@ -120,7 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUserExist(String email, String password) {
-        String[] columns = {COL_EMAIL};
+        String[] columns = {"Email"};
         db = openDatabase();
 
         String selection = "Email=? and Passwort = ?";
@@ -132,7 +132,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         close();
 
-        return count > 0;
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //nanni
@@ -170,12 +174,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getCount() <= 0;
     }
 
+
+    public boolean checkpass(String email, String pass) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[]{email, pass});
+        if (cursor.getCount() > 0) return true;
+        else return false;
+    }
+
     public boolean updateData(String email, String age, String weight, String height) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_EMAIL, email);
-        // contentValues.put("Passwort", pass);
-        // contentValues.put("Benutzername", name);
         contentValues.put(COL_AGE, age);
         contentValues.put(COL_GEWICHT, weight);
         contentValues.put(COL_GROESSE, height);
@@ -206,4 +215,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean PWupdate(String email, String pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_PASS, pass);
+        db.update(USER_TABLE, contentValues, "Email = ?", new String[]{email});
+        return true;
+    }
 }
