@@ -1,5 +1,7 @@
 package com.example.nathalieseibert.wells;
 
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -29,11 +32,14 @@ public class MainMenueActivity extends AppCompatActivity
     TextView mlview;
     EditText mltext;
     EditText email;
+    TextView prozent;
+    TextView titele;
     DatabaseHelper databaseHelper;
     ProgressBar progressBar;
-    int wasserProgress = 0;
-    int wasserbedarf = 2000;
-    int balken;
+    public int wasserProgress;
+    public int wasserbedarf = 2000;
+    public int balken;
+    public float rechnen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +70,19 @@ public class MainMenueActivity extends AppCompatActivity
         //Folgend wird täglich um 8:30 eine Notification erscheinen
 
         progressBar = findViewById(R.id.progressBar);
+        prozent = findViewById(R.id.textProzent);
+        titele = findViewById(R.id.titele);
+        progressBar.setProgress(balken);
+        titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
+
 //visibility buttons
         wasserButton = findViewById(R.id.addWater); //define Buttons for visibility
-        hackerlButton = findViewById(R.id.haeckchen); //define Buttons for visibility
+        hackerlButton = findViewById(R.id.haeckchen); //define ButtoQns for visibility
         mltext = findViewById(R.id.editWater);//define edittext for visibility
         mlview = findViewById(R.id.textMl);//define textview for visibility
-
         hackerlButton.setVisibility(View.GONE);
         mltext.setVisibility(View.GONE);
         mlview.setVisibility(View.GONE);
-
-
 
 
 
@@ -89,6 +97,7 @@ public class MainMenueActivity extends AppCompatActivity
                                         }
         );
         hackerlButton.setOnClickListener(new View.OnClickListener() {
+                                             @SuppressLint("SetTextI18n")
                                              @Override
                                              public void onClick(View v) {
                                                  hackerlButton.setVisibility(View.GONE);
@@ -100,22 +109,29 @@ public class MainMenueActivity extends AppCompatActivity
 //ToDo soll und datum berechnen und statische variablen tauschen
 
                                                  Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
-                                                 if (insertdataml == true) {
+                                                 if (insertdataml) {
                                                      Toast.makeText(getApplicationContext(), "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
                                                  } else {
                                                      Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                                                  }
 
-                                                 try{
+                                                 try {
                                                      String eingabe = mltext.getText().toString();
                                                      int zunahme = Integer.parseInt(eingabe);
                                                      wasserProgress = wasserProgress + zunahme;
-                                                 }catch(Exception e){
+                                                     rechnen = ((float) wasserProgress / (float) wasserbedarf) * 100;
+                                                     balken = Math.round(rechnen);
+                                                     ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", balken);
+                                                     animation.setDuration(1250);
+                                                     animation.setInterpolator(new DecelerateInterpolator());
+                                                     animation.start();
+                                                     prozent.setText(balken + "%");
+                                                     titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
 
+                                                 } catch (Exception e) {
+                                                     Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                                  }
-                                                 float rechnen = (wasserProgress/wasserbedarf)*100;
-                                                 balken = Math.round(rechnen);
-                                                 progressBar.setProgress(balken);
+
 
                                              }
                                          }

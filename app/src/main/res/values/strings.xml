@@ -83,6 +83,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="loeschen">loeschen</string>
+    <string name="prozent">0%</string>
+    <string name="fortschritt">Fortschritt</string>
 
 
 </resources>
