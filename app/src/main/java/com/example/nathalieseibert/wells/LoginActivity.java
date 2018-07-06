@@ -38,17 +38,12 @@ import javax.crypto.SecretKey;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String KEY_NAME = "yourKey";
-    Button email_sign_in_button;
-    EditText email;
-    EditText password;
-    DatabaseHelper databaseHelper;
+    private EditText email;
+    private EditText password;
+    private DatabaseHelper databaseHelper;
     private Cipher cipher;
     private KeyStore keyStore;
     private KeyGenerator keyGenerator;
-    private TextView textView;
-    private FingerprintManager.CryptoObject cryptoObject;
-    private FingerprintManager fingerprintManager;
-    private KeyguardManager keyguardManager;
 
 
     public void onClickSwitchActivity(View view) {
@@ -61,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email_sign_in_button = findViewById(R.id.email_sign_in_button);
+        Button email_sign_in_button = findViewById(R.id.email_sign_in_button);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
@@ -222,7 +217,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     class FingerprintException extends Exception {
-        public FingerprintException(Exception e) {
+        FingerprintException(Exception e) {
             super(e);
         }
     }

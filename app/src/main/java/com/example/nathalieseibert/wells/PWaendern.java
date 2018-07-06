@@ -1,7 +1,6 @@
 package com.example.nathalieseibert.wells;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,12 +16,11 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class PWaendern extends Fragment {
-    DatabaseHelper openHelper;
-    Button _pwSpeichernButton;
-    EditText _newPw_conform;
-    EditText _newPw_update;
-    EditText _oldPw_update;
-    EditText _email_update;
+    private DatabaseHelper openHelper;
+    private EditText _newPw_conform;
+    private EditText _newPw_update;
+    private EditText _oldPw_update;
+    private EditText _email_update;
 
     public PWaendern() {
         // Required empty public constructor
@@ -35,11 +33,11 @@ public class PWaendern extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pwaendern, container, false);
 
         openHelper = new DatabaseHelper(getContext()); //
-        _pwSpeichernButton = (Button) view.findViewById(R.id.pwSpeichernButton);
-        _newPw_conform = (EditText) view.findViewById(R.id.newPw_conform);
-        _newPw_update = (EditText) view.findViewById(R.id.newPw_update);
-        _oldPw_update = (EditText) view.findViewById(R.id.oldPw_update);
-        _email_update = (EditText) view.findViewById(R.id.email_update);
+        Button _pwSpeichernButton = view.findViewById(R.id.pwSpeichernButton);
+        _newPw_conform = view.findViewById(R.id.newPw_conform);
+        _newPw_update = view.findViewById(R.id.newPw_update);
+        _oldPw_update = view.findViewById(R.id.oldPw_update);
+        _email_update = view.findViewById(R.id.email_update);
 
 
         _pwSpeichernButton.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +59,7 @@ public class PWaendern extends Fragment {
                                                               if (openHelper.checkpass(email, oldPW)) {
                                                                   if (newPW.equals(PWupdate)) {
                                                                       boolean isUpdate = openHelper.PWupdate(email, newPW);
-                                                                      if (isUpdate == true) {
+                                                                      if (isUpdate) {
                                                                           Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
                                                                       } else {
                                                                           Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();
@@ -70,7 +68,7 @@ public class PWaendern extends Fragment {
                                                                       Toast.makeText(getContext(), "Password new and password confirmed are not equal!", Toast.LENGTH_LONG).show();
                                                                   }
 
-                                                              }else {
+                                                              } else {
                                                                   Toast.makeText(getContext(), "Wrong old password!", Toast.LENGTH_LONG).show();
                                                               }
                                                           } else {

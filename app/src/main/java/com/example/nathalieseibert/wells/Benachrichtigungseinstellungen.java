@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,9 +23,6 @@ import static android.content.Context.ALARM_SERVICE;
  * A simple {@link Fragment} subclass.
  */
 public class Benachrichtigungseinstellungen extends Fragment {
-
-
-    Button speichernButton;
 
 
     public Benachrichtigungseinstellungen() {
@@ -81,7 +77,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
 
                 try {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-                } catch (NullPointerException e) {
+                } catch (NullPointerException ignored) {
 
                 }
             }

@@ -8,13 +8,14 @@
         android:src="@drawable/ic_home_button"
         android:tint="@android:color/white"
         android:title="@string/homeButton"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/logOut"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:src="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_logout_home_white"
+        android:src="@drawable/ic_logout_home_white"
         android:tint="@android:color/white"
-        android:title="LogOut"
+        android:title="@string/logout"
         app:showAsAction="always" />
+
 
 </menu>

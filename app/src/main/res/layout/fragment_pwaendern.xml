@@ -36,7 +36,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="130dp"
         android:hint="@string/eingabe_email"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:layout_width="wrap_content"

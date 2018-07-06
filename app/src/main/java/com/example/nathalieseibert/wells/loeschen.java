@@ -18,10 +18,9 @@ import android.widget.Toast;
  */
 public class loeschen extends Fragment {
 
-    Button button_delete;
-    DatabaseHelper myDB;
-    EditText editpass;
-    AutoCompleteTextView editmail;
+    private DatabaseHelper myDB;
+    private EditText editpass;
+    private AutoCompleteTextView editmail;
 
     public loeschen() {
         // Required empty public constructor
@@ -34,7 +33,7 @@ public class loeschen extends Fragment {
         View view = inflater.inflate(R.layout.fragment_loeschen, container, false);
 
 
-        button_delete = view.findViewById(R.id.delete_button);
+        Button button_delete = view.findViewById(R.id.delete_button);
         myDB = new DatabaseHelper(getContext());
         editmail = view.findViewById(R.id.email);
         editpass = view.findViewById(R.id.password);
