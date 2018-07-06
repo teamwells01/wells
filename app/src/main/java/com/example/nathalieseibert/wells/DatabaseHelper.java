@@ -11,25 +11,25 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String USER_TABLE = "Benutzer";
-    public static final String LIST_TABLE = "Liste";
-    public static final String DRINK_TABLE = "Trinkverhalten";
-    public static final String COL_EMAIL = "Email";
-    public static final String COL_PASS = "Passwort";
-    public static final String COL_BENUTZERNAME = "Benutzername";
-    public static final String COL_AGE = "Age";
-    public static final String COL_GEWICHT = "Gewicht";
-    public static final String COL_GROESSE = "Groesse";
-    public static final String COL_IST = "mlIST";
-    public static final String COL_SOLL = "mlSOLL";
-    public static final String COL_DATE = "Datum";
+    private static final String USER_TABLE = "Benutzer";
+    private static final String LIST_TABLE = "Liste";
+    private static final String DRINK_TABLE = "Trinkverhalten";
+    private static final String COL_EMAIL = "Email";
+    private static final String COL_PASS = "Passwort";
+    private static final String COL_BENUTZERNAME = "Benutzername";
+    private static final String COL_AGE = "Age";
+    private static final String COL_GEWICHT = "Gewicht";
+    private static final String COL_GROESSE = "Groesse";
+    private static final String COL_IST = "mlIST";
+    private static final String COL_SOLL = "mlSOLL";
+    private static final String COL_DATE = "Datum";
     private static final String DATABASE_NAME = "MyExternalDatabase.db";
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     private final Context context;
-    SQLiteDatabase db;
+    private SQLiteDatabase db;
 
 
     public DatabaseHelper(Context context) {
@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public void createDb() {
+    private void createDb() {
         boolean dbExist = checkDbExist();
 
         if (!dbExist) {
@@ -72,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             String path = DATABASE_PATH + DATABASE_NAME;
             sqLiteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
 
         if (sqLiteDatabase != null) {

@@ -31,26 +31,22 @@ public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    private static final String DEBUG_TAG = "Tag";
-    public int wasserProgress;
-    public int wasserbedarf = 2000;
-    public int balken;
-    public float rechnen;
-    Button wasserButton, hackerlButton;
-    TextView mlview;
-    EditText mltext;
-    EditText email;
-    TextView prozent;
-    TextView titele;
-    Switch mySwitch;
-    DatabaseHelper databaseHelper;
-    ProgressBar progressBar;
+    private int wasserProgress;
+    private int wasserbedarf = 2000;
+    private Button hackerlButton;
+    private TextView mlview;
+    private EditText mltext;
+    private TextView prozent;
+    private TextView titele;
+    private Switch mySwitch;
+    private DatabaseHelper databaseHelper;
+    private ProgressBar progressBar;
     private TextView temperaturelabel;
     private SensorManager mSensorManager;
     private Sensor mTemperature;
-    int temp;
-    int altwasser = wasserbedarf;
-    boolean schonberechnet = false;
+    private int temp;
+    private int altwasser = wasserbedarf;
+    private boolean schonberechnet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +80,7 @@ public class MainMenueActivity extends AppCompatActivity
 
 
         //visibility buttons
-        wasserButton = findViewById(R.id.addWater); //define Buttons for visibility
+        Button wasserButton = findViewById(R.id.addWater);
         hackerlButton = findViewById(R.id.haeckchen); //define ButtoQns for visibility
         mltext = findViewById(R.id.editWater);//define edittext for visibility
         mlview = findViewById(R.id.textMl);//define textview for visibility
@@ -209,10 +205,10 @@ public class MainMenueActivity extends AppCompatActivity
         // Do something here if sensor accuracy changes.
     }
 
-    public void progressanzeige() {
+    private void progressanzeige() {
 
-        rechnen = ((float) wasserProgress / (float) wasserbedarf) * 100;
-        balken = Math.round(rechnen);
+        float rechnen = ((float) wasserProgress / (float) wasserbedarf) * 100;
+        int balken = Math.round(rechnen);
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", balken);
         animation.setDuration(1250);
         animation.setInterpolator(new DecelerateInterpolator());
@@ -223,7 +219,7 @@ public class MainMenueActivity extends AppCompatActivity
 
     }
 
-    public void bedarfBerechnen() {
+    private void bedarfBerechnen() {
 
         // if (getAlter >= 15 <= 18 || getAlter >= 60){
         // float myfloat = (float) wasserbedarf * 0.85f;

@@ -22,14 +22,12 @@
     <string name="haeckchen"><node>&#x2714;</node></string>
     <string name="title_Verlauf">Verlauf</string>
     <string name="title_Statistik">Statistik</string>
-    <string name="title_Liste">Liste</string>
     <string name="title_Karte">Karte</string>
     <string name="title_brunnenliste">Trinkbrunnen</string>
     <string name="einstellungen">Einstellungen</string>
     <string name="grundeinstellungen">Grundeinstellungen</string>
     <string name="Benachrichtigung">Benachrichtigungseinstellungen</string>
     <string name="löschen">Profil löschen</string>
-    <string name="title">Benachrichtigung</string>
     <string-array name="frequenz_array">
         <item>Stündlich</item>
         <item>Täglich</item>
@@ -55,7 +53,6 @@
     <string name="benachrichtigungseistellungen">Benachrichtigungseistellungen</string>
     <string name="benachrichtigung_aktivieren">Benachrichtigung aktivieren</string>
     <string name="frequenz">Frequenz</string>
-    <string name="karte">Karte</string>
     <string name="liste">Liste</string>
     <string name="fingerprint_bild">Fingerprint Bild</string>
     <string name="liste_trinkbrunnen">Liste Trinkbrunnen</string>
@@ -73,7 +70,6 @@
     <string name="nein">Nein</string>
     <string name="ja">Ja</string>
     <string name="logout">LogOut</string>
-
 
 
 </resources>

@@ -8,6 +8,6 @@ public class Repeating_activity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.repeating_activity_layout);
+        setContentView(R.layout.activity_login);
     }
 }

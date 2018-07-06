@@ -10,21 +10,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
-    DatabaseHelper openHelper;
-    Button _action_register_in;
-    EditText _editTextEmail;
-    EditText _editTextPassword;
-    EditText _editTextName;
-    EditText _editTextAge;
-    EditText _editTextWeight;
-    EditText _editTextHeight;
+    private DatabaseHelper openHelper;
+    private EditText _editTextEmail;
+    private EditText _editTextPassword;
+    private EditText _editTextName;
+    private EditText _editTextAge;
+    private EditText _editTextWeight;
+    private EditText _editTextHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         openHelper = new DatabaseHelper(this);
-        _action_register_in = findViewById(R.id.action_register_in);
+        Button _action_register_in = findViewById(R.id.action_register_in);
         _editTextEmail = findViewById(R.id.editTextEmail);
         _editTextPassword = findViewById(R.id.editTextPassword);
         _editTextName = findViewById(R.id.editTextName);
@@ -43,11 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String weight = _editTextWeight.getText().toString();
                 String height = _editTextHeight.getText().toString();
 
-                if (!isEmailValid(email)) {
+                if (isEmailValid(email)) {
                     return;
                 }
 
-                if (!isPasswordValid(pass)) {
+                if (isPasswordValid(pass)) {
                     return;
                 }
 
@@ -56,9 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 } else {
                     Boolean checkmail = openHelper.checkmail(email);
-                    if (checkmail == true) {
+                    if (checkmail) {
                         Boolean insertdata = openHelper.insertdata(email, pass, name, age, weight, height);
-                        if (insertdata == true) {
+                        if (insertdata) {
                             Toast.makeText(getApplicationContext(), "Registered successfully", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, MainMenueActivity.class);
                             startActivity(intent);
@@ -79,9 +78,9 @@ public class RegisterActivity extends AppCompatActivity {
         if (!Patterns.EMAIL_ADDRESS.matcher(eingabe).matches()) {
             emailFeld.setError("Bitte geben Sie eine gültige Email ein!");
             emailFeld.setHintTextColor(getResources().getColor(R.color.red));
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
 
     }
@@ -92,13 +91,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if (password.length() >= 4) {
-            return true;
+            return false;
         } else {
             passFeld.setError("Das Passwort muss vier Zeichen lang sein!");
             passFeld.setHintTextColor(getResources().getColor(R.color.red));
         }
 
-        return password.length() >= 4;
+        return password.length() < 4;
     }
 
 

@@ -16,12 +16,11 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class grund_einstellung extends Fragment {
-    DatabaseHelper openHelper;
-    Button _buttonupdate;
-    EditText _editTextEmail;
-    EditText _editTextAge;
-    EditText _editTextWeight;
-    EditText _editTextHeight;
+    private DatabaseHelper openHelper;
+    private EditText _editTextEmail;
+    private EditText _editTextAge;
+    private EditText _editTextWeight;
+    private EditText _editTextHeight;
 
 
     public grund_einstellung() {
@@ -36,7 +35,7 @@ public class grund_einstellung extends Fragment {
         View view = inflater.inflate(R.layout.fragment_grund_einstellung, container, false);
 
         openHelper = new DatabaseHelper(getContext()); //
-        _buttonupdate = view.findViewById(R.id.button_update);
+        Button _buttonupdate = view.findViewById(R.id.button_update);
         _editTextEmail = view.findViewById(R.id.email_update);
         _editTextAge = view.findViewById(R.id.age_update);
         _editTextWeight = view.findViewById(R.id.weight_update);
@@ -58,7 +57,7 @@ public class grund_einstellung extends Fragment {
                                                  } else {
                                                      if (mail.equals(email)) { //stimmt das?
                                                          boolean isUpdate = openHelper.updateData(email, age, weight, height);
-                                                         if (isUpdate == true) {
+                                                         if (isUpdate) {
                                                              Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
                                                          } else {
                                                              Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();

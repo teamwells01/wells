@@ -20,9 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Karte extends Fragment implements OnMapReadyCallback {
 
-    MapView mMapView;
-    private GoogleMap googleMap;
-    View rootView;
+    private MapView mMapView;
+    private View rootView;
+    //LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
 
     public Karte() {
     }
@@ -100,6 +100,7 @@ public class Karte extends Fragment implements OnMapReadyCallback {
             mMapView.onResume();
             mMapView.getMapAsync(this);
         }
+
     }
 
 
