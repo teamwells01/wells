@@ -1,9 +1,9 @@
 package com.example.nathalieseibert.wells;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,8 +27,6 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 
 public class Karte extends Fragment implements OnMapReadyCallback {
@@ -128,6 +126,7 @@ public class Karte extends Fragment implements OnMapReadyCallback {
         mMapView.onLowMemory();
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
@@ -142,7 +141,7 @@ public class Karte extends Fragment implements OnMapReadyCallback {
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
             Criteria criteria = new Criteria();
 
-            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             if (location != null) {
 
                 googleMap.setMyLocationEnabled(true);
