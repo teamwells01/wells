@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -49,6 +50,7 @@ public class MainMenueActivity extends AppCompatActivity
     private int temp;
     private int altwasser = wasserbedarf;
     private boolean schonberechnet = false;
+
 
 
     @Override
@@ -98,6 +100,7 @@ public class MainMenueActivity extends AppCompatActivity
 
         bedarfBerechnen();
 
+
         TextView.OnEditorActionListener tveal = new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -112,6 +115,7 @@ public class MainMenueActivity extends AppCompatActivity
         };
 
         mltext.setOnEditorActionListener(tveal);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.waterfill);
 
         mySwitch.setOnClickListener(new View.OnClickListener() {
 
@@ -188,6 +192,7 @@ public class MainMenueActivity extends AppCompatActivity
                                                      }
                                                      schonberechnet = true;
                                                      progressanzeige();
+                                                     mp.start();
 
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
