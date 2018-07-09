@@ -1,8 +1,20 @@
 package com.example.nathalieseibert.wells;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +27,22 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Karte extends Fragment implements OnMapReadyCallback {
 
     private MapView mMapView;
     private View rootView;
-    //LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+
+    private static final int MY_REQUEST_INT = 200;
+    private LatLng GRAZ = new LatLng(47.071349, 15.440457);
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private Boolean permissionsGranted = false;
+
 
     public Karte() {
     }
@@ -50,12 +70,39 @@ public class Karte extends Fragment implements OnMapReadyCallback {
                     Toast.makeText(getActivity(), "Error",
                             Toast.LENGTH_LONG).show();
                 }
+
+
             }
         });
 
         return rootView;
-
     }
+
+    private void getLocationPermission() {
+        String[] permissions =
+                {
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                };
+
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+                    COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                permissionsGranted = true;
+
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        permissions,
+                        MY_REQUEST_INT);
+            }
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    permissions,
+                    MY_REQUEST_INT);
+        }
+    }
+
 
     @Override
     public void onResume() {
@@ -85,9 +132,35 @@ public class Karte extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247, -74.044502)).title("Statue of Liberty").snippet("Dort ist dein Leben!"));
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247, -74.044502)).zoom(16).bearing(0).tilt(45).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
+
+
+        getLocationPermission();
+
+        if (permissionsGranted) {
+
+
+            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+
+            Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            if (location != null) {
+
+                googleMap.setMyLocationEnabled(true);
+                LatLng currentloc = new LatLng(location.getLatitude(), location.getLongitude());
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentloc, 13));
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(currentloc)      // Sets the center of the map to location user
+                        .zoom(15)                   // Sets the zoom
+                        .build();                   // Creates a CameraPosition from the builder
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+            }
+
+        } else {
+
+            CameraPosition Graz = CameraPosition.builder().target(GRAZ).zoom(13).build();
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Graz));
+        }
     }
 
     @Override
@@ -102,6 +175,21 @@ public class Karte extends Fragment implements OnMapReadyCallback {
         }
 
     }
+
+    private final SensorEventListener mSensorListener = new SensorEventListener() {
+
+        @Override
+        public void onSensorChanged(SensorEvent arg0) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor arg0, int arg1) {
+            // TODO Auto-generated method stub
+
+        }
+    };
 
 
 }

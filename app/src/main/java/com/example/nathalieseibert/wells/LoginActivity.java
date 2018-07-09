@@ -13,7 +13,9 @@ import android.security.keystore.KeyProperties;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private Cipher cipher;
     private KeyStore keyStore;
     private KeyGenerator keyGenerator;
-
+    private Button email_sign_in_button;
 
     public void onClickSwitchActivity(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
@@ -56,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button email_sign_in_button = findViewById(R.id.email_sign_in_button);
+        email_sign_in_button = findViewById(R.id.email_sign_in_button);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
@@ -77,6 +79,22 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        TextView.OnEditorActionListener tveal = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        (event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN)) {
+                    email_sign_in_button.performClick();
+
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        password.setOnEditorActionListener(tveal);
+
         TextView textView;
         FingerprintManager.CryptoObject cryptoObject;
         FingerprintManager fingerprintManager;

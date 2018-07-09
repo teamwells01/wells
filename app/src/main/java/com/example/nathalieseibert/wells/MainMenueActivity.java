@@ -15,10 +15,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -47,6 +49,7 @@ public class MainMenueActivity extends AppCompatActivity
     private int temp;
     private int altwasser = wasserbedarf;
     private boolean schonberechnet = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,21 @@ public class MainMenueActivity extends AppCompatActivity
         mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
 
         bedarfBerechnen();
+
+        TextView.OnEditorActionListener tveal = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        (event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN)) {
+                    hackerlButton.performClick();
+
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        mltext.setOnEditorActionListener(tveal);
 
         mySwitch.setOnClickListener(new View.OnClickListener() {
 
@@ -163,9 +181,14 @@ public class MainMenueActivity extends AppCompatActivity
 
                                                      if (!schonberechnet) {
                                                          bedarfBerechnen();
+                                                         if(mySwitch.isChecked()){
+                                                             float myfloat = (float) wasserbedarf * 1.1f;
+                                                             wasserbedarf = Math.round(myfloat);
+                                                         }
                                                      }
                                                      schonberechnet = true;
                                                      progressanzeige();
+
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                                  }
@@ -176,6 +199,7 @@ public class MainMenueActivity extends AppCompatActivity
         );
 
     }
+
 
 
     @Override
