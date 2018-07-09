@@ -14,7 +14,7 @@ import java.io.OutputStream;
 class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String USER_TABLE = "Benutzer";
-    private static final String LIST_TABLE = "Liste";
+     static final String LIST_TABLE = "Liste";
     private static final String DRINK_TABLE = "Trinkverhalten";
     private static final String COL_EMAIL = "Email";
     private static final String COL_PASS = "Passwort";
