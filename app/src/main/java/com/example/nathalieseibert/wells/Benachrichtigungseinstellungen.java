@@ -65,7 +65,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
         view.findViewById(R.id.speichernButon).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Das nächste sollte statt den addWater button auf den Benachrichtigung speichern Button bei den Einstellungen geändert werden!
+                //Folgend wird täglich um 8:30 eine Notification erscheinen
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY, 7);
                 calendar.set(Calendar.MINUTE, 10);

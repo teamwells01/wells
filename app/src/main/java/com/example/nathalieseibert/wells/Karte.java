@@ -208,6 +208,9 @@ public class Karte extends Fragment implements OnMapReadyCallback {
 
             @Override
             public boolean onMarkerClick(Marker marker) {
+
+
+                //TODO DB COUNT AUF WELL +1 UND TIMESTAMP
                 // Retrieve the data from the marker.
 
 

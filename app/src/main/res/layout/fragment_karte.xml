@@ -12,22 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/buttonkarte"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:enabled="false"
-        android:text="@string/title_Karte" />
 
     <Button
         android:id="@+id/liste"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|start"
         android:text="@string/liste" />
-
-
 
 
 </FrameLayout>

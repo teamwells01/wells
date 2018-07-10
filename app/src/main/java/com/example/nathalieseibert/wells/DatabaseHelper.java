@@ -30,6 +30,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     private final Context context;
     private SQLiteDatabase db;
+    private static final String COL_ID ="ID";
 
 
     public DatabaseHelper(Context context) {
@@ -149,11 +150,10 @@ class DatabaseHelper extends SQLiteOpenHelper {
         System.out.println("successful - db insert " + String.valueOf(ins));
         return ins != 1;
     }
-
-    public boolean insertml(String email, String istml, String sollml, String date) {
+    public boolean insertml(String ID, String istml, String sollml, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_EMAIL, email);
+        contentValues.put(COL_ID, Integer.parseInt(ID));
         contentValues.put(COL_IST, istml);
         contentValues.put(COL_SOLL, sollml);
         contentValues.put(COL_DATE, date);

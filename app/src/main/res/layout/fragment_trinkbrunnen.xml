@@ -2,40 +2,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nathalieseibert.wells.Trinkbrunnen">
+    tools:context="com.example.nathalieseibert.wells.Statisitk">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/title_brunnenliste"
-        android:textColor="@color/schwoaz"
-        android:textSize="25sp" />
-
-    <Button
-        android:id="@+id/buttonkarte"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:text="@string/title_Karte" />
-
-    <Button
-        android:id="@+id/buttontrinkbrunnen"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:enabled="false"
-        android:text="@string/liste" />
-
-    <ListView
-        android:id="@+id/brunnenview"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="60dp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center_horizontal"
+            android:text="@string/title_brunnenliste"
+            android:textColor="@color/schwoaz"
+            android:textSize="25sp"
+            />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
 
 
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="30dp">
+
+                <TextView
+                    android:id="@+id/nameOne"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                <TextView
+                    android:id="@+id/distanceOne"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unbekannt" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="30dp">
+
+                <TextView
+                    android:id="@+id/nameTwo"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                <TextView
+                    android:id="@+id/distanceTwo"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unbekannt" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="30dp">
+
+                <TextView
+                    android:id="@+id/nameThree"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                <TextView
+                    android:id="@+id/distanceThree"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unbekannt" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="30dp">
+
+                <TextView
+                    android:id="@+id/nameFour"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                <TextView
+                    android:id="@+id/distanceFour"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unbekannt" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="30dp">
+
+                <TextView
+                    android:id="@+id/nameFive"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    />
+
+                <TextView
+                    android:id="@+id/distanceFive"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unbekannt" />
+            </TableRow>
+
+
+            <Button
+                android:id="@+id/buttonkarte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:text="@string/title_Karte" />
+
+        </TableLayout>
+
+
+
+
+
+    </LinearLayout>
 </FrameLayout>
+
