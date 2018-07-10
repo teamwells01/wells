@@ -504,6 +504,7 @@ public class MainMenueActivity extends AppCompatActivity
             }
             case R.id.nav_f5: {
                 startActivity(new Intent(this, LoginActivity.class));
+                databaseHelper.close();
                 break;
             }
 
