@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         FingerprintManager.CryptoObject cryptoObject;
         FingerprintManager fingerprintManager;
         KeyguardManager keyguardManager;
+
 //        //FINGERPRINT
 //
 //        // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
