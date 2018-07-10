@@ -17,7 +17,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
     static final String LIST_TABLE = "Liste";
     private static final String DRINK_TABLE = "Trinkverhalten";
     private static final String COL_EMAIL = "Email";
-    private static final String COL_ID ="ID";
     private static final String COL_PASS = "Passwort";
     private static final String COL_BENUTZERNAME = "Benutzername";
     private static final String COL_AGE = "Age";
@@ -31,6 +30,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     private final Context context;
     private SQLiteDatabase db;
+    private static final String COL_ID ="ID";
 
 
     public DatabaseHelper(Context context) {
@@ -150,7 +150,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
         System.out.println("successful - db insert " + String.valueOf(ins));
         return ins != 1;
     }
-
     public boolean insertml(String ID, String istml, String sollml, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

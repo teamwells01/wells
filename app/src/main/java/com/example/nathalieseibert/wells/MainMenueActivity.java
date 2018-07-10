@@ -39,7 +39,7 @@ public class MainMenueActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     private int wasserProgress;
-    int wasserbedarf = 2000;
+    private int wasserbedarf = 2000;
     private Button hackerlButton;
     private TextView mlview;
     private EditText mltext;
@@ -56,6 +56,8 @@ public class MainMenueActivity extends AppCompatActivity
     private boolean schonberechnet = false;
     private Button ml330;
     private Button ml500;
+    Calendar calendar = Calendar.getInstance();
+    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
 
     @Override
@@ -63,9 +65,6 @@ public class MainMenueActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_menue);
-
-        Calendar calendar = Calendar.getInstance();
-        final String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
@@ -83,8 +82,6 @@ public class MainMenueActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Das nächste sollte statt den addWater button auf den Benachrichtigung speichern Button bei den Einstellungen geändert werden!
-        //Folgend wird täglich um 8:30 eine Notification erscheinen
 
         mySwitch = findViewById(R.id.mySwitch);
         progressBar = findViewById(R.id.progressBar);
@@ -169,17 +166,11 @@ public class MainMenueActivity extends AppCompatActivity
                                          String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
-                                         Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
-                                         if (insertdataml) {
-                                             String eingabe = "330";
-                                             Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                         } else {
-                                             Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
-                                         }
                                          try {
                                              String eingabe = "330";
                                              int zunahme = Integer.parseInt(eingabe);
                                              wasserProgress = wasserProgress + zunahme;
+
 
                                              if (!schonberechnet) {
                                                  bedarfBerechnen();
@@ -192,57 +183,69 @@ public class MainMenueActivity extends AppCompatActivity
                                              progressanzeige();
                                              mp.start();
 
+
+                                             Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                                             if (insertdataml) {
+
+                                                 Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                             } else {
+                                                 Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                             }
+
+
                                          } catch (Exception e) {
                                              Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                          }
-                                     }
-                                 }
-        );
 
+                                     }
+                                 });
         ml500.setOnClickListener(new View.OnClickListener()
 
-                                 {
-                                     @Override
-                                     public void onClick(View v) {
-                                         hackerlButton.setVisibility(View.GONE);
-                                         mltext.setVisibility(View.GONE);
-                                         mlview.setVisibility(View.GONE);
-                                         ml330.setVisibility(View.GONE);
-                                         ml500.setVisibility(View.GONE);
-                                         String mail = getIntent().getStringExtra("Email");
+        {
+            @Override
+            public void onClick(View v) {
+                hackerlButton.setVisibility(View.GONE);
+                mltext.setVisibility(View.GONE);
+                mlview.setVisibility(View.GONE);
+                ml330.setVisibility(View.GONE);
+                ml500.setVisibility(View.GONE);
+                String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
-                                         Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
-                                         if (insertdataml) {
-                                             String eingabe = "500";
-                                             Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                         } else {
-                                             Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
-                                         }
-                                         try {
-                                             String eingabe = "500";
-                                             int zunahme = Integer.parseInt(eingabe);
-                                             wasserProgress = wasserProgress + zunahme;
+                try {
+                    String eingabe = "500";
+                    int zunahme = Integer.parseInt(eingabe);
+                    wasserProgress = wasserProgress + zunahme;
 
-                                             if (!schonberechnet) {
-                                                 bedarfBerechnen();
-                                                 if (mySwitch.isChecked()) {
-                                                     float myfloat = (float) wasserbedarf * 1.1f;
-                                                     wasserbedarf = Math.round(myfloat);
-                                                 }
-                                             }
-                                             schonberechnet = true;
-                                             progressanzeige();
-                                             mp.start();
 
-                                         } catch (Exception e) {
-                                             Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
-                                         }
+                    if (!schonberechnet) {
+                        bedarfBerechnen();
+                        if (mySwitch.isChecked()) {
+                            float myfloat = (float) wasserbedarf * 1.1f;
+                            wasserbedarf = Math.round(myfloat);
+                        }
+                    }
+                    schonberechnet = true;
+                    progressanzeige();
+                    mp.start();
 
-                                     }
-                                 }
 
-        );
+                    Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                    if (insertdataml) {
+
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
 
         wasserButton.setOnClickListener(new View.OnClickListener()
 
@@ -273,13 +276,10 @@ public class MainMenueActivity extends AppCompatActivity
                                                  String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
-
-
                                                  try {
                                                      String eingabe = mltext.getText().toString();
                                                      int zunahme = Integer.parseInt(eingabe);
                                                      wasserProgress = wasserProgress + zunahme;
-
 
 
                                                      if (!schonberechnet) {
@@ -294,8 +294,7 @@ public class MainMenueActivity extends AppCompatActivity
                                                      mp.start();
 
 
-
-                                                     Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf) , currentDate);
+                                                     Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
                                                      if (insertdataml) {
 
                                                          Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
@@ -304,21 +303,14 @@ public class MainMenueActivity extends AppCompatActivity
                                                      }
 
 
-
-
-
-
-
-
-
-
-
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                                  }
 
 
                                              }
+
+
                                          }
         );
 
@@ -368,6 +360,7 @@ public class MainMenueActivity extends AppCompatActivity
 
     private void bedarfBerechnen() {
 
+        //TODO DB ANBINDUNG UND IF DANN ERST BERECHNEN
         // if (getAlter >= 15 <= 18 || getAlter >= 60){
         // float myfloat = (float) wasserbedarf * 0.85f;
         // wasserbedarf = Math.round(myfloat);
@@ -415,13 +408,9 @@ public class MainMenueActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        mSensorManager.unregisterListener(this);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        Intent intent = new Intent(this, MainMenueActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override
