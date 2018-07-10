@@ -22,9 +22,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationListener;
-
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 /**
@@ -68,7 +68,8 @@ public class Trinkbrunnen extends Fragment {
             "Theyergasse", "Vinzenzgasse", "Volksgartenstraße 1", "Volksgartenstraße 2", "Wachtelgasse", "Wasserwerkgasse"};
 
 
-    Float[] distances = new Float[latitude.length];;
+    Float[] distances = new Float[latitude.length];
+    Map<Integer, Float> myMap = new TreeMap<>();
     Criteria criteria;
     Location location;
     TextView nameins;
@@ -82,12 +83,6 @@ public class Trinkbrunnen extends Fragment {
     TextView namfunf;
     TextView distfunf;
 
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(final Location location) {
-            //your code here
-        }
-    };
 
     public Trinkbrunnen() {
         // Required empty public constructor
@@ -266,17 +261,30 @@ public class Trinkbrunnen extends Fragment {
                     distances[i] = distance;
                 }
 
+
+                float tempVar;
+                for (int i = 0; i < distances.length; i++) {
+                    for (int j = i; j < distances.length; j++) {
+                        if (distances[i] > distances[j]) {
+                            tempVar = distances[i];
+                            distances[i] = distances[j];
+                            name[i] = name[j];
+                            distances[j] = tempVar;
+                        }
+                    }
+                }
+
                 nameins.setText(name[0]);
                 namezwei.setText(name[1]);
                 namedrei.setText(name[2]);
                 namvier.setText(name[3]);
                 namfunf.setText(name[4]);
 
-                disteins.setText(distances[0].toString() + "m");
-                distzwei.setText(distances[1].toString() + "m");
-                distdrei.setText(distances[2].toString() + "m");
-                distvier.setText(distances[3].toString() + "m");
-                distfunf.setText(distances[4].toString() + "m");
+                disteins.setText(distances[0] + "m");
+                distzwei.setText(distances[1] + "m");
+                distdrei.setText(distances[2] + "m");
+                distvier.setText(distances[3] + "m");
+                distfunf.setText(distances[4] + "m");
 
             } else {
                 nameins.setText(name[0]);
