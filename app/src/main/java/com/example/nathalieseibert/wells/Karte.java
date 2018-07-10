@@ -39,7 +39,8 @@ public class Karte extends Fragment implements OnMapReadyCallback {
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private Boolean permissionsGranted = false;
     Integer clickCount;
-    int nummer;
+    Criteria criteria;
+
     Float[] longitude = {
             47.115089f, 47.045327f, 47.10901f, 47.05199f, 47.096147f, 47.071981f, 47.048412f, 47.07825f, 47.066614f, 47.075883f,
             47.072459f, 47.066627f, 47.09328f, 47.070637f, 47.063031f, 47.06186f, 47.02739f, 47.076479f, 47.06895f, 47.059141f, 47.066898f,
@@ -67,6 +68,7 @@ public class Karte extends Fragment implements OnMapReadyCallback {
 
     public Karte() {
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -165,12 +167,13 @@ public class Karte extends Fragment implements OnMapReadyCallback {
 
 
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
+            criteria = new Criteria();
 
             @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            googleMap.setMyLocationEnabled(true);
+
             if (location != null) {
 
-                googleMap.setMyLocationEnabled(true);
                 LatLng currentloc = new LatLng(location.getLatitude(), location.getLongitude());
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentloc, 13));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -178,11 +181,11 @@ public class Karte extends Fragment implements OnMapReadyCallback {
                         .zoom(15)                   // Sets the zoom
                         .build();                   // Creates a CameraPosition from the builder
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
             } else {
+
+                Toast.makeText(getActivity(), "Keine bekannte letzte Postition!", Toast.LENGTH_SHORT).show();
                 CameraPosition Graz = CameraPosition.builder().target(GRAZ).zoom(13).build();
                 googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Graz));
-
             }
 
         } else {
