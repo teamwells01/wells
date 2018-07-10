@@ -31,12 +31,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     private int wasserProgress;
-    private int wasserbedarf = 2000;
+    int wasserbedarf = 2000;
     private Button hackerlButton;
     private TextView mlview;
     private EditText mltext;
@@ -59,6 +62,9 @@ public class MainMenueActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_menue);
+
+        Calendar calendar = Calendar.getInstance();
+        final String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
 
@@ -172,18 +178,14 @@ public class MainMenueActivity extends AppCompatActivity
                                                  String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
-                                                 Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
-                                                 if (insertdataml) {
-                                                     String eingabe = mltext.getText().toString();
-                                                     Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                                 } else {
-                                                     Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
-                                                 }
+
 
                                                  try {
                                                      String eingabe = mltext.getText().toString();
                                                      int zunahme = Integer.parseInt(eingabe);
                                                      wasserProgress = wasserProgress + zunahme;
+
+
 
                                                      if (!schonberechnet) {
                                                          bedarfBerechnen();
@@ -195,6 +197,26 @@ public class MainMenueActivity extends AppCompatActivity
                                                      schonberechnet = true;
                                                      progressanzeige();
                                                      mp.start();
+
+
+
+                                                     Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf) , currentDate);
+                                                     if (insertdataml) {
+
+                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                                     } else {
+                                                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                                     }
+
+
+
+
+
+
+
+
+
+
 
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();

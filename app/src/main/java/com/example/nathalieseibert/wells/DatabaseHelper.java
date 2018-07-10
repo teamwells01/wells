@@ -17,6 +17,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     static final String LIST_TABLE = "Liste";
     private static final String DRINK_TABLE = "Trinkverhalten";
     private static final String COL_EMAIL = "Email";
+    private static final String COL_ID ="ID";
     private static final String COL_PASS = "Passwort";
     private static final String COL_BENUTZERNAME = "Benutzername";
     private static final String COL_AGE = "Age";
@@ -150,10 +151,10 @@ class DatabaseHelper extends SQLiteOpenHelper {
         return ins != 1;
     }
 
-    public boolean insertml(String email, String istml, String sollml, String date) {
+    public boolean insertml(String ID, String istml, String sollml, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_EMAIL, email);
+        contentValues.put(COL_ID, Integer.parseInt(ID));
         contentValues.put(COL_IST, istml);
         contentValues.put(COL_SOLL, sollml);
         contentValues.put(COL_DATE, date);
