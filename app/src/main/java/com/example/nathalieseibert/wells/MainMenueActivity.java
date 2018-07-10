@@ -51,13 +51,14 @@ public class MainMenueActivity extends AppCompatActivity
     private int temp;
     private int altwasser = wasserbedarf;
     private boolean schonberechnet = false;
-
+    private Button ml330;
+    private Button ml500;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main_menue);
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
@@ -91,9 +92,13 @@ public class MainMenueActivity extends AppCompatActivity
         hackerlButton = findViewById(R.id.haeckchen); //define ButtoQns for visibility
         mltext = findViewById(R.id.editWater);//define edittext for visibility
         mlview = findViewById(R.id.textMl);//define textview for visibility
+        ml330 = findViewById(R.id.ml330);
+        ml500 = findViewById(R.id.ml500);
         hackerlButton.setVisibility(View.GONE);
         mltext.setVisibility(View.GONE);
         mlview.setVisibility(View.GONE);
+        ml330.setVisibility(View.GONE);
+        ml500.setVisibility(View.GONE);
 
         //temperatur
         temperaturelabel = findViewById(R.id.myTemp);
@@ -145,6 +150,93 @@ public class MainMenueActivity extends AppCompatActivity
                                     }
         );
 
+        ml330.setOnClickListener(new View.OnClickListener()
+
+                                 {
+                                     @Override
+                                     public void onClick(View v) {
+                                         hackerlButton.setVisibility(View.GONE);
+                                         mltext.setVisibility(View.GONE);
+                                         mlview.setVisibility(View.GONE);
+                                         ml330.setVisibility(View.GONE);
+                                         ml500.setVisibility(View.GONE);
+                                         String mail = getIntent().getStringExtra("Email");
+//ToDo soll und datum berechnen und statische variablen tauschen
+
+                                         Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
+                                         if (insertdataml) {
+                                             String eingabe = "330";
+                                             Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                         } else {
+                                             Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                         }
+                                         try {
+                                             String eingabe = "330";
+                                             int zunahme = Integer.parseInt(eingabe);
+                                             wasserProgress = wasserProgress + zunahme;
+
+                                             if (!schonberechnet) {
+                                                 bedarfBerechnen();
+                                                 if (mySwitch.isChecked()) {
+                                                     float myfloat = (float) wasserbedarf * 1.1f;
+                                                     wasserbedarf = Math.round(myfloat);
+                                                 }
+                                             }
+                                             schonberechnet = true;
+                                             progressanzeige();
+                                             mp.start();
+
+                                         } catch (Exception e) {
+                                             Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
+                                         }
+                                     }
+                                 }
+        );
+
+        ml500.setOnClickListener(new View.OnClickListener()
+
+                                 {
+                                     @Override
+                                     public void onClick(View v) {
+                                         hackerlButton.setVisibility(View.GONE);
+                                         mltext.setVisibility(View.GONE);
+                                         mlview.setVisibility(View.GONE);
+                                         ml330.setVisibility(View.GONE);
+                                         ml500.setVisibility(View.GONE);
+                                         String mail = getIntent().getStringExtra("Email");
+//ToDo soll und datum berechnen und statische variablen tauschen
+
+                                         Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), "500", "01.01.2010");
+                                         if (insertdataml) {
+                                             String eingabe = "500";
+                                             Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+                                         } else {
+                                             Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                                         }
+                                         try {
+                                             String eingabe = "500";
+                                             int zunahme = Integer.parseInt(eingabe);
+                                             wasserProgress = wasserProgress + zunahme;
+
+                                             if (!schonberechnet) {
+                                                 bedarfBerechnen();
+                                                 if (mySwitch.isChecked()) {
+                                                     float myfloat = (float) wasserbedarf * 1.1f;
+                                                     wasserbedarf = Math.round(myfloat);
+                                                 }
+                                             }
+                                             schonberechnet = true;
+                                             progressanzeige();
+                                             mp.start();
+
+                                         } catch (Exception e) {
+                                             Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
+                                         }
+
+                                     }
+                                 }
+
+        );
 
         wasserButton.setOnClickListener(new View.OnClickListener()
 
@@ -154,7 +246,8 @@ public class MainMenueActivity extends AppCompatActivity
                                                 hackerlButton.setVisibility(View.VISIBLE);
                                                 mltext.setVisibility(View.VISIBLE);
                                                 mlview.setVisibility(View.VISIBLE);
-
+                                                ml330.setVisibility(View.VISIBLE);
+                                                ml500.setVisibility(View.VISIBLE);
                                             }
                                         }
         );
@@ -167,6 +260,8 @@ public class MainMenueActivity extends AppCompatActivity
                                                  hackerlButton.setVisibility(View.GONE);
                                                  mltext.setVisibility(View.GONE);
                                                  mlview.setVisibility(View.GONE);
+                                                 ml330.setVisibility(View.GONE);
+                                                 ml500.setVisibility(View.GONE);
 
 
                                                  String mail = getIntent().getStringExtra("Email");
@@ -187,7 +282,7 @@ public class MainMenueActivity extends AppCompatActivity
 
                                                      if (!schonberechnet) {
                                                          bedarfBerechnen();
-                                                         if(mySwitch.isChecked()){
+                                                         if (mySwitch.isChecked()) {
                                                              float myfloat = (float) wasserbedarf * 1.1f;
                                                              wasserbedarf = Math.round(myfloat);
                                                          }
@@ -206,7 +301,6 @@ public class MainMenueActivity extends AppCompatActivity
         );
 
     }
-
 
 
     @Override

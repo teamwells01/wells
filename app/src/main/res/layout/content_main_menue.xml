@@ -87,6 +87,24 @@
 
         />
 
+    <Button
+        android:id="@+id/ml330"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/haeckchen"
+        android:layout_toStartOf="@+id/addWater"
+        android:text="@string/_330ml"
+        android:layout_toLeftOf="@+id/addWater" />
+
+    <Button
+        android:id="@+id/ml500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/haeckchen"
+        android:layout_toEndOf="@+id/addWater"
+        android:text="@string/_500ml"
+        android:layout_toRightOf="@+id/addWater" />
+
     <Switch
         android:id="@+id/mySwitch"
         android:layout_width="wrap_content"
