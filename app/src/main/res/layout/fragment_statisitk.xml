@@ -30,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:enabled="false"
-
         android:text="@string/title_Statistik" />
 
     <ListView

@@ -423,13 +423,14 @@ public class MainMenueActivity extends AppCompatActivity
             return true;
 
         }
-//logOut button
+        //logOut button
         if (id == R.id.logOut) {
 
             startActivity(new Intent(this, LoginActivity.class));
             return true;
 
             // databaseHelper.close();
+
 
         }
 
