@@ -438,11 +438,9 @@ public class MainMenueActivity extends AppCompatActivity
         if (id == R.id.logOut) {
 
             startActivity(new Intent(this, LoginActivity.class));
+            databaseHelper.close();
+
             return true;
-
-            // databaseHelper.close();
-
-
         }
 
 
