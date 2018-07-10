@@ -438,11 +438,9 @@ public class MainMenueActivity extends AppCompatActivity
         if (id == R.id.logOut) {
 
             startActivity(new Intent(this, LoginActivity.class));
+            databaseHelper.close();
+
             return true;
-
-            // databaseHelper.close();
-
-
         }
 
 
@@ -506,6 +504,7 @@ public class MainMenueActivity extends AppCompatActivity
             }
             case R.id.nav_f5: {
                 startActivity(new Intent(this, LoginActivity.class));
+                databaseHelper.close();
                 break;
             }
 
