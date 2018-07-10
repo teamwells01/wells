@@ -149,6 +149,76 @@ public class Trinkbrunnen extends Fragment {
 
         // adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, list);
 
+        nameins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Karte kartefragment = new Karte();
+                FragmentManager manager = getFragmentManager();
+                try {
+                    manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                } catch (NullPointerException e) {
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        namezwei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Karte kartefragment = new Karte();
+                FragmentManager manager = getFragmentManager();
+                try {
+                    manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                } catch (NullPointerException e) {
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        namedrei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Karte kartefragment = new Karte();
+                FragmentManager manager = getFragmentManager();
+                try {
+                    manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                } catch (NullPointerException e) {
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        namvier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Karte kartefragment = new Karte();
+                FragmentManager manager = getFragmentManager();
+                try {
+                    manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                } catch (NullPointerException e) {
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        namfunf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Karte kartefragment = new Karte();
+                FragmentManager manager = getFragmentManager();
+                try {
+                    manager.beginTransaction().replace(R.id.mainLayout, kartefragment, kartefragment.getTag()).commit();
+                } catch (NullPointerException e) {
+                    Toast.makeText(getActivity(), "Error",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
         Button buttonkarte = view.findViewById(R.id.buttonkarte);
         buttonkarte.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +254,7 @@ public class Trinkbrunnen extends Fragment {
 
 
                 for (int i = 0; i < 77; i++) {
-                    
+
                     double templong = latitude[i];
                     double templat = longitude[i];
                     Location bru = new Location(name[i]);
