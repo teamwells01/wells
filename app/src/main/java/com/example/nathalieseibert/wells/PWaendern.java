@@ -69,15 +69,15 @@ public class PWaendern extends Fragment {
                                                                       }
 
                                                                   } else {
-                                                                      Toast.makeText(getContext(), "Wrong old password!", Toast.LENGTH_LONG).show();
+                                                                      Toast.makeText(getContext(), "Wrong old password!", Toast.LENGTH_SHORT).show();
                                                                   }
                                                               } else {
-                                                                  Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_LONG).show();
+                                                                  Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_SHORT).show();
                                                               }
                                                           }
 
                                                       }catch (Exception e) {
-                                                              Toast.makeText(getContext(), "'Passwort ändern' ist nur mittels vorhandener eMail möglich! (man muss sich zuerst vollständig registrieren)", Toast.LENGTH_LONG).show();
+                                                              Toast.makeText(getContext(), "Achtung! Bei Anmeldung via Fingerprint ist eine Änderung des Passwortes nicht möglich! Es wird eine eMail benötigt!", Toast.LENGTH_LONG).show();
                                                           }
                                                   }
                                               }

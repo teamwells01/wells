@@ -68,7 +68,7 @@ public class grund_einstellung extends Fragment {
                                                          }
                                                      }
                                                  }catch (Exception e) {
-                                                     Toast.makeText(getContext(), "Das ändern der Daten ist nur möglich, wenn man sich vollständig mit eMail registriert!", Toast.LENGTH_LONG).show();
+                                                     Toast.makeText(getContext(), "Achtung! Bei Anmeldung via Fingerprint ist das Updaten von Daten nicht möglich! Es wird eine eMail benötigt!", Toast.LENGTH_LONG).show();
                                                  }
 
 
