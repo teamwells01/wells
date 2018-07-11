@@ -359,7 +359,7 @@ public class MainMenueActivity extends AppCompatActivity
         String mail = getIntent().getStringExtra("Email");
         //Check if signed in with Fingerprint or not
         Cursor res_alter =databaseHelper.getBenutzerdataalter(mail);
-        Cursor res_groesse =databaseHelper.getBenutzerdatagroesse()mail);
+        Cursor res_groesse =databaseHelper.getBenutzerdatagroesse(mail);
         Cursor res_gewicht =databaseHelper.getBenutzerdatagewicht(mail);
         if (res_alter.getCount() != 0 &&  res_gewicht.getCount() !=0 && res_groesse.getCount() != 0 ) {
 
