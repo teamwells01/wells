@@ -307,7 +307,9 @@ public class Benachrichtigungseinstellungen extends Fragment {
                         }
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Bitte schalten Sie Benachrichtigungen ein!", Toast.LENGTH_SHORT).show();
+                    NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.cancel(100);
+                    Toast.makeText(getActivity(), "Benachrichtigungen ausgeschaltet!", Toast.LENGTH_SHORT).show();
                 }
 
 
