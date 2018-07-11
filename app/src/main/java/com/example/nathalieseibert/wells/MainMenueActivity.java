@@ -360,6 +360,15 @@ public class MainMenueActivity extends AppCompatActivity
 
     private void bedarfBerechnen() {
 
+        //Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf) , currentDate);
+//           if (insertdataml) {
+//
+//           Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
+//          } else {
+//         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+//    }
+//
+
         //TODO DB ANBINDUNG UND IF DANN ERST BERECHNEN
         // if (getAlter >= 15 <= 18 || getAlter >= 60){
         // float myfloat = (float) wasserbedarf * 0.85f;

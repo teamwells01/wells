@@ -73,6 +73,7 @@
     <string name="unbekannt">Unbekannt</string>
     <string name="_330ml">330ML</string>
     <string name="_500ml">500ML</string>
+    <string name="fingerachtung">Achtung! Bei Anmeldung via Fingerprint ist weder eine genaue Berechnung möglich, noch die Funktionen Statistik und Verlauf!</string>
 
 
 </resources>
