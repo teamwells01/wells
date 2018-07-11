@@ -155,50 +155,49 @@ public class MainMenueActivity extends AppCompatActivity
 
         ml330.setOnClickListener(new View.OnClickListener()
 
-                                 {
-                                     @Override
-                                     public void onClick(View v) {
-                                         hackerlButton.setVisibility(View.GONE);
-                                         mltext.setVisibility(View.GONE);
-                                         mlview.setVisibility(View.GONE);
-                                         ml330.setVisibility(View.GONE);
-                                         ml500.setVisibility(View.GONE);
-                                         String mail = getIntent().getStringExtra("Email");
+        {
+            @Override
+            public void onClick(View v) {
+                hackerlButton.setVisibility(View.GONE);
+                mltext.setVisibility(View.GONE);
+                mlview.setVisibility(View.GONE);
+                ml330.setVisibility(View.GONE);
+                ml500.setVisibility(View.GONE);
+                String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
-                                         try {
-                                             String eingabe = "330";
-                                             int zunahme = Integer.parseInt(eingabe);
-                                             wasserProgress = wasserProgress + zunahme;
+                try {
+                    String eingabe = "330";
+                    int zunahme = Integer.parseInt(eingabe);
+                    wasserProgress = wasserProgress + zunahme;
 
 
-                                             if (!schonberechnet) {
-                                                 bedarfBerechnen();
-                                                 if (mySwitch.isChecked()) {
-                                                     float myfloat = (float) wasserbedarf * 1.1f;
-                                                     wasserbedarf = Math.round(myfloat);
-                                                 }
-                                             }
-                                             schonberechnet = true;
-                                             progressanzeige();
-                                             mp.start();
+                    if (!schonberechnet) {
+                        bedarfBerechnen();
+                        if (mySwitch.isChecked()) {
+                            float myfloat = (float) wasserbedarf * 1.1f;
+                            wasserbedarf = Math.round(myfloat);
+                        }
+                    }
+                    schonberechnet = true;
+                    progressanzeige();
+                    mp.start();
+
+                    try {
+
+                        Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                    }
 
 
-                                             Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
-                                             if (insertdataml) {
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
+                }
 
-                                                 Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                             } else {
-                                                 Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
-                                             }
-
-
-                                         } catch (Exception e) {
-                                             Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
-                                         }
-
-                                     }
-                                 });
+            }
+        });
         ml500.setOnClickListener(new View.OnClickListener()
 
         {
@@ -229,12 +228,11 @@ public class MainMenueActivity extends AppCompatActivity
                     progressanzeige();
                     mp.start();
 
+                    try {
 
-                    Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
-                    if (insertdataml) {
-
-                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                    } else {
+                        Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                     }
 
@@ -294,11 +292,10 @@ public class MainMenueActivity extends AppCompatActivity
                                                      mp.start();
 
 
-                                                     Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
-                                                     if (insertdataml) {
-
-                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                                     } else {
+                                                     try {
+                                                         Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                                                     } catch (Exception e) {
                                                          Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                                                      }
 
@@ -306,7 +303,6 @@ public class MainMenueActivity extends AppCompatActivity
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                                  }
-
 
                                              }
 

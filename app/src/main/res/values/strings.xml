@@ -32,8 +32,16 @@
         <item>Stündlich</item>
         <item>Täglich</item>
         <item>Wöchentlich</item>
-        <item>Monatlich</item>
-        <item>Jährlich</item>
+        <item>Bestimmter Tag</item>
+    </string-array>
+    <string-array name="wochentage">
+        <item>Montag</item>
+        <item>Dienstag</item>
+        <item>Mittwoch</item>
+        <item>Donnerstag</item>
+        <item>Freitag</item>
+        <item>Samstag</item>
+        <item>Sonntag</item>
     </string-array>
     <string name="eingabe_email">Eingabe eMail</string>
     <string name="eingabe_passwort">Eingabe Passwort</string>
@@ -73,7 +81,8 @@
     <string name="unbekannt">Unbekannt</string>
     <string name="_330ml">330ML</string>
     <string name="_500ml">500ML</string>
-    <string name="fingerachtung">Achtung! Bei Anmeldung via Fingerprint ist weder eine genaue Berechnung möglich, noch die Funktionen Statistik und Verlauf!</string>
+    <string name="datum">Datum</string>
+    <string name="uhrzeit">Uhrzeit</string>
 
 
 </resources>
