@@ -39,10 +39,12 @@ public class Benachrichtigungseinstellungen extends Fragment {
     Spinner wspinner;
     ArrayAdapter<CharSequence> adapter;
     ArrayAdapter<CharSequence> adapterw;
-    int minuten;
-    int stunden;
+    Integer minuten;
+    Integer stunden;
     int positionE;
     int wochentag;
+    int monat;
+    Integer jahr;
 
 
     public Benachrichtigungseinstellungen() {
@@ -84,6 +86,9 @@ public class Benachrichtigungseinstellungen extends Fragment {
                 datumpicker.set(Calendar.MONTH, monthOfYear);
                 datumpicker.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
+                wochentag = datumpicker.get(Calendar.DAY_OF_MONTH);
+                monat = datumpicker.get(Calendar.MONTH);
+                jahr = datumpicker.get(Calendar.YEAR);
             }
 
         };
@@ -170,7 +175,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
 
                 switch (position) {
                     case 0:
-                       wochentag = 0;
+                        wochentag = 0;
                         break;
                     case 1:
                         wochentag = 1;
@@ -211,7 +216,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     Calendar calendar = Calendar.getInstance();
 
                     if (positionE == 1) {
-                        if (minuten != 0 && stunden != 0) {
+                        if (minuten != null && stunden != null) {
                             calendar.set(Calendar.HOUR_OF_DAY, stunden);
                             calendar.set(Calendar.MINUTE, minuten);
                             calendar.set(Calendar.SECOND, 0);
@@ -226,7 +231,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                             } catch (NullPointerException ignored) {
                                 Toast.makeText(getActivity(), "Konnte Alarm nicht setzen!", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
                             Toast.makeText(getActivity(), "Sie müssen eine Uhrzeit wählen!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -241,8 +246,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
                         Toast.makeText(getActivity(), "Alarm wurde stündlich gesetzt!", Toast.LENGTH_SHORT).show();
                     }
 
-                    if (positionE == 2){
-                        if (minuten != 0 && stunden != 0) {
+                    if (positionE == 2) {
+                        if (minuten != null && stunden != null) {
 
                             calendar.set(Calendar.DAY_OF_WEEK, wochentag);
                             calendar.set(Calendar.HOUR_OF_DAY, stunden);
@@ -254,12 +259,40 @@ public class Benachrichtigungseinstellungen extends Fragment {
                             AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
 
                             try {
-                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY*7, pendingIntent);
+                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
                                 Toast.makeText(getActivity(), "Alarm wurde am " + calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.GERMAN) + " um " + stunden + ":" + minuten + " gesetzt!", Toast.LENGTH_SHORT).show();
                             } catch (NullPointerException ignored) {
                                 Toast.makeText(getActivity(), "Konnte Alarm nicht setzen!", Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
+                            Toast.makeText(getActivity(), "Sie müssen eine Uhrzeit wählen!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    if (positionE == 3) {
+                        if (minuten != null && stunden != null) {
+                            if (jahr != null) {
+                                calendar.set(Calendar.YEAR, jahr);
+                                calendar.set(Calendar.MONTH, monat);
+                                calendar.set(Calendar.DAY_OF_WEEK, wochentag);
+                                calendar.set(Calendar.HOUR_OF_DAY, stunden);
+                                calendar.set(Calendar.MINUTE, minuten);
+                                calendar.set(Calendar.SECOND, 0);
+
+                                Intent intent = new Intent(getActivity().getApplicationContext(), MyNotificationPublisher.class);
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
+
+                                try {
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                                    Toast.makeText(getActivity(), "Alarm wurde am " + calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.GERMAN) + " den " + wochentag + ". " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.GERMAN) + " um " + stunden + ":" + minuten + " gesetzt!", Toast.LENGTH_SHORT).show();
+                                } catch (NullPointerException ignored) {
+                                    Toast.makeText(getActivity(), "Konnte Alarm nicht setzen!", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Sie müssen einen Tag wählen!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
                             Toast.makeText(getActivity(), "Sie müssen eine Uhrzeit wählen!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -281,6 +314,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
 
         datum.setText(sdf.format(datumpicker.getTime()));
+
         // TODO ALARM SETZEN
     }
 
