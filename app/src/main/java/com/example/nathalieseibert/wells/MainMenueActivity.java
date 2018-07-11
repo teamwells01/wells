@@ -186,7 +186,7 @@ public class MainMenueActivity extends AppCompatActivity
 
                     try {
 
-                        Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                        Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
@@ -231,7 +231,7 @@ public class MainMenueActivity extends AppCompatActivity
 
                     try {
 
-                        Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                        Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
@@ -292,7 +292,7 @@ public class MainMenueActivity extends AppCompatActivity
 
 
                                                      try {
-                                                         Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
+                                                         Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
                                                          Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
                                                      } catch (Exception e) {
                                                          Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();

@@ -150,10 +150,10 @@ class DatabaseHelper extends SQLiteOpenHelper {
         System.out.println("successful - db insert " + String.valueOf(ins));
         return ins != 1;
     }
-    public boolean insertml(String ID, String istml, String sollml, String date) {
+    public boolean insertml(String mail, String istml, String sollml, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_ID, Integer.parseInt(ID));
+        contentValues.put(COL_EMAIL, mail);
         contentValues.put(COL_IST, istml);
         contentValues.put(COL_SOLL, sollml);
         contentValues.put(COL_DATE, date);
