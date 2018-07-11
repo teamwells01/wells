@@ -2,8 +2,10 @@ package com.example.nathalieseibert.wells;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -216,6 +218,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     Calendar calendar = Calendar.getInstance();
 
                     if (positionE == 1) {
+                        NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancel(100);
                         if (minuten != null && stunden != null) {
                             calendar.set(Calendar.HOUR_OF_DAY, stunden);
                             calendar.set(Calendar.MINUTE, minuten);
@@ -237,6 +241,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     }
 
                     if (positionE == 0) {
+                        NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancel(100);
                         Intent intent = new Intent(getActivity().getApplicationContext(), MyNotificationPublisher.class);
                         PendingIntent alarmIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
@@ -248,7 +254,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
 
                     if (positionE == 2) {
                         if (minuten != null && stunden != null) {
-
+                            NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            notificationManager.cancel(100);
                             calendar.set(Calendar.DAY_OF_WEEK, wochentag);
                             calendar.set(Calendar.HOUR_OF_DAY, stunden);
                             calendar.set(Calendar.MINUTE, minuten);
@@ -259,6 +266,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                             AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
 
                             try {
+
                                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
                                 Toast.makeText(getActivity(), "Alarm wurde am " + calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.GERMAN) + " um " + stunden + ":" + minuten + " gesetzt!", Toast.LENGTH_SHORT).show();
                             } catch (NullPointerException ignored) {
@@ -270,6 +278,8 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     }
 
                     if (positionE == 3) {
+                        NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancel(100);
                         if (minuten != null && stunden != null) {
                             if (jahr != null) {
                                 calendar.set(Calendar.YEAR, jahr);

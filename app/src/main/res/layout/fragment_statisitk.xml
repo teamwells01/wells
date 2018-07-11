@@ -8,8 +8,8 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
         android:gravity="center|top"
         android:text="@string/title_Statistik"
         android:textColor="@color/schwoaz"
@@ -18,25 +18,27 @@
         />
 
     <Button
-        android:id="@+id/buttonlist"
-        android:layout_width="180dp"
+        android:id="@+id/verlauf"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:text="@string/title_Verlauf" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/title_Verlauf"
+        android:layout_marginLeft="20dp" />
 
     <Button
-        android:id="@+id/buttonkarte"
-        android:layout_width="180dp"
+        android:id="@+id/statistik"
+        android:layout_width="160dp"
+        android:layout_marginEnd="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:enabled="false"
-        android:text="@string/title_Statistik" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/title_Statistik"
+        android:layout_marginRight="20dp" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="60dp" />
+
 
 
 </FrameLayout>

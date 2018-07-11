@@ -29,7 +29,7 @@ public class Statisitk extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statisitk, container, false);
 
-        Button buttonlist = view.findViewById(R.id.buttonlist);
+        Button buttonlist = view.findViewById(R.id.verlauf);
         buttonlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
