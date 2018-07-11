@@ -219,6 +219,24 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getBenutzerdataalter(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Age FROM Benutzer", null);
+        return res;
+    }
+
+    public Cursor getBenutzerdatagroesse(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Groesse FROM Benutzer", null);
+        return res;
+    }
+
+    public Cursor getBenutzerdatagewicht(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT Gewicht FROM Benutzer", null);
+        return res;
+    }
+
 
     public boolean PWupdate(String email, String pass) {
         SQLiteDatabase db = this.getWritableDatabase();

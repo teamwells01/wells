@@ -355,60 +355,56 @@ public class MainMenueActivity extends AppCompatActivity
     }
 
     private void bedarfBerechnen() {
+        String mail = getIntent().getStringExtra("Email");
+        //Check if signed in with Fingerprint or not
+        Boolean checkmail = databaseHelper.checkmail(mail);
+        if (checkmail) {
 
-        //Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf) , currentDate);
-//           if (insertdataml) {
-//
-//           Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-//          } else {
-//         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
-//    }
-//
+            //TODO DB ANBINDUNG UND IF DANN ERST BERECHNEN
+            // if (getAlter >= 15 <= 18 || getAlter >= 60){
+            // float myfloat = (float) wasserbedarf * 0.85f;
+            // wasserbedarf = Math.round(myfloat);
+            // }else if (getAlter < 15){
+            // float myfloat = (float) wasserbedarf * 0.6f;
+            // wasserbedarf = Math.round(myfloat);
+            // }else {}
 
-        //TODO DB ANBINDUNG UND IF DANN ERST BERECHNEN
-        // if (getAlter >= 15 <= 18 || getAlter >= 60){
-        // float myfloat = (float) wasserbedarf * 0.85f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getAlter < 15){
-        // float myfloat = (float) wasserbedarf * 0.6f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else {}
+            // if (getGewicht <= 60){
+            // float myfloat = (float) wasserbedarf * 0.86f;
+            // wasserbedarf = Math.round(myfloat);
+            // }else if (getGewicht > 100 && getGewicht <= 140){
+            // float myfloat = (float) wasserbedarf * 1.14f;
+            // wasserbedarf = Math.round(myfloat);
+            // }else if (getGewicht > 140){
+            // float myfloat = (float) wasserbedarf * 1.24f;
+            // wasserbedarf = Math.round(myfloat);
+            // else{}
 
-        // if (getGewicht <= 60){
-        // float myfloat = (float) wasserbedarf * 0.86f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getGewicht > 100 && getGewicht <= 140){
-        // float myfloat = (float) wasserbedarf * 1.14f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getGewicht > 140){
-        // float myfloat = (float) wasserbedarf * 1.24f;
-        // wasserbedarf = Math.round(myfloat);
-        // else{}
-
-        // if (getGroesse < 170 && getGroesse >= 155) {
-        // float myfloat = (float) wasserbedarf * 0.9f;
-        // wasserbedarf = Math.round(myfloat);
-        // } else if (getGroesse < 155){
-        // float myfloat = (float) wasserbedarf * 0.83f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getGroesse > 190){
-        // float myfloat = (float) wasserbedarf * 1.11f;
-        // wasserbedarf = Math.round(myfloat);
-        // else{}
-
-        if (temp > 20 && temp < 30) {
-            float myfloat = (float) wasserbedarf * 1.03f;
-            wasserbedarf = Math.round(myfloat);
-            altwasser = wasserbedarf;
-        } else if (temp >= 30) {
-            float myfloat = (float) wasserbedarf * 1.2f;
-            wasserbedarf = Math.round(myfloat);
-            altwasser = wasserbedarf;
+            // if (getGroesse < 170 && getGroesse >= 155) {
+            // float myfloat = (float) wasserbedarf * 0.9f;
+            // wasserbedarf = Math.round(myfloat);
+            // } else if (getGroesse < 155){
+            // float myfloat = (float) wasserbedarf * 0.83f;
+            // wasserbedarf = Math.round(myfloat);
+            // }else if (getGroesse > 190){
+            // float myfloat = (float) wasserbedarf * 1.11f;
+            // wasserbedarf = Math.round(myfloat);
+            // else{}
         } else {
-            altwasser = wasserbedarf;
-        }
-        progressanzeige();
+            if (temp > 20 && temp < 30) {
+                float myfloat = (float) wasserbedarf * 1.03f;
+                wasserbedarf = Math.round(myfloat);
+                altwasser = wasserbedarf;
+            } else if (temp >= 30) {
+                float myfloat = (float) wasserbedarf * 1.2f;
+                wasserbedarf = Math.round(myfloat);
+                altwasser = wasserbedarf;
+            } else {
+                altwasser = wasserbedarf;
+            }
+            progressanzeige();
 
+        }
     }
 
     @Override
