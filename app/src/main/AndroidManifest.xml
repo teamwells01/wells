@@ -52,7 +52,6 @@
         <service
             android:name=".IntentService"
             android:exported="false" />
-        <activity android:name=".Repeating_activity" />
         <receiver android:name=".MyNotificationPublisher" />
 
         <meta-data

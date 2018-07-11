@@ -19,7 +19,7 @@ public class MyNotificationPublisher extends BroadcastReceiver {
         long when = System.currentTimeMillis();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent repeating_intent = new Intent(context, Repeating_activity.class);
+        Intent repeating_intent = new Intent(context, LoginActivity.class);
         repeating_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -33,6 +33,7 @@ public class MyNotificationPublisher extends BroadcastReceiver {
                 .setContentTitle("Wells benachrichtigt!")
                 .setContentText("Du musst heute mehr Wasser trinken!")
                 .setAutoCancel(true).setWhen(when)
+                .setSound(alarmSound)
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
         try {
             notificationManager.notify(100, builder.build());
