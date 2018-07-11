@@ -140,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 try {
                     generateKey();
+
                 } catch (LoginActivity.FingerprintException e) {
                     e.printStackTrace();
                 }

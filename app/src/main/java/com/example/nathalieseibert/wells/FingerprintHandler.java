@@ -71,8 +71,10 @@ class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
     //onAuthenticationSucceeded is called when a fingerprint has been successfully matched to one of the fingerprints stored on the user’s device//
     public void onAuthenticationSucceeded(
             FingerprintManager.AuthenticationResult result) {
+        Toast.makeText(context.getApplicationContext(), context.getResources().getString(R.string.fingerachtung), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(context.getApplicationContext(), MainMenueActivity.class);
         context.startActivity(intent);
+
     }
 
 

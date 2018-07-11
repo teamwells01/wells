@@ -1,69 +1,149 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nathalieseibert.wells.Benachrichtigungseinstellungen">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:text="@string/benachrichtigungseistellungen"
-        android:textColor="@color/schwoaz"
-        android:textSize="25sp" />
+        android:layout_height="match_parent">
+        <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="215dp"
-        android:text="@string/benachrichtigung_aktivieren"
-        android:textColor="@color/schwoaz"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="65dp"
+            android:text="@string/benachrichtigungseistellungen"
+            android:textColor="@color/schwoaz"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="215dp"
-        android:textColor="@color/schwoaz" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:text="@string/benachrichtigung_aktivieren"
+            android:textColor="@color/schwoaz"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="300dp"
-        android:text="@string/frequenz"
-        android:textColor="@color/schwoaz"
-        android:textSize="20sp" />
+        <Switch
+            android:id="@+id/switchonben"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="44dp"
+            android:textColor="@color/schwoaz"
+            android:switchMinWidth="70dp"
+            android:checked="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <!-- Methode zum füllen von Spinner Objects in Java: Ojekte selber in String.XML als Array-->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/frequenz"
+            android:textColor="@color/schwoaz"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="300dp"
-        android:textColor="@color/schwoaz" />
+        <!-- Methode zum füllen von Spinner Objects in Java: Ojekte selber in String.XML als Array-->
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="240dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/schwoaz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/switchonben" />
 
 
-    <Button
-        android:id="@+id/speichernButon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:text="@string/speichern"
-        android:textColor="@color/schwoaz" />
+        <EditText
+            android:id="@+id/datum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:editable="false"
+            android:hint="@string/datum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+        <EditText
+            android:id="@+id/time_view_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="100dp"
+            android:editable="false"
+            android:hint="@string/uhrzeit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+             />
+
+        <Spinner
+            android:id="@+id/spinnerw"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/schwoaz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+        <Button
+            android:id="@+id/speichernButon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/speichern"
+            android:textColor="@color/schwoaz"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

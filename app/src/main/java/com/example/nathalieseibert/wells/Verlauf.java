@@ -30,7 +30,7 @@ public class Verlauf extends Fragment {
         View view = inflater.inflate(R.layout.fragment_verlauf2, container, false);
 
 
-        Button buttonkarte = view.findViewById(R.id.buttonkarte);
+        Button buttonkarte = view.findViewById(R.id.statistik);
         buttonkarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

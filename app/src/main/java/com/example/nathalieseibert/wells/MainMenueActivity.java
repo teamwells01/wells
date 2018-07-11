@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -155,50 +156,49 @@ public class MainMenueActivity extends AppCompatActivity
 
         ml330.setOnClickListener(new View.OnClickListener()
 
-                                 {
-                                     @Override
-                                     public void onClick(View v) {
-                                         hackerlButton.setVisibility(View.GONE);
-                                         mltext.setVisibility(View.GONE);
-                                         mlview.setVisibility(View.GONE);
-                                         ml330.setVisibility(View.GONE);
-                                         ml500.setVisibility(View.GONE);
-                                         String mail = getIntent().getStringExtra("Email");
+        {
+            @Override
+            public void onClick(View v) {
+                hackerlButton.setVisibility(View.GONE);
+                mltext.setVisibility(View.GONE);
+                mlview.setVisibility(View.GONE);
+                ml330.setVisibility(View.GONE);
+                ml500.setVisibility(View.GONE);
+                String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
-                                         try {
-                                             String eingabe = "330";
-                                             int zunahme = Integer.parseInt(eingabe);
-                                             wasserProgress = wasserProgress + zunahme;
+                try {
+                    String eingabe = "330";
+                    int zunahme = Integer.parseInt(eingabe);
+                    wasserProgress = wasserProgress + zunahme;
 
 
-                                             if (!schonberechnet) {
-                                                 bedarfBerechnen();
-                                                 if (mySwitch.isChecked()) {
-                                                     float myfloat = (float) wasserbedarf * 1.1f;
-                                                     wasserbedarf = Math.round(myfloat);
-                                                 }
-                                             }
-                                             schonberechnet = true;
-                                             progressanzeige();
-                                             mp.start();
+                    if (!schonberechnet) {
+                        bedarfBerechnen();
+                        if (mySwitch.isChecked()) {
+                            float myfloat = (float) wasserbedarf * 1.1f;
+                            wasserbedarf = Math.round(myfloat);
+                        }
+                    }
+                    schonberechnet = true;
+                    progressanzeige();
+                    mp.start();
+
+                    try {
+
+                        Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
+                    }
 
 
-                                             Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
-                                             if (insertdataml) {
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
+                }
 
-                                                 Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                             } else {
-                                                 Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
-                                             }
-
-
-                                         } catch (Exception e) {
-                                             Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
-                                         }
-
-                                     }
-                                 });
+            }
+        });
         ml500.setOnClickListener(new View.OnClickListener()
 
         {
@@ -229,15 +229,13 @@ public class MainMenueActivity extends AppCompatActivity
                     progressanzeige();
                     mp.start();
 
+                    try {
 
-                    Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
-                    if (insertdataml) {
-
-                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                    } else {
+                        Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                     }
-
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
@@ -272,7 +270,6 @@ public class MainMenueActivity extends AppCompatActivity
                                                  ml330.setVisibility(View.GONE);
                                                  ml500.setVisibility(View.GONE);
 
-
                                                  String mail = getIntent().getStringExtra("Email");
 //ToDo soll und datum berechnen und statische variablen tauschen
 
@@ -294,11 +291,10 @@ public class MainMenueActivity extends AppCompatActivity
                                                      mp.start();
 
 
-                                                     Boolean insertdataml = databaseHelper.insertml(mail, mltext.toString(), Integer.toString(wasserbedarf), currentDate);
-                                                     if (insertdataml) {
-
-                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
-                                                     } else {
+                                                     try {
+                                                         Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
+                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                                                     } catch (Exception e) {
                                                          Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                                                      }
 
@@ -306,7 +302,6 @@ public class MainMenueActivity extends AppCompatActivity
                                                  } catch (Exception e) {
                                                      Toast.makeText(getApplicationContext(), "Fortschritt kann nicht angezeigt werden!", Toast.LENGTH_SHORT).show();
                                                  }
-
 
                                              }
 
@@ -360,43 +355,63 @@ public class MainMenueActivity extends AppCompatActivity
 
     private void bedarfBerechnen() {
 
-        //TODO DB ANBINDUNG UND IF DANN ERST BERECHNEN
-        // if (getAlter >= 15 <= 18 || getAlter >= 60){
-        // float myfloat = (float) wasserbedarf * 0.85f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getAlter < 15){
-        // float myfloat = (float) wasserbedarf * 0.6f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else {}
+        float myfloat;
+        String mail = getIntent().getStringExtra("Email");
+        //Check if signed in with Fingerprint or not
+        try {
+            Cursor res_alter = databaseHelper.getBenutzerdataalter(mail);
+            Cursor res_groesse = databaseHelper.getBenutzerdatagroesse(mail);
+            Cursor res_gewicht = databaseHelper.getBenutzerdatagewicht(mail);
+            if (res_alter.getCount() != 0 && res_gewicht.getCount() != 0 && res_groesse.getCount() != 0) {
 
-        // if (getGewicht <= 60){
-        // float myfloat = (float) wasserbedarf * 0.86f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getGewicht > 100 && getGewicht <= 140){
-        // float myfloat = (float) wasserbedarf * 1.14f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getGewicht > 140){
-        // float myfloat = (float) wasserbedarf * 1.24f;
-        // wasserbedarf = Math.round(myfloat);
-        // else{}
+                int getAlter = Integer.parseInt(res_alter.getString(0));
+                int getGroesse = Integer.parseInt(res_groesse.getString(0));
+                int getGewicht = Integer.parseInt(res_gewicht.getString(0));
 
-        // if (getGroesse < 170 && getGroesse >= 155) {
-        // float myfloat = (float) wasserbedarf * 0.9f;
-        // wasserbedarf = Math.round(myfloat);
-        // } else if (getGroesse < 155){
-        // float myfloat = (float) wasserbedarf * 0.83f;
-        // wasserbedarf = Math.round(myfloat);
-        // }else if (getGroesse > 190){
-        // float myfloat = (float) wasserbedarf * 1.11f;
-        // wasserbedarf = Math.round(myfloat);
-        // else{}
 
+                if (getAlter >= 15 && getAlter <= 18 || getAlter >= 60) { //TOdO Marc: schau da noamal de if an ob des passt
+                    myfloat = (float) wasserbedarf * 0.85f;
+                    wasserbedarf = Math.round(myfloat);
+                } else if (getAlter < 15) {
+                    myfloat = (float) wasserbedarf * 0.6f;
+                    wasserbedarf = Math.round(myfloat);
+                }
+                //else {}
+
+                if (getGewicht <= 60) {
+                    myfloat = (float) wasserbedarf * 0.86f;
+                    wasserbedarf = Math.round(myfloat);
+                } else if (getGewicht > 100 && getGewicht <= 140) {
+                    myfloat = (float) wasserbedarf * 1.14f;
+                    wasserbedarf = Math.round(myfloat);
+                } else if (getGewicht > 140) {
+                    myfloat = (float) wasserbedarf * 1.24f;
+                    wasserbedarf = Math.round(myfloat);
+                    //else{}
+                }
+
+                if (getGroesse < 170 && getGroesse >= 155) {
+                    myfloat = (float) wasserbedarf * 0.9f;
+                    wasserbedarf = Math.round(myfloat);
+                } else if (getGroesse < 155) {
+                    myfloat = (float) wasserbedarf * 0.83f;
+                    wasserbedarf = Math.round(myfloat);
+                } else if (getGroesse > 190) {
+                    myfloat = (float) wasserbedarf * 1.11f;
+                    wasserbedarf = Math.round(myfloat);
+                    // else{}
+                }
+
+            }
+
+        } catch (Exception e) {
+        }
         if (temp > 20 && temp < 30) {
-            float myfloat = (float) wasserbedarf * 1.03f;
+            myfloat = (float) wasserbedarf * 1.03f;
             wasserbedarf = Math.round(myfloat);
             altwasser = wasserbedarf;
         } else if (temp >= 30) {
-            float myfloat = (float) wasserbedarf * 1.2f;
+            myfloat = (float) wasserbedarf * 1.2f;
             wasserbedarf = Math.round(myfloat);
             altwasser = wasserbedarf;
         } else {
