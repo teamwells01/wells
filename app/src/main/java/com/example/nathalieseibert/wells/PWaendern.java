@@ -49,33 +49,36 @@ public class PWaendern extends Fragment {
                                                       String email = _email_update.getText().toString();
                                                       String mail = getActivity().getIntent().getStringExtra("Email"); //für EMail überpüfen
 
-                                                      //neues intent erstellen??
-                                                      //String pass = getActivity().getIntent().getStringExtra("Passwort");
 
-                                                      if (email.equals("") || newPW.equals("") || PWupdate.equals("") || oldPW.equals("")) {
-                                                          Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
-                                                      } else {
-                                                          if (mail.equals(email)) { //pass.equals(oldPW) && //passwort überprüfen fehlt mir noch
-                                                              if (openHelper.checkpass(email, oldPW)) {
-                                                                  if (newPW.equals(PWupdate)) {
-                                                                      boolean isUpdate = openHelper.PWupdate(email, newPW);
-                                                                      if (isUpdate) {
-                                                                          Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
-                                                                      } else {
-                                                                          Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();
-                                                                      }
-                                                                  } else {
-                                                                      Toast.makeText(getContext(), "Password new and password confirmed are not equal!", Toast.LENGTH_LONG).show();
-                                                                  }
+                                                      try {
 
-                                                              } else {
-                                                                  Toast.makeText(getContext(), "Wrong old password!", Toast.LENGTH_LONG).show();
-                                                              }
+                                                          if (email.equals("") || newPW.equals("") || PWupdate.equals("") || oldPW.equals("")) {
+                                                              Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                                                           } else {
-                                                              Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_LONG).show();
-                                                          }
-                                                      }
+                                                              if (mail.equals(email)) {
+                                                                  if (openHelper.checkpass(email, oldPW)) {
+                                                                      if (newPW.equals(PWupdate)) {
+                                                                          boolean isUpdate = openHelper.PWupdate(email, newPW);
+                                                                          if (isUpdate) {
+                                                                              Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
+                                                                          } else {
+                                                                              Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();
+                                                                          }
+                                                                      } else {
+                                                                          Toast.makeText(getContext(), "Password new and password confirmed are not equal!", Toast.LENGTH_LONG).show();
+                                                                      }
 
+                                                                  } else {
+                                                                      Toast.makeText(getContext(), "Wrong old password!", Toast.LENGTH_LONG).show();
+                                                                  }
+                                                              } else {
+                                                                  Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_LONG).show();
+                                                              }
+                                                          }
+
+                                                      }catch (Exception e) {
+                                                              Toast.makeText(getContext(), "'Passwort ändern' ist nur mittels vorhandener eMail möglich! (man muss sich zuerst vollständig registrieren)", Toast.LENGTH_LONG).show();
+                                                          }
                                                   }
                                               }
         );
