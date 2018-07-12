@@ -1,4 +1,4 @@
-package com.example.nathalieseibert.wells;
+package at.fhjoanneum.gruppeWells.wells;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,7 +28,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_DATE = "Datum";
     private static final String DATABASE_NAME = "MyExternalDatabase.db";
     private static final int DATABASE_VERSION = 1;
-    private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
+    private static String DATABASE_PATH; //= "/data/data/com.example.gruppeWells.wells/databases/";
     private final Context context;
     private SQLiteDatabase db;
 

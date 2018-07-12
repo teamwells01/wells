@@ -1,4 +1,4 @@
-package com.example.nathalieseibert.wells;
+package at.fhjoanneum.gruppeWells.wells;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -93,7 +93,6 @@ public class Karte extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
 
         return rootView;
     }

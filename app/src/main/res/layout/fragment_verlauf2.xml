@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nathalieseibert.wells.Verlauf">
+    tools:context="at.fhjoanneum.gruppeWells.wells.Verlauf">
 
     <!-- TODO: Update blank fragment layout -->
 

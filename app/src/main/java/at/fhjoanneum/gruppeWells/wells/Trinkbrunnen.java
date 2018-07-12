@@ -1,4 +1,4 @@
-package com.example.nathalieseibert.wells;
+package at.fhjoanneum.gruppeWells.wells;
 
 
 import android.Manifest;

@@ -1,4 +1,4 @@
-package com.example.nathalieseibert.wells;
+package at.fhjoanneum.gruppeWells.wells;
 
 
 import android.os.Bundle;
@@ -15,11 +15,10 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-@SuppressWarnings("ALL")
-public class Verlauf extends Fragment {
+public class Statisitk extends Fragment {
 
 
-    public Verlauf() {
+    public Statisitk() {
         // Required empty public constructor
     }
 
@@ -28,17 +27,16 @@ public class Verlauf extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_verlauf2, container, false);
+        View view = inflater.inflate(R.layout.fragment_statisitk, container, false);
 
-
-        Button buttonkarte = view.findViewById(R.id.statistik);
-        buttonkarte.setOnClickListener(new View.OnClickListener() {
+        Button buttonlist = view.findViewById(R.id.verlauf);
+        buttonlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Statisitk statisitkfragment = new Statisitk();
+                Verlauf verlauffragment = new Verlauf();
                 FragmentManager manager = getFragmentManager();
                 try {
-                    manager.beginTransaction().replace(R.id.mainLayout, statisitkfragment, statisitkfragment.getTag()).commit();
+                    manager.beginTransaction().replace(R.id.mainLayout, verlauffragment, verlauffragment.getTag()).commit();
                 } catch (NullPointerException e) {
                     Toast.makeText(getActivity(), "Error",
                             Toast.LENGTH_LONG).show();
@@ -46,7 +44,6 @@ public class Verlauf extends Fragment {
             }
         });
         return view;
-
     }
 
 
