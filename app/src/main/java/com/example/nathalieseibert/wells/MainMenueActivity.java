@@ -59,6 +59,7 @@ public class MainMenueActivity extends AppCompatActivity
     private boolean schonberechnet = false;
     private Button ml330;
     private Button ml500;
+    private String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +178,7 @@ public class MainMenueActivity extends AppCompatActivity
 
 
                     if (!schonberechnet) {
-                        bedarfBerechnen();
+                        tempbedarf();
                         if (mySwitch.isChecked()) {
                             float myfloat = (float) wasserbedarf * 1.1f;
                             wasserbedarf = Math.round(myfloat);
@@ -222,7 +223,7 @@ public class MainMenueActivity extends AppCompatActivity
 
 
                     if (!schonberechnet) {
-                        bedarfBerechnen();
+                        tempbedarf();
                         if (mySwitch.isChecked()) {
                             float myfloat = (float) wasserbedarf * 1.1f;
                             wasserbedarf = Math.round(myfloat);
@@ -283,7 +284,7 @@ public class MainMenueActivity extends AppCompatActivity
 
 
                                                      if (!schonberechnet) {
-                                                         bedarfBerechnen();
+                                                         tempbedarf();
                                                          if (mySwitch.isChecked()) {
                                                              float myfloat = (float) wasserbedarf * 1.1f;
                                                              wasserbedarf = Math.round(myfloat);
@@ -360,13 +361,13 @@ public class MainMenueActivity extends AppCompatActivity
     private void bedarfBerechnen() {
 
         float myfloat;
-        String mail = getIntent().getStringExtra("Email");
+
         //Check if signed in with Fingerprint or not
         try {
             String alter;
             String gewicht;
             String groesse;
-
+            mail = getIntent().getStringExtra("Email");
             Cursor res_alter = databaseHelper.getBenutzerdataalter(mail);
             if (res_alter.moveToFirst()) {
                 alter = res_alter.getString(res_alter.getColumnIndex("Age"));
@@ -431,8 +432,13 @@ public class MainMenueActivity extends AppCompatActivity
             }
 
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Sie sind mit keiner Mail eingeloggt!", Toast.LENGTH_SHORT).show();
         }
+        progressanzeige();
+
+    }
+    public void tempbedarf(){
+        float myfloat;
         if (temp > 20 && temp < 30) {
             myfloat = (float) wasserbedarf * 1.03f;
             wasserbedarf = Math.round(myfloat);
