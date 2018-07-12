@@ -23,22 +23,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:text="@string/title_Verlauf"
-        android:layout_marginLeft="20dp" />
+        android:text="@string/title_Verlauf" />
 
     <Button
         android:id="@+id/statistik"
         android:layout_width="160dp"
-        android:layout_marginEnd="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:enabled="false"
         android:layout_marginBottom="20dp"
-        android:text="@string/title_Statistik"
-        android:layout_marginRight="20dp" />
-
-
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:enabled="false"
+        android:text="@string/title_Statistik" />
 
 
 </FrameLayout>

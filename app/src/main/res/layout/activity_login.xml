@@ -105,13 +105,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/schwoaz" />
 
-     <!--   <TextView
-            android:id="@+id/textView"
-            android:layout_width="336dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/fingerachtung" /> -->
+        <!--   <TextView
+               android:id="@+id/textView"
+               android:layout_width="336dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               android:layout_centerHorizontal="true"
+               android:text="@string/fingerachtung" /> -->
 
     </RelativeLayout>
 

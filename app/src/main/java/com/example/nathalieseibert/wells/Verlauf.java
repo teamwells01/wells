@@ -15,6 +15,7 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressWarnings("ALL")
 public class Verlauf extends Fragment {
 
 

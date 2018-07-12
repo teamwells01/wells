@@ -11,10 +11,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+@SuppressWarnings("ALL")
 class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String USER_TABLE = "Benutzer";
     static final String LIST_TABLE = "Liste";
+    private static final String USER_TABLE = "Benutzer";
     private static final String DRINK_TABLE = "Trinkverhalten";
     private static final String COL_EMAIL = "Email";
     private static final String COL_PASS = "Passwort";
@@ -30,7 +31,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private static String DATABASE_PATH; //= "/data/data/com.example.nathalieseibert.wells/databases/";
     private final Context context;
     private SQLiteDatabase db;
-    private static final String COL_ID ="ID";
 
 
     public DatabaseHelper(Context context) {
@@ -150,6 +150,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         System.out.println("successful - db insert " + String.valueOf(ins));
         return ins != 1;
     }
+
     public boolean insertml(String mail, String istml, String sollml, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -167,6 +168,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[]{email});
+        cursor.close();
         return cursor.getCount() <= 0;
     }
 
@@ -174,9 +176,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkpass(String email, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[]{email, pass});
+        cursor.close();
         return cursor.getCount() > 0;
     }
-
 
 
     public boolean updateData(String email, String age, String weight, String height) {
@@ -211,29 +213,32 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getAllData() {
+// --Commented out by Inspection START (12.07.2018 11:17):
+//    public Cursor getAllData() {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("SELECT NameTrinkbrunnen FROM " + LIST_TABLE, null);
+//        return res;
+//
+//
+//    }
+// --Commented out by Inspection STOP (12.07.2018 11:17)
+
+    public Cursor getBenutzerdataalter(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT NameTrinkbrunnen FROM " + LIST_TABLE, null);
-        return res;
-
-
-    }
-
-    public Cursor getBenutzerdataalter(String email){
-        SQLiteDatabase db = this.getWritableDatabase();
+        //noinspection UnnecessaryLocalVariable
         Cursor res = db.rawQuery("SELECT Age FROM Benutzer where Email=?", new String[]{email});
         return res;
     }
 
-    public Cursor getBenutzerdatagroesse(String email){
+    public Cursor getBenutzerdatagroesse(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT Groesse FROM Benutzer where Email=?",  new String[]{email});
+        Cursor res = db.rawQuery("SELECT Groesse FROM Benutzer where Email=?", new String[]{email});
         return res;
     }
 
-    public Cursor getBenutzerdatagewicht(String email){
+    public Cursor getBenutzerdatagewicht(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT Gewicht FROM Benutzer where Email=?",  new String[]{email});
+        Cursor res = db.rawQuery("SELECT Gewicht FROM Benutzer where Email=?", new String[]{email});
         return res;
     }
 

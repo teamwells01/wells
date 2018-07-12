@@ -7,17 +7,17 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_margin="60dp"
             android:gravity="center_horizontal"
             android:text="@string/title_brunnenliste"
             android:textColor="@color/schwoaz"
-            android:textSize="25sp"
-            />
+            android:textSize="25sp" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -25,105 +25,99 @@
             android:layout_gravity="center_horizontal">
 
 
-
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="30dp">
+                android:layout_margin="20dp">
 
                 <TextView
                     android:id="@+id/nameOne"
-                    android:layout_width="265dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/distanceOne"
                     android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_height="wrap_content"
-                    android:text="@string/unbekannt" />
+                    android:text="@string/unbekannt"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="30dp">
+                android:layout_margin="20dp">
 
                 <TextView
                     android:id="@+id/nameTwo"
-                    android:layout_width="265dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/distanceTwo"
                     android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_height="wrap_content"
-                    android:text="@string/unbekannt" />
+                    android:text="@string/unbekannt"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="30dp">
+                android:layout_margin="20dp">
 
                 <TextView
                     android:id="@+id/nameThree"
-                    android:layout_width="265dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/distanceThree"
                     android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_height="wrap_content"
-                    android:text="@string/unbekannt" />
+                    android:text="@string/unbekannt"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="30dp">
+                android:layout_margin="20dp">
 
                 <TextView
                     android:id="@+id/nameFour"
-                    android:layout_width="265dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/distanceFour"
                     android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_height="wrap_content"
-                    android:text="@string/unbekannt" />
+                    android:text="@string/unbekannt"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="30dp">
+                android:layout_margin="20dp">
 
                 <TextView
                     android:id="@+id/nameFive"
-                    android:layout_width="265dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/distanceFive"
                     android:layout_width="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:layout_height="wrap_content"
-                    android:text="@string/unbekannt" />
+                    android:text="@string/unbekannt"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
 
 
@@ -135,9 +129,6 @@
                 android:text="@string/title_Karte" />
 
         </TableLayout>
-
-
-
 
 
     </LinearLayout>

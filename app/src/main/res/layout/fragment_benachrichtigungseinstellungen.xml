@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -48,9 +49,9 @@
             android:layout_marginRight="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="44dp"
-            android:textColor="@color/schwoaz"
-            android:switchMinWidth="70dp"
             android:checked="false"
+            android:switchMinWidth="70dp"
+            android:textColor="@color/schwoaz"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -114,7 +115,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner"
-             />
+            tools:ignore="Deprecated,TextFields" />
 
         <Spinner
             android:id="@+id/spinnerw"

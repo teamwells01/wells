@@ -1,5 +1,6 @@
 package com.example.nathalieseibert.wells;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -31,22 +32,23 @@ import java.util.Locale;
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressWarnings("ALL")
 public class Benachrichtigungseinstellungen extends Fragment {
-    Spinner spinner;
-    Switch switchben;
-    EditText datum;
-    DatePickerDialog.OnDateSetListener date;
-    Calendar datumpicker;
-    EditText zeitpicker;
-    Spinner wspinner;
-    ArrayAdapter<CharSequence> adapter;
-    ArrayAdapter<CharSequence> adapterw;
-    Integer minuten;
-    Integer stunden;
-    int positionE;
-    int wochentag;
-    int monat;
-    Integer jahr;
+    private Spinner spinner;
+    private Switch switchben;
+    private EditText datum;
+    private DatePickerDialog.OnDateSetListener date;
+    private Calendar datumpicker;
+    private EditText zeitpicker;
+    private Spinner wspinner;
+    private ArrayAdapter<CharSequence> adapter;
+    private ArrayAdapter<CharSequence> adapterw;
+    private Integer minuten;
+    private Integer stunden;
+    private int positionE;
+    private int wochentag;
+    private int monat;
+    private Integer jahr;
 
 
     public Benachrichtigungseinstellungen() {
@@ -117,6 +119,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
 
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
 
@@ -218,7 +221,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     Calendar calendar = Calendar.getInstance();
 
                     if (positionE == 1) {
-                        NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.cancel(100);
                         if (minuten != null && stunden != null) {
                             calendar.set(Calendar.HOUR_OF_DAY, stunden);
@@ -241,7 +244,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     }
 
                     if (positionE == 0) {
-                        NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.cancel(100);
                         Intent intent = new Intent(getActivity().getApplicationContext(), MyNotificationPublisher.class);
                         PendingIntent alarmIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -254,7 +257,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
 
                     if (positionE == 2) {
                         if (minuten != null && stunden != null) {
-                            NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                             notificationManager.cancel(100);
                             calendar.set(Calendar.DAY_OF_WEEK, wochentag);
                             calendar.set(Calendar.HOUR_OF_DAY, stunden);
@@ -278,7 +281,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                     }
 
                     if (positionE == 3) {
-                        NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.cancel(100);
                         if (minuten != null && stunden != null) {
                             if (jahr != null) {
@@ -307,7 +310,7 @@ public class Benachrichtigungseinstellungen extends Fragment {
                         }
                     }
                 } else {
-                    NotificationManager notificationManager = (NotificationManager)getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                    NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(100);
                     Toast.makeText(getActivity(), "Benachrichtigungen ausgeschaltet!", Toast.LENGTH_SHORT).show();
                 }

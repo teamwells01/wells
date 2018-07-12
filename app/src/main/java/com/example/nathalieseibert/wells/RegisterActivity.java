@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String weight = _editTextWeight.getText().toString();
                 String height = _editTextHeight.getText().toString();
 
-                if (isEmailValid(email)) {
+                if (isEmailValid()) {
                     return;
                 }
 
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean isEmailValid() {
         EditText emailFeld = findViewById(R.id.editTextEmail);
         String eingabe = emailFeld.getText().toString();
 
@@ -87,7 +87,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean isPasswordValid(String password) {
         EditText passFeld = findViewById(R.id.editTextPassword);
-        String eingabe = passFeld.getText().toString();
 
 
         if (password.length() >= 4) {
@@ -97,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
             passFeld.setHintTextColor(getResources().getColor(R.color.red));
         }
 
-        return password.length() < 4;
+        return true;
     }
 
 

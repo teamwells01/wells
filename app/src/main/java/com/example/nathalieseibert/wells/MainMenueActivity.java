@@ -39,6 +39,8 @@ public class MainMenueActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
+    private final Calendar calendar = Calendar.getInstance();
+    private final String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     private int wasserProgress;
     private int wasserbedarf = 2000;
     private Button hackerlButton;
@@ -57,9 +59,6 @@ public class MainMenueActivity extends AppCompatActivity
     private boolean schonberechnet = false;
     private Button ml330;
     private Button ml500;
-    Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +106,11 @@ public class MainMenueActivity extends AppCompatActivity
         //temperatur
         temperaturelabel = findViewById(R.id.myTemp);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+
+        try {
+            mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        } catch (NullPointerException ignored) {
+        }
 
         bedarfBerechnen();
 
@@ -325,6 +328,7 @@ public class MainMenueActivity extends AppCompatActivity
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
         float ambient_temperature = event.values[0];
@@ -339,6 +343,7 @@ public class MainMenueActivity extends AppCompatActivity
         // Do something here if sensor accuracy changes.
     }
 
+    @SuppressLint("SetTextI18n")
     private void progressanzeige() {
 
         float rechnen = ((float) wasserProgress / (float) wasserbedarf) * 100;
@@ -404,7 +409,7 @@ public class MainMenueActivity extends AppCompatActivity
 
             }
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         if (temp > 20 && temp < 30) {
             myfloat = (float) wasserbedarf * 1.03f;

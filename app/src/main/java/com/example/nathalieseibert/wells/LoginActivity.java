@@ -1,6 +1,7 @@
 package com.example.nathalieseibert.wells;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -37,6 +38,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 
+@SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
     private static final String KEY_NAME = "yourKey";
@@ -52,10 +54,13 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
+
     @Override
     public void onBackPressed() {
 
     }
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

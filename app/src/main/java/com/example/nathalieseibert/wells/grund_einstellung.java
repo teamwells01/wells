@@ -49,26 +49,28 @@ public class grund_einstellung extends Fragment {
                                                  String age = _editTextAge.getText().toString();
                                                  String weight = _editTextWeight.getText().toString();
                                                  String height = _editTextHeight.getText().toString();
-
-                                                 String mail = getActivity().getIntent().getStringExtra("Email"); //für EMail überpüfen
-
                                                  try {
-                                                     if (email.equals("") || age.equals("") || weight.equals("") || height.equals("")) {
-                                                         Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
-                                                     } else {
-                                                         if (mail.equals(email)) {
-                                                             boolean isUpdate = openHelper.updateData(email, age, weight, height);
-                                                             if (isUpdate) {
-                                                                 Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
-                                                             } else {
-                                                                 Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();
-                                                             }
+                                                     String mail = getActivity().getIntent().getStringExtra("Email"); //für EMail überpüfen
+
+                                                     try {
+                                                         if (email.equals("") || age.equals("") || weight.equals("") || height.equals("")) {
+                                                             Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                                                          } else {
-                                                             Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_SHORT).show();
+                                                             if (mail.equals(email)) {
+                                                                 boolean isUpdate = openHelper.updateData(email, age, weight, height);
+                                                                 if (isUpdate) {
+                                                                     Toast.makeText(getContext(), "Updated successfully", Toast.LENGTH_SHORT).show();
+                                                                 } else {
+                                                                     Toast.makeText(getContext(), "Update was not successfully", Toast.LENGTH_SHORT).show();
+                                                                 }
+                                                             } else {
+                                                                 Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_SHORT).show();
+                                                             }
                                                          }
+                                                     } catch (Exception e) {
+                                                         Toast.makeText(getContext(), "Achtung! Bei Anmeldung via Fingerprint ist das Updaten von Daten nicht möglich! Es wird eine eMail benötigt!", Toast.LENGTH_LONG).show();
                                                      }
-                                                 }catch (Exception e) {
-                                                     Toast.makeText(getContext(), "Achtung! Bei Anmeldung via Fingerprint ist das Updaten von Daten nicht möglich! Es wird eine eMail benötigt!", Toast.LENGTH_LONG).show();
+                                                 } catch (NullPointerException ignored) {
                                                  }
 
 
