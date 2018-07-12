@@ -153,7 +153,7 @@ public class Karte extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(getActivity());
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
 

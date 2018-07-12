@@ -190,7 +190,7 @@ public class MainMenueActivity extends AppCompatActivity
                     try {
 
                         Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
-                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                     }
@@ -235,7 +235,7 @@ public class MainMenueActivity extends AppCompatActivity
                     try {
 
                         Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
-                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                     }
@@ -296,7 +296,7 @@ public class MainMenueActivity extends AppCompatActivity
 
                                                      try {
                                                          Boolean insertdataml = databaseHelper.insertml(mail, eingabe, Integer.toString(wasserbedarf), currentDate);
-                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen" + insertdataml, Toast.LENGTH_SHORT).show();
+                                                         Toast.makeText(getApplicationContext(), eingabe + "ml erfolgreich eingetragen", Toast.LENGTH_SHORT).show();
                                                      } catch (Exception e) {
                                                          Toast.makeText(getApplicationContext(), "ml konnten nicht eingetragen werden", Toast.LENGTH_SHORT).show();
                                                      }
@@ -355,7 +355,6 @@ public class MainMenueActivity extends AppCompatActivity
         prozent.setText(balken + "%");
         titele.setText(wasserProgress + "ml von " + wasserbedarf + "ml");
 
-
     }
 
     private void bedarfBerechnen() {
@@ -364,12 +363,34 @@ public class MainMenueActivity extends AppCompatActivity
         String mail = getIntent().getStringExtra("Email");
         //Check if signed in with Fingerprint or not
         try {
+            String alter;
+            String gewicht;
+            String groesse;
+
             Cursor res_alter = databaseHelper.getBenutzerdataalter(mail);
+            if (res_alter.moveToFirst()) {
+                alter = res_alter.getString(res_alter.getColumnIndex("Age"));
+            } else {
+                alter = "0";
+            }
+
             Cursor res_groesse = databaseHelper.getBenutzerdatagroesse(mail);
+            if (res_groesse.moveToFirst()) {
+                groesse = res_groesse.getString(res_groesse.getColumnIndex("Groesse"));
+            } else {
+                groesse = "0";
+            }
+
             Cursor res_gewicht = databaseHelper.getBenutzerdatagewicht(mail);
+            if (res_gewicht.moveToFirst()) {
+                gewicht = res_gewicht.getString(res_gewicht.getColumnIndex("Gewicht"));
+            } else {
+                gewicht = "0";
+            }
+
             if (res_alter.getCount() != 0 && res_gewicht.getCount() != 0 && res_groesse.getCount() != 0) {
 
-                int getAlter = Integer.parseInt(res_alter.getString(0));
+                int getAlter = Integer.parseInt(alter);
                 int getGroesse = Integer.parseInt(res_groesse.getString(0));
                 int getGewicht = Integer.parseInt(res_gewicht.getString(0));
 
@@ -409,7 +430,8 @@ public class MainMenueActivity extends AppCompatActivity
 
             }
 
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }
         if (temp > 20 && temp < 30) {
             myfloat = (float) wasserbedarf * 1.03f;
