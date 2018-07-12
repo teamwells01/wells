@@ -108,7 +108,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    private SQLiteDatabase openDatabase() {
+    public SQLiteDatabase openDatabase() {
         String path = DATABASE_PATH + DATABASE_NAME;
         db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
         return db;
@@ -168,16 +168,18 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[]{email});
-        cursor.close();
-        return cursor.getCount() <= 0;
+        if(cursor.getCount()>0) return false;
+        else return true;
+        //        cursor.close();
+//        return cursor.getCount() <= 0;
     }
 
 
     public boolean checkpass(String email, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[]{email, pass});
-        cursor.close();
-        return cursor.getCount() > 0;
+        if(cursor.getCount()>0) return true;
+        else return false;
     }
 
 

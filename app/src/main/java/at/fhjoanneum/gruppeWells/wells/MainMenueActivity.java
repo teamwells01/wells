@@ -479,6 +479,7 @@ public class MainMenueActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.homeButton) {
             startActivity(new Intent(this, MainMenueActivity.class));
+            databaseHelper.openDatabase();
             return true;
 
         }
