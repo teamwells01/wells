@@ -1,6 +1,7 @@
 package at.fhjoanneum.gruppeWells.wells;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -54,6 +55,8 @@ public class loeschen extends Fragment {
 
                                                      if (deletedRows > 0) {
                                                          Toast.makeText(getContext(), "Data deleted", Toast.LENGTH_LONG).show();
+                                                         startActivity(new Intent(getActivity(), LoginActivity.class));
+                                                         myDB.close();
                                                      } else {
                                                          Toast.makeText(getContext(), "Data not deleted", Toast.LENGTH_LONG).show();
                                                      }
