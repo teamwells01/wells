@@ -53,6 +53,7 @@ public class grund_einstellung extends Fragment {
                                                  String mail = getActivity().getIntent().getStringExtra("Email"); //für EMail überpüfen
 
                                                  try {
+
                                                      if (email.equals("") || age.equals("") || weight.equals("") || height.equals("")) {
                                                          Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                                                      } else {

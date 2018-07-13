@@ -309,6 +309,38 @@ public class MainMenueActivity extends AppCompatActivity
                                          }
         );
 
+
+        //anzeigen der werte
+        String mail = getIntent().getStringExtra("Email");
+Cursor res = databaseHelper.getMl(mail, currentDate); //curentdate bedingung
+StringBuffer buf = new StringBuffer();
+int [] array = new int[res.getCount()];
+        int sum = 0;
+        if (res.getCount()!=0){
+for (int i = 0; i<=res.getCount(); i++){
+
+    array [i] = Integer.parseInt(res.getString(i));
+
+}
+
+
+        for (int i : array) {
+            sum += i;
+        }
+
+
+//while(res.moveToNext()){
+//    int i = 0;
+//    buf.append(res.getString(i));
+//    i++;
+//}
+}
+
+
+
+
+
+
     }
 
 
