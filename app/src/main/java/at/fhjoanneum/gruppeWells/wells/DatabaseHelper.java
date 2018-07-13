@@ -168,7 +168,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=?", new String[]{email});
-        if(cursor.getCount()>0) return false;
+        if (cursor.getCount() > 0) return false;
         else return true;
         //        cursor.close();
 //        return cursor.getCount() <= 0;
@@ -178,7 +178,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkpass(String email, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select * from Benutzer where Email=? and Passwort =?", new String[]{email, pass});
-        if(cursor.getCount()>0) return true;
+        if (cursor.getCount() > 0) return true;
         else return false;
     }
 

@@ -109,7 +109,9 @@ public class MainMenueActivity extends AppCompatActivity
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         try {
-            mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            if (mSensorManager != null) {
+                mTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+            }
         } catch (NullPointerException ignored) {
         }
 
@@ -392,8 +394,8 @@ public class MainMenueActivity extends AppCompatActivity
             if (res_alter.getCount() != 0 && res_gewicht.getCount() != 0 && res_groesse.getCount() != 0) {
 
                 int getAlter = Integer.parseInt(alter);
-                int getGroesse = Integer.parseInt(res_groesse.getString(0));
-                int getGewicht = Integer.parseInt(res_gewicht.getString(0));
+                int getGroesse = Integer.parseInt(groesse);
+                int getGewicht = Integer.parseInt(gewicht);
 
 
                 if (getAlter >= 15 && getAlter <= 18 || getAlter >= 60) { //TOdO Marc: schau da noamal de if an ob des passt
@@ -437,7 +439,8 @@ public class MainMenueActivity extends AppCompatActivity
         progressanzeige();
 
     }
-    public void tempbedarf(){
+
+    public void tempbedarf() {
         float myfloat;
         if (temp > 20 && temp < 30) {
             myfloat = (float) wasserbedarf * 1.03f;
