@@ -232,6 +232,13 @@ class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getMl(String email, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT mlIst FROM Trinkverhalten where Email=? and Datum=?", new String[]{email, date});
+        return res;
+
+    }
+
     public Cursor getBenutzerdatagroesse(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT Groesse FROM Benutzer where Email=?", new String[]{email});

@@ -59,7 +59,8 @@ public class MainMenueActivity extends AppCompatActivity
     private boolean schonberechnet = false;
     private Button ml330;
     private Button ml500;
-    private String mail;
+    // int sum;
+    // int[] array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,28 @@ public class MainMenueActivity extends AppCompatActivity
         titele = findViewById(R.id.titele);
         progressanzeige();
 
+        /*anzeigen der werte
+        String mail = getIntent().getStringExtra("Email");
+        Cursor res = databaseHelper.getMl(mail, currentDate);
+        StringBuffer buf = new StringBuffer();
+        array = new int[res.getCount()];
+        sum = 0;
+        try {
+            if (res.getCount() != 0) {
+                for (int i = 0; i <= res.getCount(); i++) {
 
+                    array[i] = Integer.parseInt(res.getString(i));
+
+                }
+
+
+                for (int i : array) {
+                    sum += i;
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        */
         //visibility buttons
         Button wasserButton = findViewById(R.id.addWater);
         hackerlButton = findViewById(R.id.haeckchen); //define ButtoQns for visibility
@@ -369,7 +391,7 @@ public class MainMenueActivity extends AppCompatActivity
             String alter;
             String gewicht;
             String groesse;
-            mail = getIntent().getStringExtra("Email");
+            String mail = getIntent().getStringExtra("Email");
             Cursor res_alter = databaseHelper.getBenutzerdataalter(mail);
             if (res_alter.moveToFirst()) {
                 alter = res_alter.getString(res_alter.getColumnIndex("Age"));
@@ -440,7 +462,7 @@ public class MainMenueActivity extends AppCompatActivity
 
     }
 
-    public void tempbedarf() {
+    private void tempbedarf() {
         float myfloat;
         if (temp > 20 && temp < 30) {
             myfloat = (float) wasserbedarf * 1.03f;

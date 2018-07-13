@@ -20,6 +20,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="65dp"
+            android:gravity="center"
             android:text="@string/benachrichtigungseistellungen"
             android:textColor="@color/schwoaz"
             android:textSize="25sp"
