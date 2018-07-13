@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Boolean insertdata = openHelper.insertdata(email, pass, name, age, weight, height);
                         if (insertdata) {
                             Toast.makeText(getApplicationContext(), "Registered successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, MainMenueActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }
                     } else {
