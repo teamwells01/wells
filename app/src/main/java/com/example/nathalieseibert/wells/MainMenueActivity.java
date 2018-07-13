@@ -312,7 +312,7 @@ public class MainMenueActivity extends AppCompatActivity
 
         //anzeigen der werte
         String mail = getIntent().getStringExtra("Email");
-Cursor res = databaseHelper.getMl(mail, currentDate); //curentdate bedingung
+Cursor res = databaseHelper.getMl(mail, currentDate);
 StringBuffer buf = new StringBuffer();
 int [] array = new int[res.getCount()];
         int sum = 0;
