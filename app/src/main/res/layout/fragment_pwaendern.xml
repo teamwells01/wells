@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nathalieseibert.wells.PWaendern">
+    tools:context="at.fhjoanneum.gruppeWells.wells.PWaendern">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -35,7 +35,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="130dp"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,10 +52,10 @@
         android:id="@+id/oldPw_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="160dp"
-        android:layout_marginStart="160dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginLeft="160dp"
         android:layout_marginRight="20dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="215dp"
         android:inputType="textPassword"
         tools:ignore="LabelFor" />
@@ -73,8 +74,8 @@
         android:id="@+id/newPw_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="170dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginLeft="170dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="170dp"
         android:layout_marginTop="300dp"
@@ -95,28 +96,28 @@
         android:id="@+id/newPw_conform"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginRight="20dp"
         android:layout_marginStart="210dp"
         android:layout_marginTop="385dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:inputType="textPassword"
-        tools:ignore="LabelFor"
-        android:layout_marginLeft="210dp" />
+        tools:ignore="LabelFor" />
 
 
     <Button
         android:id="@+id/pwSpeichernButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="450dp"
         android:text="@string/speichern"
-        android:textColor="@color/schwoaz"
-        android:layout_marginLeft="20dp" />
+        android:textColor="@color/schwoaz" />
 
 
 </FrameLayout>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nathalieseibert.wells.Einstellungen">
+    tools:context="at.fhjoanneum.gruppeWells.wells.Einstellungen">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -18,11 +18,11 @@
         android:id="@+id/Grundeinstellungen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="130dp"
         android:gravity="center"
         android:text="@string/grundeinstellungen"
         android:textColor="@color/schwoaz" />
@@ -31,11 +31,11 @@
         android:id="@+id/Benachrichtigung"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="215dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="215dp"
         android:gravity="center"
         android:text="@string/Benachrichtigung"
         android:textColor="@color/schwoaz" />
@@ -45,11 +45,11 @@
         android:id="@+id/PWAendern"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="300dp"
         android:gravity="center"
         android:text="@string/passwort_ndern"
         android:textColor="@color/schwoaz" />
@@ -58,12 +58,12 @@
         android:id="@+id/loeschen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
         android:text="@string/löschen"
         android:textColor="#ff0000" />
 

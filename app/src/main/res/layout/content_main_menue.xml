@@ -4,7 +4,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nathalieseibert.wells.MainMenueActivity"
+    tools:context="at.fhjoanneum.gruppeWells.wells.MainMenueActivity"
     tools:showIn="@layout/app_bar_main_menue">
 
 
@@ -12,9 +12,9 @@
         android:id="@+id/titele"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
+        android:gravity="center"
         android:textColor="@color/schwoaz"
         android:textSize="27sp" />
 
@@ -63,8 +63,8 @@
         android:layout_marginTop="400dp"
         android:ems="5"
         android:imeOptions="actionDone"
-        android:maxLength="4"
         android:inputType="number"
+        android:maxLength="4"
         tools:ignore="LabelFor" />
 
     <Button
@@ -93,9 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/haeckchen"
+        android:layout_toLeftOf="@+id/addWater"
         android:layout_toStartOf="@+id/addWater"
         android:text="@string/_330ml"
-        android:layout_toLeftOf="@+id/addWater" />
+        tools:ignore="RelativeOverlap" />
 
     <Button
         android:id="@+id/ml500"
@@ -103,8 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/haeckchen"
         android:layout_toEndOf="@+id/addWater"
-        android:text="@string/_500ml"
-        android:layout_toRightOf="@+id/addWater" />
+        android:layout_toRightOf="@+id/addWater"
+        android:text="@string/_500ml" />
 
     <Switch
         android:id="@+id/mySwitch"
