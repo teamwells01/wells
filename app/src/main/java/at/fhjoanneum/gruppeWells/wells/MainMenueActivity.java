@@ -59,6 +59,7 @@ public class MainMenueActivity extends AppCompatActivity
     private boolean schonberechnet = false;
     private Button ml330;
     private Button ml500;
+    private String mail;
     // int sum;
     // int[] array;
 
@@ -69,7 +70,7 @@ public class MainMenueActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_menue);
 
         databaseHelper = new DatabaseHelper(MainMenueActivity.this);
-
+        mail = getIntent().getStringExtra("Email");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,28 +92,7 @@ public class MainMenueActivity extends AppCompatActivity
         titele = findViewById(R.id.titele);
         progressanzeige();
 
-        /*anzeigen der werte
-        String mail = getIntent().getStringExtra("Email");
-        Cursor res = databaseHelper.getMl(mail, currentDate);
-        StringBuffer buf = new StringBuffer();
-        array = new int[res.getCount()];
-        sum = 0;
-        try {
-            if (res.getCount() != 0) {
-                for (int i = 0; i <= res.getCount(); i++) {
 
-                    array[i] = Integer.parseInt(res.getString(i));
-
-                }
-
-
-                for (int i : array) {
-                    sum += i;
-                }
-            }
-        } catch (Exception ignored) {
-        }
-        */
         //visibility buttons
         Button wasserButton = findViewById(R.id.addWater);
         hackerlButton = findViewById(R.id.haeckchen); //define ButtoQns for visibility
@@ -156,6 +136,45 @@ public class MainMenueActivity extends AppCompatActivity
         mltext.setOnEditorActionListener(tveal);
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.waterfill);
 
+        //anzeigen der werte
+        try{
+           // String mail = getIntent().getStringExtra("Email");
+            Cursor res = databaseHelper.getMl(mail, currentDate);
+            int [] array = new int[res.getCount()];
+            int sum = 0;
+            if (res.getCount()!=0) {
+                for (int i = 0; i <= res.getCount(); i++) {
+
+                    array[i] = Integer.parseInt(res.getString(i));
+
+                }
+
+
+                for (int i : array) {
+                    sum += i;
+                }
+                //    String eingabe = mltext.getText().toString();
+                int zunahme = sum;
+                wasserProgress = wasserProgress + zunahme;
+
+
+                if (!schonberechnet) {
+                    tempbedarf();
+                    if (mySwitch.isChecked()) {
+                        float myfloat = (float) wasserbedarf * 1.1f;
+                        wasserbedarf = Math.round(myfloat);
+                    }
+                }
+                schonberechnet = true;
+                progressanzeige();
+                mp.start();
+
+            }
+
+        } catch (Exception e) {
+            //  Toast.makeText(getApplicationContext(), "Daten sind verlorengegangen", Toast.LENGTH_SHORT).show();
+        }
+
         mySwitch.setOnClickListener(new View.OnClickListener() {
 
 
@@ -192,8 +211,8 @@ public class MainMenueActivity extends AppCompatActivity
                 mlview.setVisibility(View.GONE);
                 ml330.setVisibility(View.GONE);
                 ml500.setVisibility(View.GONE);
-                String mail = getIntent().getStringExtra("Email");
-//ToDo soll und datum berechnen und statische variablen tauschen
+              //  String mail = getIntent().getStringExtra("Email");
+
 
                 try {
                     String eingabe = "330";
@@ -237,8 +256,8 @@ public class MainMenueActivity extends AppCompatActivity
                 mlview.setVisibility(View.GONE);
                 ml330.setVisibility(View.GONE);
                 ml500.setVisibility(View.GONE);
-                String mail = getIntent().getStringExtra("Email");
-//ToDo soll und datum berechnen und statische variablen tauschen
+               // String mail = getIntent().getStringExtra("Email");
+
 
                 try {
                     String eingabe = "500";
@@ -298,8 +317,8 @@ public class MainMenueActivity extends AppCompatActivity
                                                  ml330.setVisibility(View.GONE);
                                                  ml500.setVisibility(View.GONE);
 
-                                                 String mail = getIntent().getStringExtra("Email");
-//ToDo soll und datum berechnen und statische variablen tauschen
+                                            //     String mail = getIntent().getStringExtra("Email");
+
 
                                                  try {
                                                      String eingabe = mltext.getText().toString();
@@ -338,38 +357,14 @@ public class MainMenueActivity extends AppCompatActivity
         );
 
 
-        //anzeigen der werte
-        String mail = getIntent().getStringExtra("Email");
-Cursor res = databaseHelper.getMl(mail, currentDate);
-StringBuffer buf = new StringBuffer();
-int [] array = new int[res.getCount()];
-        int sum = 0;
-        if (res.getCount()!=0){
-for (int i = 0; i<=res.getCount(); i++){
-
-    array [i] = Integer.parseInt(res.getString(i));
-
-}
 
 
-        for (int i : array) {
-            sum += i;
-        }
-
-
-//while(res.moveToNext()){
-//    int i = 0;
-//    buf.append(res.getString(i));
-//    i++;
-//}
 }
 
 
 
 
 
-
-    }
 
 
     @Override
@@ -423,7 +418,7 @@ for (int i = 0; i<=res.getCount(); i++){
             String alter;
             String gewicht;
             String groesse;
-            String mail = getIntent().getStringExtra("Email");
+           // String mail = getIntent().getStringExtra("Email");
             Cursor res_alter = databaseHelper.getBenutzerdataalter(mail);
             if (res_alter.moveToFirst()) {
                 alter = res_alter.getString(res_alter.getColumnIndex("Age"));
@@ -536,7 +531,7 @@ for (int i = 0; i<=res.getCount(); i++){
         //noinspection SimplifiableIfStatement
         if (id == R.id.homeButton) {
             startActivity(new Intent(this, MainMenueActivity.class));
-            databaseHelper.openDatabase();
+          // databaseHelper.openDatabase();
             return true;
 
         }
